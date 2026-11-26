@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>مذاكرتي | My Study</title>
+<meta name="theme-color" content="#4f6bed">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>
+:root{--bg:#f5f6fb;--card:#fff;--ink:#1c2333;--mut:#6a7286;--line:#e5e8f0;--pri:#4f6bed;--pri2:#eef1fe;--ok:#15803d;--okb:#e7f6ec;--bad:#c62828;--badb:#fdecec;--warn:#b45309;--warnb:#fff3df;--sh:0 1px 2px rgba(16,24,40,.05),0 6px 18px rgba(16,24,40,.06);--r:16px;color-scheme:light}
+[data-theme=dark]{--bg:#0e131d;--card:#171e2c;--ink:#e7ebf4;--mut:#98a2b8;--line:#28324a;--pri:#8197ff;--pri2:#1f2844;--ok:#4ade80;--okb:#14301f;--bad:#f87171;--badb:#3a1d20;--warn:#fbbf24;--warnb:#382a10;--sh:none;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Tahoma,"Noto Sans Arabic",sans-serif;-webkit-tap-highlight-color:transparent}
+body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:760px;margin:0 auto;padding:12px 14px 20px}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top)) 14px 8px;max-width:760px;margin:0 auto}
+.top h1{font-size:17px;margin:0;flex:1;font-weight:800;letter-spacing:-.2px}
+.top h1 small{display:block;font-size:11.5px;color:var(--mut);font-weight:500}
+.ib{border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;display:grid;place-items:center;font-size:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);margin:12px 0;overflow:hidden}
+.ch{display:flex;align-items:center;gap:8px;padding:12px 14px 6px}
+.ch h2{font-size:15.5px;margin:0;flex:1;font-weight:800}
+.ch .sub{font-size:12px;color:var(--mut)}
+.cb{padding:6px 14px 14px}
+.mut{color:var(--mut)}.sm{font-size:12.5px}.num{font-variant-numeric:tabular-nums}
+.row{display:flex;align-items:center;gap:8px}.wr{flex-wrap:wrap}.sp{justify-content:space-between}.g1{flex:1;min-width:0}
+.hero{background:linear-gradient(135deg,#4f6bed,#7c5cf0 60%,#c157d8);color:#fff;border:0;border-radius:20px;padding:16px;margin:8px 0 12px;box-shadow:0 10px 24px rgba(79,107,237,.25)}
+.hero .big{font-size:34px;font-weight:900;line-height:1}
+.hero .lbl{opacity:.9;font-size:13px}
+.hero .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.hero .chip{background:rgba(255,255,255,.18);border-radius:999px;padding:4px 10px;font-size:12.5px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:var(--sh)}
+.tile b{display:block;font-size:20px;font-weight:900}
+.tile span{font-size:12px;color:var(--mut)}
+.bar{height:7px;background:var(--line);border-radius:9px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--pri);border-radius:9px}
+.btn{border:0;background:var(--pri);color:#fff;border-radius:12px;padding:10px 14px;font-weight:700}
+.btn.ghost{background:var(--pri2);color:var(--pri)}
+.btn.line{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn.danger{background:var(--badb);color:var(--bad)}
+.btn.sm{padding:6px 10px;font-size:13px;border-radius:10px}
+.btn.full{width:100%}
+.pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 10px;font-size:13px;white-space:nowrap}
+.pill.on{background:var(--pri);border-color:var(--pri);color:#fff}
+.pill.ok.on{background:var(--ok);border-color:var(--ok);color:#fff}
+.pill.bad.on{background:var(--bad);border-color:var(--bad);color:#fff}
+.pill.warn.on{background:var(--warn);border-color:var(--warn);color:#fff}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.ls{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}
+.ls:first-child{border-top:0}
+.ls .vb{width:5px;align-self:stretch;border-radius:4px;flex:none}
+.ls .act{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.pr{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.pr button{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:8px 2px;text-align:center}
+.pr button b{display:block;font-size:13px}
+.pr button small{font-size:11.5px;color:var(--mut)}
+.pr button.s1{background:var(--okb);border-color:var(--ok)}
+.pr button.s1 b{color:var(--ok)}
+.pr button.s2{background:var(--warnb);border-color:var(--warn)}
+.pr button.s2 b{color:var(--warn)}
+.pr button.nx{outline:2px solid var(--pri);outline-offset:1px}
+.chk{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.step{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.step button{border:0;background:transparent;width:32px;height:30px;font-size:17px}
+.step b{min-width:26px;text-align:center}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.sc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:start;box-shadow:var(--sh);position:relative;overflow:hidden}
+.sc:before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:5px;background:var(--c)}
+.sc b{display:block;font-size:14.5px}
+.tag{font-size:11px;border-radius:6px;padding:1px 6px;background:var(--pri2);color:var(--pri)}
+.tag.gr{background:var(--line);color:var(--mut)}
+.unit{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.unit:first-child{border-top:0}
+.st0{background:var(--line);color:var(--mut)}.st1{background:#e0ecff;color:#1d4ed8}.st2{background:#efe6ff;color:#6d28d9}.st3{background:var(--warnb);color:var(--warn)}.st4{background:var(--okb);color:var(--ok)}
+[data-theme=dark] .st1{background:#1c2a4a;color:#93b4ff}[data-theme=dark] .st2{background:#2b2148;color:#c4b5fd}
+.stb{border:0;border-radius:999px;padding:4px 10px;font-size:12.5px;font-weight:700;white-space:nowrap}
+.f{display:grid;gap:4px;margin-bottom:10px}
+.f label{font-size:12.5px;color:var(--mut);font-weight:600}
+.in{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:11px;padding:9px 11px;min-height:42px}
+textarea.in{min-height:90px;resize:vertical}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.days{display:flex;gap:5px;flex-wrap:wrap}
+.days label{border:1px solid var(--line);border-radius:10px;padding:5px 9px;font-size:13px;display:flex;gap:4px;align-items:center}
+.days input:checked+span{font-weight:800;color:var(--pri)}
+.bars{display:flex;align-items:flex-end;gap:6px;height:110px;padding-top:6px}
+.bars div{flex:1;text-align:center;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.bars i{display:block;background:var(--pri);border-radius:6px 6px 3px 3px;min-height:3px}
+.bars i.td{background:#c157d8}
+.bars small{font-size:10.5px;color:var(--mut);margin-top:3px}
+.bars em{font-style:normal;font-size:10.5px;color:var(--mut)}
+table.t{width:100%;border-collapse:collapse;font-size:13.5px}
+table.t th,table.t td{padding:7px 4px;border-top:1px solid var(--line);text-align:start}
+table.t th{font-size:12px;color:var(--mut);font-weight:700;border-top:0}
+.acc{font-weight:800}.a3{color:var(--ok)}.a2{color:var(--warn)}.a1{color:var(--bad)}
+.empty{color:var(--mut);text-align:center;padding:14px 6px;font-size:13.5px}
+.nav{position:fixed;bottom:0;inset-inline:0;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:center;padding:6px 6px calc(6px + env(safe-area-inset-bottom));z-index:6}
+.nav div{display:flex;max-width:760px;width:100%}
+.nav button{flex:1;border:0;background:transparent;padding:4px 2px;border-radius:12px;font-size:11.5px;color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:1px}
+.nav button i{font-style:normal;font-size:20px;line-height:1.2}
+.nav button.on{color:var(--pri);font-weight:800;background:var(--pri2)}
+.toast{position:fixed;bottom:calc(90px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:#1c2333;color:#fff;padding:9px 16px;border-radius:12px;font-size:13.5px;z-index:50;opacity:0;pointer-events:none;transition:.25s;max-width:92vw;text-align:center}
+.toast.show{opacity:1}
+.ov{position:fixed;inset:0;background:rgba(10,14,25,.5);z-index:30;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--card);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
+.sheet h3{margin:0 0 12px;font-size:17px}
+@media(min-width:700px){.ov{align-items:center}.sheet{border-radius:20px}}
+.fx{position:fixed;inset:0;z-index:40;background:linear-gradient(160deg,#1d2a5c,#3b2a6e 55%,#5a2a6a);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+.fx .clk{font-size:min(23vw,150px);font-weight:900;letter-spacing:-2px;line-height:1;font-variant-numeric:tabular-nums;direction:ltr}
+.fx .sub{opacity:.85;margin:8px 0 18px}
+.fx .modes{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;justify-content:center}
+.fx .modes button{white-space:nowrap}
+.fx .modes button{background:rgba(255,255,255,.14);border:0;color:#fff;border-radius:999px;padding:6px 12px}
+.fx .modes button.on{background:#fff;color:#3b2a6e;font-weight:800}
+.fx .ctl{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.fx .ctl button{border:0;border-radius:14px;padding:12px 18px;font-weight:800;background:rgba(255,255,255,.16);color:#fff}
+.fx .ctl button.main{background:#fff;color:#3b2a6e}
+.fx select{background:rgba(255,255,255,.14);border:0;color:#fff;border-radius:10px;padding:7px 10px;margin-bottom:14px;max-width:90vw}
+.fx select option{color:#000}
+.fx .ring{width:min(70vw,300px);height:6px;background:rgba(255,255,255,.18);border-radius:9px;overflow:hidden;margin:14px auto 0}
+.fx .ring i{display:block;height:100%;background:#fff}
+.run{position:sticky;top:calc(58px + env(safe-area-inset-top));z-index:4;margin:6px 0;background:#3b2a6e;color:#fff;border:0;border-radius:12px;padding:8px 12px;width:100%;display:flex;gap:8px;align-items:center;font-weight:700}
+.run .num{margin-inline-start:auto;direction:ltr}
+.fc{text-align:center;padding:22px 12px}
+.fc .w{font-size:30px;font-weight:900;direction:ltr}
+.fc .m{font-size:20px;margin-top:10px;color:var(--pri);font-weight:800}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.seg button{border:0;background:transparent;padding:7px 12px;font-size:13px}
+.seg button.on{background:var(--pri);color:#fff}
+.dh{display:flex;align-items:center;gap:8px;margin:14px 2px 4px;font-weight:800;font-size:14px}
+.dh .tag{font-weight:700}
+.x{border:0;background:transparent;color:var(--mut);font-size:16px;padding:2px 6px}
+hr.s{border:0;border-top:1px solid var(--line);margin:12px 0}
+.ltr{direction:ltr;unicode-bidi:isolate}
+.ck{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);background:var(--card);flex:none;font-weight:900;color:#fff;padding:0;line-height:1}
+.ck.on{background:var(--ok);border-color:var(--ok)}
+.nav button{min-width:0}.nav button span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+</style>
+</head>
+<body>
+<header class="top" id="top"></header>
+<main class="wrap" id="app"></main>
+<nav class="nav" id="nav"></nav>
+<div class="toast" id="toast"></div>
+<div id="modal"></div>
+<div id="focus"></div>
+<script>
+'use strict';
+/* ========== helpers ========== */
+const $=s=>document.querySelector(s);
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const parse=s=>{const[a,b,c]=s.split('-').map(Number);return new Date(a,b-1,c)};
+const today=()=>iso(new Date());
+const addD=(s,n)=>{const d=parse(s);d.setDate(d.getDate()+n);return iso(d)};
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const toMin=h=>{if(!h)return 0;const[a,b]=h.split(':').map(Number);return a*60+b};
+const sum=a=>a.reduce((x,y)=>x+(+y||0),0);
+
+/* ========== strings (AR / EN) ========== */
+const STR={ar:{
+app:'مذاكرتي',appSub:'ثانوية عامة',
+setupT:'تجهيز التطبيق',setupHi:'اختار صفك وشعبتك علشان نجهزلك المواد ومواعيد الامتحانات. تقدر تغيرهم بعدين من الإعدادات.',grade:'الصف',stream:'الشعبة',
+g6:'الصف السادس الابتدائي',appSubP:'المرحلة الابتدائية',g1:'الصف الأول الثانوي',g2:'الصف الثاني الثانوي',g3:'الصف الثالث الثانوي',s_gen:'عام (مواد مشتركة)',s_sci:'علمي',s_lit:'أدبي',s_bio:'علمي علوم',s_math:'علمي رياضة',
+startApp:'يلا نبدأ 🚀',gradeChangeQ:'تغيير الصف أو الشعبة هيغير قائمة المواد (بياناتك القديمة هتفضل محفوظة). تكمل؟',
+ex_t1:'امتحانات الترم الأول',ex_t2:'امتحانات الترم الثاني',ex_ta:'امتحانات الثانوية العامة',exCustom:'الامتحان',daysTo:'يوم على',examOverride:'تاريخ امتحان مخصص (اختياري)',
+tree:'شجرتك',treeGrow:'شجرتك بتكبر 🌱 — لو خرجت من التطبيق أو قفلت الشاشة هتدبل',treeDead:'الشجرة دبلت لأنك خرجت من التطبيق 🥀',garden:'حديقتي',treesN:'شجرة',deadN:'دبلانة',gardenEmpty:'كل جلسة 10 دقايق أو أكتر بتزرع شجرة 🌱',
+pomo:'بومودورو',work:'مذاكرة',brk:'استراحة',longBrk:'استراحة طويلة',round:'جولة',breakStart:'وقت الاستراحة ☕ قوم اتحرك واشرب مية',workStart:'يلا نرجع نذاكر 💪',
+level:'المستوى',xp:'نقطة',streakStudy:'أيام مذاكرة متتالية',streakPray:'أيام صلوات كاملة',badges:'الشارات',progressT:'تقدمي',xpHow:'إزاي بتجمع نقاط',
+xpRules:['دقيقة مذاكرة = 1','صلاة في وقتها = 10 (متأخرة = 5)','أذكار أو وتر = 5 — صفحة قرآن = 2','حضور درس = 15 — واجب = 10','سؤال صح = 1 — مهمة خلصت = 10 — كلمة عرفتها = 2'],
+streakNote:'يوم المذاكرة = 30 دقيقة أو أكتر',
+report:'التقرير الأسبوعي لولي الأمر',share:'مشاركة',whats:'واتساب',copy:'نسخ',copied:'اتنسخ ✓',parentPhone:'رقم واتساب ولي الأمر (اختياري، بالكود الدولي)',
+rpTitle:'تقرير مذاكرة',rpStudy:'المذاكرة',rpAvg:'متوسط يومي',rpBySubj:'حسب المادة',rpLessons:'الدروس',rpOf:'من',rpHw:'الواجب',rpQs:'الأسئلة',rpAcc:'دقة',rpTasks:'المهام',rpPray:'الصلوات في وقتها',rpStreak:'سلسلة المذاكرة',rpDays:'أيام',rpTrees:'شجرات',rpGrades:'الدرجات',
+tasks:'مهام اليوم',addTask:'+ مهمة',taskT:'المهمة',taskPh:'مثلاً: حل تمارين الفصل الثاني',overdue:'مهام فاتت — محتاجة تعويض',toToday:'لليوم',autoPlan:'وزّعها تلقائي قبل آخر الأسبوع',planned:'اتوزعت على الأيام',
+weekPlan:'خطة الأسبوع',makeupLesson:'تعويض درس',noTasks:'مفيش مهام — ضيف مهمة',needTitle:'اكتب المهمة',
+calExport:'📆 إضافة الدروس لتقويم الموبايل',calHint:'هينزل ملف تقويم — افتحه وهيضيف كل الدروس لتقويم موبايلك بتنبيه قبل كل درس بنص ساعة. لو غيرت الجدول نزّله تاني.',calNone:'ضيف دروس الأول',
+notes:'ملاحظات',notePh:'قوانين، أخطاء متكررة، نقط مهمة...',subjNotes:'ملاحظات المادة',
+grades:'الدرجات',addGrade:'تسجيل درجة',gtype:'نوع الامتحان',gtypes:['امتحان شهري','امتحان سنتر','امتحان آخر الترم','اختبار قصير'],scoreL:'الدرجة',maxL:'الدرجة النهائية',noGrades:'مفيش درجات لسه',gradeErr:'راجع الدرجة: لازم تكون من 0 للدرجة النهائية',avgL:'المتوسط',lastL:'آخر درجة',
+segQs:'الأسئلة',segGr:'الدرجات',
+bd:{first:'أول جلسة',h10:'10 ساعات مذاكرة',h50:'50 ساعة مذاكرة',h100:'100 ساعة مذاكرة',s7:'أسبوع مذاكرة متواصل',s30:'شهر مذاكرة متواصل',p7:'أسبوع صلوات كامل',q100:'100 سؤال صح',q1000:'1000 سؤال صح',t10:'10 شجرات',t50:'غابة 50 شجرة',w50:'50 كلمة متقنة',hw20:'20 واجب',tk50:'50 مهمة'},today:'اليوم',lessons:'الدروس',study:'المذاكرة',questions:'الأسئلة',words:'الكلمات',settings:'الإعدادات',
+hi:'أهلاً',daysLeft:'يوم على امتحانات الثانوية العامة',examPassed:'انتهى موعد الامتحانات المحدد — حدّثه من الإعدادات',
+studyMin:'مذاكرة اليوم',ofGoal:'من',min:'د',h:'س',prayersT:'الصلوات',qsToday:'أسئلة اليوم',
+todayLessons:'دروس اليوم',noLessonsToday:'مفيش دروس النهارده',tomorrow:'بكرة',noneTomorrow:'مفيش دروس بكرة',
+att_ok:'حضرت',att_abs:'غبت',att_post:'اتأجل',hw:'الواجب',hwDone:'خلصت الواجب',score:'درجة الامتحان',
+worship:'العبادات',next:'الصلاة القادمة',after:'بعد',fajr:'الفجر',dhuhr:'الظهر',asr:'العصر',maghrib:'المغرب',isha:'العشاء',sunrise:'الشروق',
+prHint:'اضغط مرة = في وقتها، مرتين = متأخرة',adhM:'أذكار الصباح',adhE:'أذكار المساء',witr:'الوتر',quran:'ورد القرآن (صفحات)',
+startStudy:'ابدأ مذاكرة',chooseSubj:'اختار المادة وابدأ الساعة',wordsDue:'كلمات للمراجعة',review:'راجع دلوقتي',
+addWeekly:'+ درس أسبوعي',addExtra:'+ حصة إضافية',weekTable:'جدول الدروس الأسبوعي',noLessonsDay:'—',extraUpcoming:'حصص إضافية قادمة',
+unmarked:'دروس محتاجة تسجيل حضور',attStats:'الحضور والواجب (آخر 30 يوم)',attended:'حضور',absent:'غياب',hwRate:'الواجب',
+subject:'المادة',teacher:'المدرس',place:'المكان',days:'الأيام',day:'اليوم',start:'الساعة',dur:'المدة (دقيقة)',date:'التاريخ',
+save:'حفظ',cancel:'إلغاء',del:'حذف',edit:'تعديل',add:'إضافة',close:'إغلاق',back:'رجوع',yes:'أيوه',confirm:'تأكيد',
+placeOpts:['سنتر','مدرس في البيت','أونلاين','المدرسة','مجموعة'],
+weekMin:'دقائق المذاكرة آخر 7 أيام',weekTotal:'إجمالي الأسبوع',avgDay:'متوسط اليوم',subjects:'المواد',counted:'مضافة للمجموع',notCounted:'خارج المجموع',
+units:'الفصول / الدروس',addUnits:'إضافة فصول (كل سطر فصل)',unitsPh:'الفصل الأول: ...\nالفصل الثاني: ...',noUnits:'لسه مفيش فصول — ضيفها من تحت',
+st:['لم يبدأ','اتشرح','ذاكرته','راجعته','متقن ✓'],progress:'التقدم',thisWeek:'هذا الأسبوع',accuracy:'الدقة',sessions:'جلسات المذاكرة',noSessions:'مفيش جلسات لسه',
+unit:'الفصل',none:'بدون',focusOpen:'مفتوح',pause:'إيقاف مؤقت',resume:'استكمال',finish:'إنهاء وحفظ',discard:'إلغاء الجلسة',minimize:'تصغير',
+timeUp:'خلص الوقت! خد استراحة 🌿',saved:'اتحفظ ✓',sessSaved:'اتسجلت الجلسة',tooShort:'الجلسة أقل من دقيقة — ماتسجلتش',
+addQs:'تسجيل حل أسئلة',total:'عدد الأسئلة',correct:'الصح',source:'المصدر',srcOpts:['كتاب الوزارة','كتاب خارجي','ملزمة المدرس','امتحانات سابقة','نماذج الوزارة','منصة تعليمية'],
+qsStats:'الدقة حسب المادة',weak:'فصول محتاجة تركيز (أقل من 65%)',recent:'آخر التسجيلات',qErr:'راجع الأرقام: الصح لازم يكون أقل من أو يساوي العدد',noQs:'مفيش تسجيلات لسه',last7:'آخر 7 أيام',
+wordEn:'الكلمة (إنجليزي)',wordAr:'المعنى (عربي)',bulk:'إضافة مجموعة',bulkPh:'word = معنى\nanother = معنى تاني',search:'بحث...',know:'عرفتها ✓',dontKnow:'ماعرفتهاش',show:'اظهر المعنى',
+revDone:'خلصت المراجعة 👏',noDue:'مفيش كلمات مستحقة النهارده',allWords:'كل الكلمات',box:'صندوق',dup:'الكلمة موجودة قبل كده',added:'اتضافت',
+noVoice:'مفيش صوت إنجليزي على الجهاز: ثبّت صوت English من إعدادات الجهاز (تحويل النص إلى كلام) أو افتح التطبيق من Chrome',noSpeech:'المتصفح ده مايدعمش النطق — افتح التطبيق من Chrome',
+profile:'الملف الشخصي',name:'الاسم',lang:'اللغة',theme:'المظهر',auto:'تلقائي',light:'فاتح',dark:'داكن',examDate:'تاريخ أول امتحان',goal:'هدف المذاكرة اليومي (دقيقة)',
+prayerSet:'مواقيت الصلاة',city:'المدينة',custom:'موقع مخصص',lat:'خط العرض',lng:'خط الطول',method:'طريقة الحساب',mEgypt:'الهيئة المصرية العامة للمساحة',mUQ:'أم القرى',
+subjEdit:'المواد',nameAr:'الاسم بالعربي',nameEn:'الاسم بالإنجليزي',color:'اللون',addSubj:'+ مادة',
+backup:'نسخة احتياطية',exportB:'تنزيل نسخة احتياطية',importB:'استرجاع من ملف',imported:'اترجعت البيانات ✓',badFile:'الملف ده مش نسخة احتياطية صحيحة',
+eraseAll:'مسح كل البيانات',eraseQ:'متأكد؟ هيتمسح كل حاجة على الجهاز ده ومش هترجع إلا من نسخة احتياطية.',delQ:'متأكد من الحذف؟',
+importQ:'الاسترجاع هيستبدل كل البيانات الحالية. تكمل؟',about:'التطبيق شغال بدون نت، والبيانات محفوظة على الجهاز ده بس — خد نسخة احتياطية كل أسبوع.',
+src:'المصادر: المواد حسب خطط وزارة التربية والتعليم كما نشرتها اليوم السابع والأهرام وشبابيك (2025–2026)، والسادس الابتدائي يتبع مواعيد امتحانات صفوف النقل، ومواعيد الامتحانات حسب الخريطة الزمنية 2026/2027 (الترم الأول 9 يناير، الترم الثاني 22 مايو، الثانوية العامة 26 يونيو 2027) — راجعهم مع المدرسة، وتقدر تعدّل المواد من الإعدادات.',
+needSubj:'اختار مادة',needDay:'اختار يوم واحد على الأقل',needTime:'حدد الساعة',saveErr:'مش قادر أحفظ — مساحة الجهاز ممتلئة؟',
+lessonMin:'دروس',mins:'دقيقة',week:['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],am:'ص',pm:'م'
+},en:{
+app:'My Study',appSub:'Thanaweya Amma',
+setupT:'Set up the app',setupHi:'Pick your grade and stream so we can set up your subjects and exam dates. You can change them later in Settings.',grade:'Grade',stream:'Stream',
+g6:'6th primary',appSubP:'Primary stage',g1:'1st secondary',g2:'2nd secondary',g3:'3rd secondary',s_gen:'General (common)',s_sci:'Science',s_lit:'Literary',s_bio:'Science (Biology)',s_math:'Science (Math)',
+startApp:"Let's start 🚀",gradeChangeQ:'Changing grade or stream changes the subject list (old data stays saved). Continue?',
+ex_t1:'Term 1 exams',ex_t2:'Term 2 exams',ex_ta:'Thanaweya Amma exams',exCustom:'the exam',daysTo:'days to',examOverride:'Custom exam date (optional)',
+tree:'Your tree',treeGrow:'Your tree is growing 🌱 — leaving the app or locking the screen withers it',treeDead:'The tree withered because you left the app 🥀',garden:'My garden',treesN:'trees',deadN:'withered',gardenEmpty:'Every session of 10+ minutes plants a tree 🌱',
+pomo:'Pomodoro',work:'Focus',brk:'Break',longBrk:'Long break',round:'Round',breakStart:'Break time ☕ move around and drink water',workStart:'Back to studying 💪',
+level:'Level',xp:'XP',streakStudy:'study days in a row',streakPray:'full-prayer days in a row',badges:'Badges',progressT:'Progress',xpHow:'How to earn XP',
+xpRules:['1 study minute = 1','Prayer on time = 10 (late = 5)','Adhkar or witr = 5 — Quran page = 2','Lesson attended = 15 — homework = 10','Correct answer = 1 — task done = 10 — word known = 2'],
+streakNote:'A study day = 30+ minutes',
+report:'Weekly report for parent',share:'Share',whats:'WhatsApp',copy:'Copy',copied:'Copied ✓',parentPhone:"Parent's WhatsApp number (optional, with country code)",
+rpTitle:'Study report',rpStudy:'Study',rpAvg:'daily average',rpBySubj:'By subject',rpLessons:'Lessons',rpOf:'of',rpHw:'homework',rpQs:'Questions',rpAcc:'accuracy',rpTasks:'Tasks',rpPray:'Prayers on time',rpStreak:'Study streak',rpDays:'days',rpTrees:'trees',rpGrades:'Grades',
+tasks:"Today's tasks",addTask:'+ Task',taskT:'Task',taskPh:'e.g. solve chapter 2 exercises',overdue:'Missed tasks — make them up',toToday:'Today',autoPlan:'Spread them before week end',planned:'Spread across the days',
+weekPlan:'Week plan',makeupLesson:'Make up lesson',noTasks:'No tasks — add one',needTitle:'Write the task',
+calExport:'📆 Add lessons to phone calendar',calHint:'Downloads a calendar file — open it to add all lessons to your phone calendar with a reminder 30 minutes before each. Download again after changing the timetable.',calNone:'Add lessons first',
+notes:'Notes',notePh:'Rules, repeated mistakes, key points...',subjNotes:'Subject notes',
+grades:'Grades',addGrade:'Log a grade',gtype:'Exam type',gtypes:['Monthly exam','Center exam','End of term','Short quiz'],scoreL:'Score',maxL:'Out of',noGrades:'No grades yet',gradeErr:'Check the score: 0 to the maximum',avgL:'Average',lastL:'Last',
+segQs:'Questions',segGr:'Grades',
+bd:{first:'First session',h10:'10 study hours',h50:'50 study hours',h100:'100 study hours',s7:'7-day study streak',s30:'30-day study streak',p7:'Full-prayer week',q100:'100 correct answers',q1000:'1000 correct answers',t10:'10 trees',t50:'Forest of 50',w50:'50 words mastered',hw20:'20 homeworks',tk50:'50 tasks'},today:'Today',lessons:'Lessons',study:'Study',questions:'Questions',words:'Words',settings:'Settings',
+hi:'Hi',daysLeft:'days to Thanaweya Amma exams',examPassed:'Exam date has passed — update it in Settings',
+studyMin:'Study today',ofGoal:'of',min:'m',h:'h',prayersT:'Prayers',qsToday:'Questions today',
+todayLessons:"Today's lessons",noLessonsToday:'No lessons today',tomorrow:'Tomorrow',noneTomorrow:'No lessons tomorrow',
+att_ok:'Attended',att_abs:'Absent',att_post:'Postponed',hw:'Homework',hwDone:'Homework done',score:'Quiz score',
+worship:'Worship',next:'Next prayer',after:'in',fajr:'Fajr',dhuhr:'Dhuhr',asr:'Asr',maghrib:'Maghrib',isha:'Isha',sunrise:'Sunrise',
+prHint:'Tap once = on time, twice = late',adhM:'Morning adhkar',adhE:'Evening adhkar',witr:'Witr',quran:'Quran (pages)',
+startStudy:'Start studying',chooseSubj:'Pick a subject to start the clock',wordsDue:'Words due',review:'Review now',
+addWeekly:'+ Weekly lesson',addExtra:'+ Extra lesson',weekTable:'Weekly lessons timetable',noLessonsDay:'—',extraUpcoming:'Upcoming extra lessons',
+unmarked:'Lessons to mark attendance',attStats:'Attendance & homework (last 30 days)',attended:'Attended',absent:'Absent',hwRate:'Homework',
+subject:'Subject',teacher:'Teacher',place:'Place',days:'Days',day:'Day',start:'Time',dur:'Duration (min)',date:'Date',
+save:'Save',cancel:'Cancel',del:'Delete',edit:'Edit',add:'Add',close:'Close',back:'Back',yes:'Yes',confirm:'Confirm',
+placeOpts:['Center','Home tutor','Online','School','Group'],
+weekMin:'Study minutes, last 7 days',weekTotal:'Week total',avgDay:'Daily average',subjects:'Subjects',counted:'Counted',notCounted:'Not counted',
+units:'Chapters / units',addUnits:'Add chapters (one per line)',unitsPh:'Chapter 1: ...\nChapter 2: ...',noUnits:'No chapters yet — add them below',
+st:['Not started','Explained','Studied','Revised','Mastered ✓'],progress:'Progress',thisWeek:'This week',accuracy:'Accuracy',sessions:'Study sessions',noSessions:'No sessions yet',
+unit:'Chapter',none:'None',focusOpen:'Open',pause:'Pause',resume:'Resume',finish:'Finish & save',discard:'Discard',minimize:'Minimize',
+timeUp:'Time is up! Take a break 🌿',saved:'Saved ✓',sessSaved:'Session saved',tooShort:'Under a minute — not saved',
+addQs:'Log solved questions',total:'Questions',correct:'Correct',source:'Source',srcOpts:['Ministry book','External book','Teacher booklet','Past exams','Ministry samples','Online platform'],
+qsStats:'Accuracy by subject',weak:'Chapters needing focus (under 65%)',recent:'Recent entries',qErr:'Check the numbers: correct must be ≤ total',noQs:'No entries yet',last7:'Last 7 days',
+wordEn:'Word (English)',wordAr:'Meaning (Arabic)',bulk:'Bulk add',bulkPh:'word = meaning\nanother = meaning',search:'Search...',know:'I knew it ✓',dontKnow:"Didn't know",show:'Show meaning',
+revDone:'Review finished 👏',noDue:'No words due today',allWords:'All words',box:'Box',dup:'Word already exists',added:'Added',
+noVoice:'No English voice on this device: install an English text-to-speech voice in device settings, or open the app in Chrome',noSpeech:"This browser can't speak — open the app in Chrome",
+profile:'Profile',name:'Name',lang:'Language',theme:'Theme',auto:'Auto',light:'Light',dark:'Dark',examDate:'First exam date',goal:'Daily study goal (min)',
+prayerSet:'Prayer times',city:'City',custom:'Custom location',lat:'Latitude',lng:'Longitude',method:'Method',mEgypt:'Egyptian General Authority of Survey',mUQ:'Umm al-Qura',
+subjEdit:'Subjects',nameAr:'Arabic name',nameEn:'English name',color:'Color',addSubj:'+ Subject',
+backup:'Backup',exportB:'Download backup',importB:'Restore from file',imported:'Data restored ✓',badFile:'Not a valid backup file',
+eraseAll:'Erase all data',eraseQ:'Sure? Everything on this device will be erased and can only come back from a backup.',delQ:'Delete this?',
+importQ:'Restoring replaces all current data. Continue?',about:'Works offline. Data is stored on this device only — download a backup every week.',
+src:'Sources: subjects per Ministry of Education plans as reported by Youm7, Ahram and Shbabbek (2025–2026); 6th primary follows the transfer-grade exam dates; exam dates per the 2026/27 school calendar (term 1: 9 Jan, term 2: 22 May, Thanaweya Amma: 26 Jun 2027) — confirm with the school; subjects are editable in Settings.',
+needSubj:'Pick a subject',needDay:'Pick at least one day',needTime:'Set the time',saveErr:"Can't save — device storage full?",
+lessonMin:'lessons',mins:'min',week:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],am:'AM',pm:'PM'
+}};
+let LANG='ar';
+const t=k=>(STR[LANG][k]!==undefined?STR[LANG][k]:STR.ar[k]!==undefined?STR.ar[k]:k);
+
+/* ========== data ========== */
+const KEY='thn-v1';
+const DEFSUBJ=[
+ {id:'ar',ar:'اللغة العربية',en:'Arabic',color:'#0d9488',counted:true},
+ {id:'en',ar:'اللغة الإنجليزية',en:'English',color:'#2563eb',counted:true},
+ {id:'ph',ar:'الفيزياء',en:'Physics',color:'#7c3aed',counted:true},
+ {id:'ch',ar:'الكيمياء',en:'Chemistry',color:'#ea580c',counted:true},
+ {id:'bio',ar:'الأحياء',en:'Biology',color:'#16a34a',counted:true},
+ {id:'rel',ar:'التربية الدينية',en:'Religious Education',color:'#a16207',counted:false},
+ {id:'nat',ar:'التربية الوطنية',en:'National Education',color:'#64748b',counted:false},
+ {id:'l2',ar:'اللغة الأجنبية الثانية',en:'Second Foreign Language',color:'#db2777',counted:false}];
+const CAT={ar:['اللغة العربية','Arabic','#0d9488'],en:['اللغة الإنجليزية','English','#2563eb'],hist:['التاريخ','History','#b45309'],math:['الرياضيات','Mathematics','#0891b2'],
+ isci:['العلوم المتكاملة','Integrated Science','#16a34a'],phil:['الفلسفة والمنطق','Philosophy & Logic','#9333ea'],ph:['الفيزياء','Physics','#7c3aed'],ch:['الكيمياء','Chemistry','#ea580c'],
+ bio:['الأحياء','Biology','#16a34a'],geo:['الجغرافيا','Geography','#65a30d'],psy:['علم النفس','Psychology','#c026d3'],stat:['الإحصاء','Statistics','#0284c7'],
+ rel:['التربية الدينية','Religious Education','#a16207'],l2:['اللغة الأجنبية الثانية','Second Foreign Language','#db2777'],nat:['التربية الوطنية','National Education','#64748b'],prog:['البرمجة وعلوم الحاسب','Programming & CS','#475569'],
+ sci:['العلوم','Science','#16a34a'],soc:['الدراسات الاجتماعية','Social Studies','#b45309'],ict:['تكنولوجيا المعلومات والاتصالات','ICT','#475569']};
+/* subjects per grade/stream (counted, not counted) — from published Ministry plans as reported by Youm7 (Jan 2026), Ahram, Shbabbek (Aug 2026) */
+const SETS={'6-gen':[['ar','en','math','sci','soc'],['rel','ict']],'1-gen':[['ar','en','hist','math','isci','phil'],['rel','l2','prog']],'2-sci':[['ar','en','math','hist','ch','ph'],['rel','l2','nat']],'2-lit':[['ar','en','math','hist','geo','psy'],['rel','l2','nat']],
+ '3-bio':[['ar','en','bio','ch','ph'],['rel','l2','nat']],'3-math':[['ar','en','math','ch','ph'],['rel','l2','nat']],'3-lit':[['ar','en','hist','geo','stat'],['rel','l2','nat']]};
+const STREAMS={6:['gen'],1:['gen'],2:['sci','lit'],3:['bio','math','lit']};
+function buildSubjects(g,st,old){const set=SETS[g+'-'+st]||SETS['3-bio'],keep={};(old||[]).forEach(o=>keep[o.id]=o);
+ const mk=(id,c)=>{const k=keep[id],b=CAT[id];return k?{...k,counted:c}:{id,ar:b[0],en:b[1],color:b[2],counted:c}};
+ return set[0].map(id=>mk(id,true)).concat(set[1].map(id=>mk(id,false)),(old||[]).filter(o=>!CAT[o.id]))}
+/* grade 6 primary: counted subjects per Ministry decision reported by Shbabbek (Jul 2025); transfer-grade exam dates apply */
+/* exam dates: 2026/27 school calendar (transfer exams 9 Jan & 22 May 2027; Thanaweya Amma 26 Jun 2027) */
+const EXAMS={g12:[['2027-01-09','ex_t1'],['2027-05-22','ex_t2']],g3:[['2027-06-26','ex_ta']]};
+function nextExam(d){const c=D.cfg;if(c.examCustom&&c.examCustom>=d)return{date:c.examCustom,name:t('exCustom')};const e=(+c.grade===3?EXAMS.g3:EXAMS.g12).find(x=>x[0]>=d);return e?{date:e[0],name:t(e[1])}:null}
+const defaults=()=>({v:2,cfg:{name:'',lang:'ar',theme:'auto',grade:0,stream:'',setup:false,examCustom:'',goal:300,city:'cairo',lat:'',lng:'',method:'egypt',parent:''},
+ subjects:DEFSUBJ.map(s=>({...s})),units:{},lessons:{},extra:{},att:{},days:{},sessions:{},qs:{},words:{},tasks:{},grades:{},revlog:{}});
+let D=null;
+try{D=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){}
+function normalize(x){const d0=defaults();if(!x||!Array.isArray(x.subjects))return d0;
+ if(x.cfg&&x.cfg.setup===undefined){x.cfg.setup=true;x.cfg.grade=3;x.cfg.stream='bio';if(x.cfg.examDate&&x.cfg.examDate!=='2027-06-26')x.cfg.examCustom=x.cfg.examDate;delete x.cfg.examDate}for(const k in d0)if(x[k]==null)x[k]=d0[k];x.cfg=Object.assign(d0.cfg,x.cfg||{});return x}
+D=normalize(D);LANG=D.cfg.lang==='en'?'en':'ar';
+function save(){_mm=null;try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){toast(t('saveErr'))}}
+const subj=id=>D.subjects.find(s=>s.id===id)||{id,ar:'—',en:'—',color:'#999'};
+const sname=s=>{s=typeof s==='string'?subj(s):s;return LANG==='en'?(s.en||s.ar):(s.ar||s.en)};
+const day=d=>D.days[d]||(D.days[d]={pr:{},am:0,pm:0,witr:0,qr:0});
+
+/* ========== formatting ========== */
+function fmtT(h){if(!h)return'';let[H,M]=h.split(':').map(Number);const a=H<12?t('am'):t('pm');H=H%12||12;return H+':'+pad(M)+' '+a}
+function dur(m){m=Math.round(m||0);const h=Math.floor(m/60),r=m%60;const sp=LANG==='ar'?' ':'';return h?(h+sp+t('h')+(r?' '+r+sp+t('min'):'')):r+sp+t('min')}
+function fmtDate(s,o){try{return new Intl.DateTimeFormat(LANG==='en'?'en-GB':'ar-EG-u-nu-latn',o||{weekday:'long',day:'numeric',month:'long'}).format(parse(s))}catch(e){return s}}
+function hijri(s){try{return new Intl.DateTimeFormat((LANG==='en'?'en':'ar')+'-u-ca-islamic-umalqura-nu-latn',{day:'numeric',month:'long',year:'numeric'}).format(parse(s))}catch(e){return''}}
+const accCls=a=>a>=85?'a3':a>=65?'a2':'a1';
+const WEEK=[6,0,1,2,3,4,5];
+
+/* ========== prayer times ========== */
+const CITIES={
+ cairo:[30.0444,31.2357,'القاهرة','Cairo','eg'],giza:[30.0131,31.2089,'الجيزة','Giza','eg'],alex:[31.2001,29.9187,'الإسكندرية','Alexandria','eg'],
+ qalyubia:[30.4659,31.1848,'بنها','Banha','eg'],mansoura:[31.0409,31.3785,'المنصورة','Mansoura','eg'],tanta:[30.7865,31.0004,'طنطا','Tanta','eg'],
+ zagazig:[30.5877,31.502,'الزقازيق','Zagazig','eg'],shebin:[30.5526,31.0089,'شبين الكوم','Shebin El Kom','eg'],kafr:[31.1107,30.9388,'كفر الشيخ','Kafr El Sheikh','eg'],
+ damanhour:[31.0341,30.4682,'دمنهور','Damanhour','eg'],damietta:[31.4165,31.8133,'دمياط','Damietta','eg'],portsaid:[31.2653,32.3019,'بورسعيد','Port Said','eg'],
+ ismailia:[30.5965,32.2715,'الإسماعيلية','Ismailia','eg'],suez:[29.9668,32.5498,'السويس','Suez','eg'],fayoum:[29.3084,30.8428,'الفيوم','Fayoum','eg'],
+ benisuef:[29.0661,31.0994,'بني سويف','Beni Suef','eg'],minya:[28.0871,30.7618,'المنيا','Minya','eg'],asyut:[27.1783,31.1859,'أسيوط','Asyut','eg'],
+ sohag:[26.5591,31.6948,'سوهاج','Sohag','eg'],qena:[26.1551,32.716,'قنا','Qena','eg'],luxor:[25.6872,32.6396,'الأقصر','Luxor','eg'],aswan:[24.0889,32.8998,'أسوان','Aswan','eg'],
+ hurghada:[27.2579,33.8116,'الغردقة','Hurghada','eg'],matrouh:[31.3543,27.2373,'مرسى مطروح','Marsa Matrouh','eg'],arish:[31.1316,33.7984,'العريش','Arish','eg'],
+ jeddah:[21.4858,39.1925,'جدة','Jeddah','sa'],makkah:[21.3891,39.8579,'مكة المكرمة','Makkah','sa'],madinah:[24.5247,39.5692,'المدينة المنورة','Madinah','sa'],
+ riyadh:[24.7136,46.6753,'الرياض','Riyadh','sa'],dammam:[26.4207,50.0888,'الدمام','Dammam','sa']};
+const ZONE={eg:['Africa/Cairo',2],sa:['Asia/Riyadh',3]};
+function tzOff(zone,dIso,fb){try{const p=new Intl.DateTimeFormat('en-US',{timeZone:zone,timeZoneName:'shortOffset'}).formatToParts(new Date(dIso+'T12:00:00Z')).find(x=>x.type==='timeZoneName').value;
+ const m=p.match(/GMT([+-]\d+)(?::(\d+))?/);if(!m)return /GMT$/.test(p)?0:fb;const h=+m[1];return h+(m[2]?Math.sign(h||1)*(+m[2])/60:0)}catch(e){return fb}}
+function pLoc(dIso){const c=D.cfg,ct=CITIES[c.city];
+ if(ct){const z=ZONE[ct[4]];return{lat:ct[0],lng:ct[1],tz:tzOff(z[0],dIso,z[1]),m:ct[4]==='eg'?'egypt':'uq'}}
+ const lat=parseFloat(c.lat),lng=parseFloat(c.lng);return{lat:isNaN(lat)?30.0444:lat,lng:isNaN(lng)?31.2357:lng,tz:-new Date(dIso+'T12:00:00').getTimezoneOffset()/60,m:c.method==='uq'?'uq':'egypt'}}
+function prayerTimes(dIso){const L=pLoc(dIso),[Y,M,Dd]=dIso.split('-').map(Number),rad=Math.PI/180,lat=L.lat,lng=L.lng,eg=L.m==='egypt';
+ const jd=(()=>{let y=Y,m=M;if(m<=2){y-=1;m+=12}const A=Math.floor(y/100),B=2-A+Math.floor(A/4);return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+Dd+B-1524.5})()-lng/(15*24);
+ const sun=j=>{const d=j-2451545,g=(357.529+.98560028*d)%360,q=(280.459+.98564736*d)%360,Lm=(q+1.915*Math.sin(g*rad)+.02*Math.sin(2*g*rad))%360,e=23.439-.00000036*d;
+  const RA=Math.atan2(Math.cos(e*rad)*Math.sin(Lm*rad),Math.cos(Lm*rad))/rad/15,decl=Math.asin(Math.sin(e*rad)*Math.sin(Lm*rad))/rad;let eqt=q/15-((RA%24)+24)%24;eqt=((eqt+12)%24+24)%24-12;return{decl,eqt}};
+ const noonAt=x=>12-sun(jd+x/24).eqt;
+ const angleTime=(a,x,ccw)=>{const{decl}=sun(jd+x/24),n=noonAt(x);const c=(-Math.sin(a*rad)-Math.sin(decl*rad)*Math.sin(lat*rad))/(Math.cos(decl*rad)*Math.cos(lat*rad));const h=Math.acos(Math.max(-1,Math.min(1,c)))/rad/15;return n+(ccw?-h:h)};
+ const asrTime=x=>{const{decl}=sun(jd+x/24);const a=-Math.atan(1/(1+Math.tan(Math.abs(lat-decl)*rad)))/rad;return angleTime(a,x)};
+ let T={fajr:5,sunrise:6,dhuhr:12,asr:13,maghrib:18,isha:19};
+ for(let i=0;i<2;i++)T={fajr:angleTime(eg?19.5:18.5,T.fajr,true),sunrise:angleTime(.833,T.sunrise,true),dhuhr:noonAt(T.dhuhr),asr:asrTime(T.asr),maghrib:angleTime(.833,T.maghrib),isha:eg?angleTime(17.5,T.isha):0};
+ if(!eg){let ram=false;try{ram=new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{month:'numeric'}).format(new Date(Y,M-1,Dd))==='9'}catch(e){}T.isha=T.maghrib+(ram?2:1.5)}
+ const adj=L.tz-lng/15,out={};
+ for(const k in T){const m=Math.round((T[k]+adj)*60);out[k]=pad(Math.floor(((m/60)%24+24)%24))+':'+pad(((m%60)+60)%60)}
+ out._tz=L.tz;return out}
+const PR=['fajr','dhuhr','asr','maghrib','isha'];
+function nowMinIn(tz){const n=new Date(Date.now()+tz*3600e3);return n.getUTCHours()*60+n.getUTCMinutes()+n.getUTCSeconds()/60}
+function nextPrayer(){const d=today(),T=prayerTimes(d),now=nowMinIn(T._tz);
+ for(const k of PR){const m=toMin(T[k]);if(m>now)return{k,at:T[k],left:m-now}}
+ const T2=prayerTimes(addD(d,1));return{k:'fajr',at:T2.fajr,left:toMin(T2.fajr)+1440-now}}
+
+/* ========== speech (device voice, works offline) ========== */
+let VOICES=[];
+function loadVoices(){try{VOICES=window.speechSynthesis?speechSynthesis.getVoices()||[]:[]}catch(e){VOICES=[]}}
+try{if(window.speechSynthesis){loadVoices();if(speechSynthesis.addEventListener)speechSynthesis.addEventListener('voiceschanged',loadVoices);else speechSynthesis.onvoiceschanged=loadVoices}}catch(e){}
+function enVoice(){const L=VOICES.filter(v=>/^en([-_]|$)/i.test(v.lang||''));return L.find(v=>v.localService&&/US/i.test(v.lang))||L.find(v=>v.localService)||L.find(v=>/US/i.test(v.lang))||L[0]||null}
+function speakDevice(txt){return new Promise((res,rej)=>{try{const ss=window.speechSynthesis;if(!ss||typeof SpeechSynthesisUtterance==='undefined')return rej('none');
+ if(ss.speaking||ss.pending)ss.cancel();const u=new SpeechSynthesisUtterance(txt),v=enVoice();if(v)u.voice=v;u.lang=v?v.lang:'en-US';u.rate=.9;
+ let started=false;u.onstart=()=>{started=true};u.onend=()=>res();u.onerror=e=>{if(!started)rej(e&&e.error||'err');else res()};
+ setTimeout(()=>{try{ss.resume&&ss.resume();ss.speak(u)}catch(e){rej(e)}},80);setTimeout(()=>{if(!started&&!ss.speaking)rej('timeout')},2500)}catch(e){rej(e)}})}
+let SPK=false;
+async function speak(txt){if(SPK)return;SPK=true;try{loadVoices();
+ if(window.speechSynthesis&&(enVoice()||!VOICES.length)){try{await speakDevice(txt);return}catch(e){}}
+ toast(t(window.speechSynthesis?'noVoice':'noSpeech'))}finally{SPK=false}}
+
+/* ========== UI basics ========== */
+let toastT=0;
+function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove('show'),2600)}
+function applyTheme(){const th=D.cfg.theme;const dark=th==='dark'||(th==='auto'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);
+ document.documentElement.dataset.theme=dark?'dark':'light';const m=document.querySelector('meta[name=theme-color]');if(m)m.content=dark?'#0e131d':'#4f6bed'}
+try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(D.cfg.theme==='auto')applyTheme()})}catch(e){}
+function openModal(html){$('#modal').innerHTML=`<div class="ov" data-act="ovclose"><div class="sheet" role="dialog" aria-modal="true">${html}</div></div>`}
+function closeModal(){$('#modal').innerHTML=''}
+function ask(msg){return new Promise(res=>{openModal(`<h3>${esc(msg)}</h3><div class="row" style="justify-content:flex-end"><button class="btn line" id="cn">${t('cancel')}</button><button class="btn danger" id="cy">${t('confirm')}</button></div>`);
+ $('#cn').onclick=()=>{closeModal();res(false)};$('#cy').onclick=()=>{closeModal();res(true)}})}
+
+const V={tab:'today',subj:null,rev:null,wq:'',bulk:false};
+const NAV=[['today','🏠'],['lessons','📅'],['study','📚'],['questions','✅'],['words','🔤'],['progressT','🏆']];
+function render(){
+ document.documentElement.lang=LANG;document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
+ if(!D.cfg.setup){$('#top').innerHTML='';$('#nav').innerHTML='';$('#app').innerHTML=vSetup();return}
+ $('#top').innerHTML=`<h1>${t('app')}<small>${+D.cfg.grade===6?t('appSubP'):t('appSub')}${D.cfg.grade?' — '+t('g'+D.cfg.grade)+((STREAMS[D.cfg.grade]||[]).length>1?' · '+t('s_'+D.cfg.stream):''):''}</small></h1>
+  <button class="ib" data-act="theme" title="${t('theme')}" aria-label="${t('theme')}">${document.documentElement.dataset.theme==='dark'?'☀️':'🌙'}</button>
+  <button class="ib" data-act="lang" aria-label="${t('lang')}" style="font-size:13px;font-weight:800">${LANG==='ar'?'EN':'ع'}</button>
+  <button class="ib" data-act="tab" data-t="settings" aria-label="${t('settings')}">⚙️</button>`;
+ $('#nav').innerHTML=`<div>${NAV.map(([k,i])=>`<button class="${V.tab===k?'on':''}" data-act="tab" data-t="${k}"><i>${i}</i><span>${t(k)}</span></button>`).join('')}</div>`;
+ const fn={today:vToday,lessons:vLessons,study:vStudy,questions:vQuestions,words:vWords,settings:vSettings,progressT:vProgress}[V.tab]||vToday;
+ $('#app').innerHTML=runBar()+fn();
+ try{checkBadges()}catch(e){}
+}
+function busy(){const a=document.activeElement;return a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)||$('#modal').innerHTML}
+
+/* ========== stats helpers ========== */
+const sessOn=d=>Object.values(D.sessions).filter(s=>s.date===d);
+let _mm=null;
+const studyMin=d=>{if(!_mm){_mm={};Object.values(D.sessions).forEach(x=>_mm[x.date]=(_mm[x.date]||0)+(+x.min||0))}return _mm[d]||0};
+function lessonsOn(d){const dow=parse(d).getDay();
+ const w=Object.entries(D.lessons).filter(([,l])=>l.dow===dow&&(!l.from||l.from<=d)).map(([id,l])=>({...l,id,key:d+'|'+id}));
+ const x=Object.entries(D.extra).filter(([,l])=>l.date===d).map(([id,l])=>({...l,id,extra:1,key:d+'|'+id}));
+ return w.concat(x).sort((a,b)=>toMin(a.start)-toMin(b.start))}
+const lessonMinOn=d=>sum(lessonsOn(d).filter(l=>(D.att[l.key]||{}).st==='ok').map(l=>l.dur));
+const qsOn=d=>Object.values(D.qs).filter(q=>q.date===d);
+const prDone=d=>PR.filter(k=>(D.days[d]&&D.days[d].pr[k])>0).length;
+const wordsDue=d=>Object.entries(D.words).filter(([,w])=>(w.due||'')<=d);
+function subjWeekMin(sid,d){const from=addD(d,-6);return sum(Object.values(D.sessions).filter(s=>s.sid===sid&&s.date>=from&&s.date<=d).map(s=>s.min))}
+function subjAcc(sid){const q=Object.values(D.qs).filter(x=>x.sid===sid),T=sum(q.map(x=>x.total));return T?{n:T,acc:Math.round(sum(q.map(x=>x.correct))*100/T)}:{n:0,acc:null}}
+function unitsOf(sid){return Object.entries(D.units).filter(([,u])=>u.sid===sid).sort((a,b)=>(a[1].o||0)-(b[1].o||0))}
+function subjProg(sid){const u=unitsOf(sid);return u.length?Math.round(sum(u.map(([,x])=>x.st||0))*100/(u.length*4)):null}
+
+/* ========== TODAY ========== */
+function vToday(){const d=today(),c=D.cfg,ex=nextExam(d),left=ex?Math.ceil((parse(ex.date)-parse(d))/864e5):-1,lv=level(xpAll()),stk=streak(studyDay);
+ const sm=studyMin(d),goal=+c.goal||300,lm=lessonMinOn(d),q=qsOn(d),qt=sum(q.map(x=>x.total)),qc=sum(q.map(x=>x.correct));
+ const np=nextPrayer();
+ let h=`<section class="hero"><div class="lbl">${t('hi')}${c.name?' '+esc(c.name):''} 👋 · ${fmtDate(d)}</div>
+  ${left>=0?`<div class="row" style="gap:10px;margin-top:6px"><span class="big num">${left}</span><span class="lbl">${t('daysTo')} ${ex.name}<br><span style="opacity:.8">${fmtDate(ex.date,{day:'numeric',month:'long',year:'numeric'})}</span></span></div>`:`<div class="lbl" style="margin-top:6px">${t('examPassed')}</div>`}
+  <button class="chips" data-act="tab" data-t="progressT" style="border:0;background:none;color:inherit;padding:0;width:100%;text-align:start"><span class="chip">⭐ ${t('level')} ${lv.l} · ${lv.cur}/${lv.need}</span><span class="chip">🔥 ${stk} ${t('streakStudy')}</span></button>
+  <div class="chips"><span class="chip">🕌 ${t('next')}: ${t(np.k)} ${fmtT(np.at)} · ${t('after')} ${dur(np.left)}</span><span class="chip">${hijri(d)}</span></div></section>
+ <div class="tiles">
+  <div class="tile"><span>${t('studyMin')}</span><b class="num">${dur(sm)}</b><span>${t('ofGoal')} ${dur(goal)}${lm?` · ${t('lessonMin')} ${dur(lm)}`:''}</span><div class="bar"><i style="width:${Math.min(100,sm*100/goal)}%"></i></div></div>
+  <div class="tile"><span>${t('prayersT')}</span><b class="num">${prDone(d)}/5</b><div class="bar"><i style="width:${prDone(d)*20}%;background:var(--ok)"></i></div></div>
+  <div class="tile"><span>${t('qsToday')}</span><b class="num">${qt}</b><span>${qt?`<span class="acc ${accCls(Math.round(qc*100/qt))}">${Math.round(qc*100/qt)}%</span>`:'—'}</span></div>
+ </div>`;
+ h+=tasksCard(d);
+ const L=lessonsOn(d),L2=lessonsOn(addD(d,1));
+ h+=`<section class="card"><div class="ch"><h2>📅 ${t('todayLessons')}</h2><span class="sub">${L.length||''}</span></div><div class="cb">
+  ${L.length?L.map(lessonRow).join(''):`<div class="empty">${t('noLessonsToday')}</div>`}
+  <div class="sm mut" style="margin-top:6px">${t('tomorrow')}: ${L2.length?L2.map(l=>`<b style="color:${subj(l.sid).color}">${esc(sname(l.sid))}</b> ${fmtT(l.start)}`).join(' · '):t('noneTomorrow')}</div></div></section>`;
+ // start study
+ h+=`<section class="card"><div class="ch"><h2>⏱️ ${t('startStudy')}</h2></div><div class="cb"><div class="sm mut" style="margin-bottom:8px">${t('chooseSubj')}</div><div class="row wr">
+  ${D.subjects.map(s=>`<button class="pill" data-act="focus" data-s="${s.id}" style="border-color:${s.color};color:${s.color}">${esc(sname(s))}</button>`).join('')}</div></div></section>`;
+ // worship
+ const T=prayerTimes(d),dy=D.days[d]||{pr:{}};
+ h+=`<section class="card"><div class="ch"><h2>🕌 ${t('worship')}</h2><span class="sub">${esc(cityName())}</span></div><div class="cb">
+  <div class="pr">${PR.map(k=>{const s=(dy.pr||{})[k]||0;return `<button class="s${s} ${np.k===k?'nx':''}" data-act="pr" data-k="${k}"><b>${t(k)}${s===1?' ✓':s===2?' ⏱':''}</b><small class="num">${fmtT(T[k])}</small></button>`}).join('')}</div>
+  <div class="sm mut" style="margin-top:6px">${t('prHint')} · ${t('sunrise')} ${fmtT(T.sunrise)}</div>
+  <div class="chk">
+   <button class="pill ok ${dy.am?'on':''}" data-act="wtog" data-k="am">☀️ ${t('adhM')}</button>
+   <button class="pill ok ${dy.pm?'on':''}" data-act="wtog" data-k="pm">🌙 ${t('adhE')}</button>
+   <button class="pill ok ${dy.witr?'on':''}" data-act="wtog" data-k="witr">✨ ${t('witr')}</button>
+  </div>
+  <div class="row sp" style="margin-top:10px"><span>📖 ${t('quran')}</span><span class="step"><button data-act="qr" data-v="-1" aria-label="-">−</button><b class="num">${dy.qr||0}</b><button data-act="qr" data-v="1" aria-label="+">+</button></span></div>
+ </div></section>`;
+ const wd=wordsDue(d).length;
+ if(wd)h+=`<section class="card"><div class="ch"><h2>🔤 ${t('wordsDue')}</h2><span class="sub num">${wd}</span></div><div class="cb"><button class="btn ghost full" data-act="startRev">${t('review')}</button></div></section>`;
+ return h}
+function cityName(){const c=CITIES[D.cfg.city];return c?(LANG==='en'?c[3]:c[2]):t('custom')}
+function lessonRow(l){const s=subj(l.sid),a=D.att[l.key]||{};
+ return `<div class="ls"><span class="vb" style="background:${s.color}"></span><div class="g1">
+  <div class="row sp"><b>${esc(sname(s))}${l.extra?' <span class="tag">+</span>':''}</b><span class="sm num">${fmtT(l.start)} · ${dur(l.dur)}</span></div>
+  <div class="sm mut">${[l.teacher,l.place].filter(Boolean).map(esc).join(' · ')}</div>
+  <div class="act">
+   <button class="pill ok ${a.st==='ok'?'on':''}" data-act="att" data-k="${l.key}" data-v="ok">✓ ${t('att_ok')}</button>
+   <button class="pill bad ${a.st==='abs'?'on':''}" data-act="att" data-k="${l.key}" data-v="abs">✗ ${t('att_abs')}</button>
+   <button class="pill warn ${a.st==='post'?'on':''}" data-act="att" data-k="${l.key}" data-v="post">⏸ ${t('att_post')}</button>
+   <button class="pill ok ${a.hw?'on':''}" data-act="hw" data-k="${l.key}">📝 ${t('hw')}</button>
+  </div></div></div>`}
+
+/* ========== LESSONS ========== */
+function vLessons(){const d=today(),td=parse(d).getDay();
+ let h=`<div class="row" style="gap:8px;margin-top:6px"><button class="btn g1" data-act="lessonForm">${t('addWeekly')}</button><button class="btn ghost g1" data-act="extraForm">${t('addExtra')}</button></div>
+ <button class="btn line full" style="margin-top:8px" data-act="ics">${t('calExport')}</button><div class="sm mut" style="margin:4px 2px 0">${t('calHint')}</div>`;
+ // unmarked past 7 days
+ const um=[];for(let i=7;i>=0;i--){const dd=addD(d,-i);lessonsOn(dd).forEach(l=>{if(!(D.att[l.key]||{}).st&&(i>0||toMin(l.start)+(+l.dur||0)<=new Date().getHours()*60+new Date().getMinutes()))um.push([dd,l])})}
+ if(um.length)h+=`<section class="card"><div class="ch"><h2>⚠️ ${t('unmarked')}</h2><span class="sub num">${um.length}</span></div><div class="cb">${um.slice(-10).map(([dd,l])=>`<div class="sm mut" style="margin-top:6px">${fmtDate(dd,{weekday:'long',day:'numeric',month:'short'})}</div>${lessonRow(l)}`).join('')}</div></section>`;
+ h+=`<section class="card"><div class="ch"><h2>📅 ${t('weekTable')}</h2></div><div class="cb">`;
+ WEEK.forEach(dw=>{const ls=Object.entries(D.lessons).filter(([,l])=>l.dow===dw).sort((a,b)=>toMin(a[1].start)-toMin(b[1].start));
+  h+=`<div class="dh">${t('week')[dw]} ${dw===td?`<span class="tag">${t('today')}</span>`:''}</div>`;
+  h+=ls.length?ls.map(([id,l])=>{const s=subj(l.sid);return `<div class="ls"><span class="vb" style="background:${s.color}"></span><div class="g1"><div class="row sp"><b>${esc(sname(s))}</b><span class="sm num">${fmtT(l.start)} · ${dur(l.dur)}</span></div><div class="sm mut">${[l.teacher,l.place].filter(Boolean).map(esc).join(' · ')}</div></div><button class="x" data-act="lessonForm" data-id="${id}" aria-label="${t('edit')}">✏️</button></div>`}).join(''):`<div class="sm mut" style="padding:2px 0 4px">${t('noLessonsDay')}</div>`});
+ h+=`</div></section>`;
+ const ex=Object.entries(D.extra).filter(([,l])=>l.date>=d).sort((a,b)=>(a[1].date+a[1].start).localeCompare(b[1].date+b[1].start));
+ if(ex.length)h+=`<section class="card"><div class="ch"><h2>➕ ${t('extraUpcoming')}</h2></div><div class="cb">${ex.map(([id,l])=>{const s=subj(l.sid);return `<div class="ls"><span class="vb" style="background:${s.color}"></span><div class="g1"><div class="row sp"><b>${esc(sname(s))}</b><span class="sm num">${fmtDate(l.date,{weekday:'short',day:'numeric',month:'short'})} · ${fmtT(l.start)}</span></div><div class="sm mut">${[l.teacher,l.place].filter(Boolean).map(esc).join(' · ')}</div></div><button class="x" data-act="extraForm" data-id="${id}">✏️</button></div>`}).join('')}</div></section>`;
+ // attendance stats
+ const from=addD(d,-30),st={};
+ Object.entries(D.att).forEach(([k,a])=>{const[dd,id]=k.split('|');if(dd<from||dd>d)return;const l=D.lessons[id]||D.extra[id];if(!l)return;const o=st[l.sid]||(st[l.sid]={ok:0,abs:0,hw:0});if(a.st==='ok')o.ok++;if(a.st==='abs')o.abs++;if(a.hw)o.hw++});
+ const ks=Object.keys(st);
+ h+=`<section class="card"><div class="ch"><h2>📊 ${t('attStats')}</h2></div><div class="cb">${ks.length?`<table class="t"><tr><th>${t('subject')}</th><th>${t('attended')}</th><th>${t('absent')}</th><th>${t('hwRate')}</th></tr>${ks.map(k=>{const o=st[k],r=o.ok?Math.round(o.hw*100/o.ok):0;return `<tr><td><span class="dot" style="display:inline-block;background:${subj(k).color}"></span> ${esc(sname(k))}</td><td class="num">${o.ok}</td><td class="num">${o.abs}</td><td class="num acc ${accCls(r)}">${o.ok?r+'%':'—'}</td></tr>`}).join('')}</table>`:`<div class="empty">—</div>`}</div></section>`;
+ return h}
+function subjOptions(sel){return D.subjects.map(s=>`<option value="${s.id}" ${s.id===sel?'selected':''}>${esc(sname(s))}</option>`).join('')}
+function placeList(){return `<datalist id="places">${t('placeOpts').map(p=>`<option value="${esc(p)}">`).join('')}</datalist>`}
+function lessonForm(id){const l=id?D.lessons[id]:{sid:'',teacher:'',place:'',dow:null,start:'',dur:120};
+ openModal(`<h3>${id?t('edit'):t('addWeekly').replace('+ ','')}</h3>
+  <div class="f"><label>${t('subject')}</label><select class="in" id="fs"><option value="">—</option>${subjOptions(l.sid)}</select></div>
+  <div class="fg"><div class="f"><label>${t('teacher')}</label><input class="in" id="ft" value="${esc(l.teacher)}"></div>
+  <div class="f"><label>${t('place')}</label><input class="in" id="fp" list="places" value="${esc(l.place)}">${placeList()}</div></div>
+  <div class="f"><label>${id?t('day'):t('days')}</label><div class="days">${WEEK.map(dw=>`<label><input type="${id?'radio':'checkbox'}" name="fd" value="${dw}" ${l.dow===dw?'checked':''}><span>${t('week')[dw]}</span></label>`).join('')}</div></div>
+  <div class="fg"><div class="f"><label>${t('start')}</label><input class="in" type="time" id="fst" value="${esc(l.start)}"></div>
+  <div class="f"><label>${t('dur')}</label><input class="in" type="number" inputmode="numeric" min="15" step="15" id="fdu" value="${l.dur||120}"></div></div>
+  <div class="row" style="justify-content:space-between;margin-top:6px">${id?`<button class="btn danger" data-act="lessonDel" data-id="${id}">${t('del')}</button>`:'<span></span>'}
+  <div class="row"><button class="btn line" data-act="close">${t('cancel')}</button><button class="btn" data-act="lessonSave" data-id="${id||''}">${t('save')}</button></div></div>`)}
+function extraForm(id){const l=id?D.extra[id]:{sid:'',teacher:'',place:'',date:today(),start:'',dur:120};
+ openModal(`<h3>${id?t('edit'):t('addExtra').replace('+ ','')}</h3>
+  <div class="f"><label>${t('subject')}</label><select class="in" id="fs"><option value="">—</option>${subjOptions(l.sid)}</select></div>
+  <div class="fg"><div class="f"><label>${t('teacher')}</label><input class="in" id="ft" value="${esc(l.teacher)}"></div>
+  <div class="f"><label>${t('place')}</label><input class="in" id="fp" list="places" value="${esc(l.place)}">${placeList()}</div></div>
+  <div class="f"><label>${t('date')}</label><input class="in" type="date" id="fdt" value="${esc(l.date)}"></div>
+  <div class="fg"><div class="f"><label>${t('start')}</label><input class="in" type="time" id="fst" value="${esc(l.start)}"></div>
+  <div class="f"><label>${t('dur')}</label><input class="in" type="number" inputmode="numeric" min="15" step="15" id="fdu" value="${l.dur||120}"></div></div>
+  <div class="row" style="justify-content:space-between;margin-top:6px">${id?`<button class="btn danger" data-act="extraDel" data-id="${id}">${t('del')}</button>`:'<span></span>'}
+  <div class="row"><button class="btn line" data-act="close">${t('cancel')}</button><button class="btn" data-act="extraSave" data-id="${id||''}">${t('save')}</button></div></div>`)}
+
+/* ========== STUDY ========== */
+function vStudy(){if(V.subj)return vSubject(V.subj);
+ const d=today(),days=[];for(let i=6;i>=0;i--)days.push(addD(d,-i));
+ const mins=days.map(studyMin),mx=Math.max(60,...mins),tot=sum(mins);
+ let h=weekPlanCard()+`<section class="card"><div class="ch"><h2>📈 ${t('weekMin')}</h2></div><div class="cb">
+  <div class="bars">${days.map((dd,i)=>`<div><em class="num">${mins[i]?Math.round(mins[i]):''}</em><i class="${dd===d?'td':''}" style="height:${mins[i]*100/mx}%"></i><small>${t('week')[parse(dd).getDay()].slice(0,LANG==='ar'?6:3)}</small></div>`).join('')}</div>
+  <div class="row sp sm" style="margin-top:8px"><span>${t('weekTotal')}: <b>${dur(tot)}</b></span><span>${t('avgDay')}: <b>${dur(tot/7)}</b></span></div></div></section>
+  <h3 style="margin:16px 2px 6px;font-size:15px">📚 ${t('subjects')}</h3><div class="grid2">`;
+ D.subjects.forEach(s=>{const p=subjProg(s.id),a=subjAcc(s.id),wm=subjWeekMin(s.id,d);
+  h+=`<button class="sc" style="--c:${s.color}" data-act="subj" data-s="${s.id}"><b>${esc(sname(s))}</b>
+   <span class="tag ${s.counted?'':'gr'}">${s.counted?t('counted'):t('notCounted')}</span>
+   <div class="sm mut" style="margin-top:6px">${t('thisWeek')}: ${dur(wm)}${a.acc!=null?` · <span class="acc ${accCls(a.acc)}">${a.acc}%</span>`:''}</div>
+   <div class="bar"><i style="width:${p||0}%;background:${s.color}"></i></div><div class="sm mut">${t('progress')}: ${p==null?'—':p+'%'}</div></button>`});
+ return h+`</div>`}
+function vSubject(sid){const s=subj(sid),u=unitsOf(sid),a=subjAcc(sid),p=subjProg(sid),d=today();
+ const ss=Object.entries(D.sessions).filter(([,x])=>x.sid===sid).sort((x,y)=>(y[1].ts||0)-(x[1].ts||0));
+ let h=`<div class="row" style="margin-top:6px"><button class="btn line sm" data-act="subj" data-s="">← ${t('back')}</button></div>
+ <section class="card"><div class="cb" style="padding-top:14px"><div class="row sp"><h2 style="margin:0;font-size:19px;color:${s.color}">${esc(sname(s))}</h2><div class="row"><button class="btn sm line" data-act="note" data-k="s" data-id="${sid}">📝${s.note?' •':''}</button><button class="btn sm" data-act="focus" data-s="${sid}">⏱️ ${t('startStudy')}</button></div></div>
+  <div class="tiles" style="margin-top:10px"><div class="tile"><span>${t('thisWeek')}</span><b>${dur(subjWeekMin(sid,d))}</b></div><div class="tile"><span>${t('progress')}</span><b>${p==null?'—':p+'%'}</b></div><div class="tile"><span>${t('accuracy')}</span><b class="${a.acc!=null?'acc '+accCls(a.acc):''}">${a.acc!=null?a.acc+'%':'—'}</b><span>${a.n||''}</span></div></div></div></section>
+ <section class="card"><div class="ch"><h2>${t('units')}</h2><span class="sub">${u.length||''}</span></div><div class="cb">`;
+ h+=u.length?u.map(([id,x])=>{const st=x.st||0;const q=Object.values(D.qs).filter(z=>z.uid===id),T=sum(q.map(z=>z.total)),ac=T?Math.round(sum(q.map(z=>z.correct))*100/T):null;
+  return `<div class="unit"><span class="g1">${esc(x.name)}${ac!=null?` <span class="sm acc ${accCls(ac)}">${ac}%</span>`:''}</span><button class="x" data-act="note" data-k="u" data-id="${id}" aria-label="${t('notes')}" style="${x.note?'':'opacity:.45'}">📝</button><button class="stb st${st}" data-act="ust" data-id="${id}">${t('st')[st]}</button><button class="x" data-act="udel" data-id="${id}" aria-label="${t('del')}">×</button></div>`}).join(''):`<div class="empty">${t('noUnits')}</div>`;
+ h+=`<hr class="s"><div class="f"><label>${t('addUnits')}</label><textarea class="in" id="uadd" placeholder="${esc(t('unitsPh'))}"></textarea></div><button class="btn ghost full" data-act="uadd" data-s="${sid}">${t('add')}</button></div></section>
+ <section class="card"><div class="ch"><h2>${t('sessions')}</h2></div><div class="cb">${ss.length?ss.slice(0,15).map(([id,x])=>`<div class="unit"><span class="g1 sm">${fmtDate(x.date,{weekday:'short',day:'numeric',month:'short'})}${x.uid&&D.units[x.uid]?' · '+esc(D.units[x.uid].name):''}</span><b class="sm">${dur(x.min)}</b><button class="x" data-act="sdel" data-id="${id}" aria-label="${t('del')}">×</button></div>`).join(''):`<div class="empty">${t('noSessions')}</div>`}</div></section>`;
+ return h}
+
+/* ========== FOCUS CLOCK + tree (Forest) + pomodoro (FLIP) ========== */
+const FKEY='thn-focus';
+let F=null;try{F=JSON.parse(localStorage.getItem(FKEY)||'null')}catch(e){}
+let fOpen=false,wake=null;
+const fSave=()=>{try{F?localStorage.setItem(FKEY,JSON.stringify(F)):localStorage.removeItem(FKEY)}catch(e){}};
+const fElapsed=()=>F?Math.max(0,((F.paused?F.paused:Date.now())-F.start-(F.pausedTotal||0))/1000):0;
+function clock(sec){sec=Math.max(0,Math.floor(sec));const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return (h?h+':'+pad(m):pad(m))+':'+pad(s)}
+const POMO=[[25,'w'],[5,'b'],[25,'w'],[5,'b'],[25,'w'],[5,'b'],[25,'w'],[15,'b']];
+function pomoState(e){const k=Math.floor(e/7200);let r=e-k*7200,work=k*6000,round=k*4,i=0;
+ for(;i<POMO.length-1;i++){const L=POMO[i][0]*60;if(r<L)break;r-=L;if(POMO[i][1]==='w'){work+=L;round++}}
+ const seg=POMO[i];if(seg[1]==='w'){work+=r;round++}return{type:seg[1],len:seg[0]*60,left:seg[0]*60-r,work,round,idx:k*8+i,long:seg[0]===15}}
+const isPomo=()=>F&&F.target===-1;
+const fWork=()=>isPomo()?pomoState(fElapsed()).work:fElapsed();
+const inBreak=()=>isPomo()&&pomoState(fElapsed()).type==='b';
+const treeP=()=>!F?0:F.target>0?Math.min(1,fElapsed()/(F.target*60)):Math.min(1,fWork()/1500);
+function treeSVG(p,dead,px,onDark){p=Math.max(0,Math.min(1,p));const lf=dead?'#bca79c':'#4ade80',lf2=dead?'#a1887f':'#16a34a',tr=dead?'#6d4c41':'#92400e',th=14+62*p,ty=164-th,r=10+34*p;
+ const crown=p<.12?`<path d="M100 ${ty+2} C90 ${ty-16} 74 ${ty-8} 76 ${ty+2} C84 ${ty+7} 94 ${ty+5} 100 ${ty+2} C110 ${ty-16} 126 ${ty-8} 124 ${ty+2} C116 ${ty+7} 106 ${ty+5} 100 ${ty+2}Z" fill="${lf}"/>`
+  :`<circle cx="${100-r*.62}" cy="${ty+r*.25}" r="${r*.68}" fill="${lf2}"/><circle cx="${100+r*.62}" cy="${ty+r*.25}" r="${r*.68}" fill="${lf2}"/><circle cx="100" cy="${ty-r*.35}" r="${r}" fill="${lf}"/>`;
+ return `<svg viewBox="0 0 200 190" width="${px}" height="${Math.round(px*.95)}" aria-hidden="true" style="overflow:visible${dead?';transform:rotate(-9deg)':''}"><ellipse cx="100" cy="168" rx="62" ry="10" fill="${onDark?'rgba(255,255,255,.16)':'rgba(0,0,0,.08)'}"/><path d="M62 168 Q100 150 138 168Z" fill="#8b5a2b"/><rect x="${(100-2.5-3*p).toFixed(1)}" y="${ty.toFixed(1)}" width="${(5+6*p).toFixed(1)}" height="${th.toFixed(1)}" rx="3" fill="${tr}"/>${crown}</svg>`}
+function startFocus(sid){if(F&&F.sid!==sid){openFocus();return}if(!F){F={sid,uid:'',start:Date.now(),pausedTotal:0,paused:0,target:0,beeped:0,lastIdx:0,dead:0,hiddenAt:0};fSave()}openFocus()}
+async function openFocus(){fOpen=true;renderFocus();try{if(navigator.wakeLock&&!wake){wake=await navigator.wakeLock.request('screen');wake.addEventListener&&wake.addEventListener('release',()=>{wake=null})}}catch(e){}}
+function closeFocus(){fOpen=false;$('#focus').innerHTML='';try{wake&&wake.release()}catch(e){}wake=null;render()}
+function fPhase(){if(!isPomo())return F.dead?t('treeDead'):F.paused?'⏸':t('treeGrow');const st=pomoState(fElapsed());return (st.type==='w'?'🍅 '+t('work'):'☕ '+(st.long?t('longBrk'):t('brk')))+' · '+t('round')+' '+st.round+(F.dead?' · 🥀':'')}
+function fClockText(){const el=fElapsed();if(isPomo())return clock(pomoState(el).left);if(F.target>0){const rem=F.target*60-el;return rem>=0?clock(rem):'+'+clock(-rem)}return clock(el)}
+function fRing(){const el=fElapsed();if(isPomo()){const st=pomoState(el);return (st.len-st.left)*100/st.len}return F.target>0?Math.min(100,el*100/(F.target*60)):0}
+function renderFocus(){if(!fOpen||!F)return;const s=subj(F.sid),u=unitsOf(F.sid);
+ $('#focus').innerHTML=`<div class="fx" role="dialog" aria-label="${t('startStudy')}">
+  <div style="font-size:21px;font-weight:900">${esc(sname(s))}</div>
+  ${u.length?`<select id="fu" aria-label="${t('unit')}" style="margin-top:8px"><option value="">${t('unit')}: ${t('none')}</option>${u.map(([id,x])=>`<option value="${id}" ${F.uid===id?'selected':''}>${esc(x.name)}</option>`).join('')}</select>`:''}
+  <div class="modes" style="margin-top:6px">${[[0,t('focusOpen')],[25,'25 '+t('mins')],[50,'50 '+t('mins')],[-1,'🍅 '+t('pomo')]].map(([m,l])=>`<button class="${(F.target||0)===m?'on':''}" data-act="fmode" data-v="${m}">${l}</button>`).join('')}</div>
+  <div id="ftree">${treeSVG(treeP(),F.dead,130,true)}</div>
+  <div class="clk" id="fclk">${fClockText()}</div>
+  <div class="ring" ${F.target?'':'style="visibility:hidden"'}><i id="fring" style="width:${fRing()}%"></i></div>
+  <div class="sub" id="fsub">${fPhase()}</div>
+  <div class="ctl"><button data-act="fpause">${F.paused?'▶ '+t('resume'):'⏸ '+t('pause')}</button><button class="main" data-act="ffinish">✓ ${t('finish')}</button></div>
+  <div class="ctl" style="margin-top:12px"><button data-act="fmin">${t('minimize')}</button><button data-act="fdiscard">${t('discard')}</button></div></div>`;
+ const fu=$('#fu');if(fu)fu.onchange=()=>{F.uid=fu.value;fSave()}}
+function runBar(){if(!F)return'';const s=subj(F.sid);return `<button class="run" data-act="fopen">${F.dead?'🥀':'🌱'} ${esc(sname(s))} ${F.paused?'⏸':''}<span class="num" id="rclk">${clock(fWork())}</span></button>`}
+function beep(){try{const A=new (window.AudioContext||window.webkitAudioContext)(),o=A.createOscillator(),g=A.createGain();o.frequency.value=880;o.connect(g);g.connect(A.destination);g.gain.setValueAtTime(.2,A.currentTime);g.gain.exponentialRampToValueAtTime(.001,A.currentTime+1.2);o.start();o.stop(A.currentTime+1.2)}catch(e){}try{navigator.vibrate&&navigator.vibrate([300,150,300])}catch(e){}}
+let tk=0;
+setInterval(()=>{if(!F)return;tk++;const el=fElapsed();const c=$('#fclk');
+ if(c){c.textContent=fClockText();const r=$('#fring');if(r)r.style.width=fRing()+'%';const fs=$('#fsub');if(fs)fs.textContent=fPhase();if(tk%5===0){const tr=$('#ftree');if(tr)tr.innerHTML=treeSVG(treeP(),F.dead,130,true)}}
+ const rc=$('#rclk');if(rc)rc.textContent=clock(fWork());
+ if(F.paused)return;
+ if(isPomo()){const st=pomoState(el);if(st.idx!==(F.lastIdx||0)){F.lastIdx=st.idx;fSave();beep();toast(st.type==='b'?t('breakStart'):t('workStart'))}}
+ else if(F.target>0&&!F.beeped&&el>=F.target*60){F.beeped=1;fSave();beep();toast(t('timeUp'))}},1000);
+function checkWither(){if(F&&F.hiddenAt){if(!F.dead&&Date.now()-F.hiddenAt>15000){F.dead=1;toast(t('treeDead'))}F.hiddenAt=0;fSave();if(fOpen)renderFocus()}}
+function onHide(){if(F&&!F.paused&&!F.dead&&!inBreak()&&!F.hiddenAt){F.hiddenAt=Date.now();fSave()}}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)onHide();else checkWither()});
+window.addEventListener('pagehide',onHide);
+
+/* ========== XP, streaks, badges (SkillTree) ========== */
+function xpAll(){let x=0;Object.values(D.sessions).forEach(s=>x+=s.min||0);
+ Object.values(D.days).forEach(d=>{PR.forEach(k=>{const v=(d.pr||{})[k];x+=v===1?10:v===2?5:0});x+=(d.am?5:0)+(d.pm?5:0)+(d.witr?5:0)+(d.qr||0)*2});
+ Object.values(D.att).forEach(a=>{if(a.st==='ok')x+=15;if(a.hw)x+=10});Object.values(D.qs).forEach(q=>x+=+q.correct||0);
+ Object.values(D.tasks).forEach(k=>{if(k.done)x+=10});Object.values(D.revlog).forEach(n=>x+=2*n);return x}
+function level(x){let l=1,need=100,acc=0;while(x>=acc+need){acc+=need;l++;need=100+(l-1)*50}return{l,cur:Math.round(x-acc),need,x}}
+const studyDay=d=>studyMin(d)>=30;
+const prayDay=d=>prDone(d)===5;
+function streak(test){let d=today(),n=0;if(!test(d))d=addD(d,-1);while(n<2000&&test(d)){n++;d=addD(d,-1)}return n}
+function firstDate(){let m=today();Object.keys(D.days).forEach(k=>{if(k<m)m=k});Object.values(D.sessions).forEach(x=>{if(x.date<m)m=x.date});return m}
+function bestRun(test){let d=firstDate(),e=today(),best=0,cur=0,g=0;while(d<=e&&g<1500){if(test(d)){cur++;if(cur>best)best=cur}else cur=0;d=addD(d,1);g++}return best}
+function badges(){const S=Object.values(D.sessions),mins=sum(S.map(x=>x.min)),qc=sum(Object.values(D.qs).map(q=>q.correct)),trees=S.filter(x=>x.tree==='ok').length,
+ wm=Object.values(D.words).filter(w=>(w.box||1)>=5).length,hw=Object.values(D.att).filter(a=>a.hw).length,tkd=Object.values(D.tasks).filter(x=>x.done).length,bs=bestRun(studyDay),bp=bestRun(prayDay);
+ return [['first','🌱',S.length>=1],['h10','⏳',mins>=600],['h50','📘',mins>=3000],['h100','🏆',mins>=6000],['s7','🔥',bs>=7],['s30','🌋',bs>=30],['p7','🕌',bp>=7],
+  ['q100','✍️',qc>=100],['q1000','🧠',qc>=1000],['t10','🌳',trees>=10],['t50','🌲',trees>=50],['w50','🔤',wm>=50],['hw20','📝',hw>=20],['tk50','✅',tk50(tkd)]]}
+const tk50=n=>n>=50;
+function checkBadges(){const got=badges().filter(b=>b[2]).map(b=>b[0]),seen=D.bseen||(D.bseen=[]),nw=got.filter(x=>!seen.includes(x));
+ if(nw.length){D.bseen=got;save();if(seen.length||nw.length<3)setTimeout(()=>toast('🎉 '+t('bd')[nw[0]]),400)}}
+
+/* ========== PROGRESS + weekly report ========== */
+function vProgress(){const lv=level(xpAll()),d=today(),B=badges(),S=Object.values(D.sessions),from=addD(d,-6);
+ const wk=S.filter(x=>x.date>=from&&x.tree).sort((a,b)=>(a.ts||0)-(b.ts||0)),okAll=S.filter(x=>x.tree==='ok').length,deadAll=S.filter(x=>x.tree==='dead').length;
+ return `<section class="hero"><div class="row sp"><div><div class="lbl">${t('level')}</div><div class="big num">${lv.l}</div></div><div style="text-align:end"><div class="lbl">${t('xp')}</div><div style="font-size:22px;font-weight:900" class="num">${lv.x}</div></div></div>
+  <div class="bar" style="background:rgba(255,255,255,.25);margin-top:10px"><i style="width:${lv.cur*100/lv.need}%;background:#fff"></i></div><div class="lbl num" style="margin-top:4px">${lv.cur} / ${lv.need}</div></section>
+ <div class="tiles" style="grid-template-columns:1fr 1fr"><div class="tile"><span>🔥 ${t('streakStudy')}</span><b class="num">${streak(studyDay)}</b><span>${t('streakNote')}</span></div><div class="tile"><span>🕌 ${t('streakPray')}</span><b class="num">${streak(prayDay)}</b></div></div>
+ <section class="card"><div class="ch"><h2>🌳 ${t('garden')}</h2><span class="sub">🌳 ${okAll} · 🥀 ${deadAll}</span></div><div class="cb">
+  ${wk.length?`<div class="row wr" style="gap:2px">${wk.map(x=>`<span title="${esc(sname(x.sid))} · ${dur(x.min)}">${treeSVG(Math.min(1,x.min/50),x.tree==='dead',44)}</span>`).join('')}</div><div class="sm mut">${t('last7')}</div>`:`<div class="empty">${t('gardenEmpty')}</div>`}</div></section>
+ <section class="card"><div class="ch"><h2>🏅 ${t('badges')}</h2><span class="sub num">${B.filter(b=>b[2]).length}/${B.length}</span></div><div class="cb"><div class="grid2" style="grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px">
+  ${B.map(([k,ic,ok])=>`<div class="tile" style="text-align:center;${ok?'':'opacity:.38;filter:grayscale(1)'}"><div style="font-size:26px">${ic}</div><span>${t('bd')[k]}</span></div>`).join('')}</div></div></section>
+ <section class="card"><div class="ch"><h2>📨 ${t('report')}</h2></div><div class="cb">
+  <pre class="sm" style="white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;margin:0 0 10px;font:inherit;font-size:13px">${esc(weekReport())}</pre>
+  <div class="row wr"><button class="btn" data-act="rpWhats" style="background:#16a34a">🟢 ${t('whats')}</button><button class="btn ghost" data-act="rpShare">📤 ${t('share')}</button><button class="btn line" data-act="rpCopy">📋 ${t('copy')}</button></div></div></section>
+ <section class="card"><div class="ch"><h2>⭐ ${t('xpHow')}</h2></div><div class="cb sm">${t('xpRules').map(x=>`<div>• ${x}</div>`).join('')}</div></section>`}
+function weekReport(){const d=today(),from=addD(d,-6),days=[],cm=LANG==='ar'?'، ':', ';for(let i=6;i>=0;i--)days.push(addD(d,-i));
+ const S=Object.values(D.sessions).filter(x=>x.date>=from&&x.date<=d),tot=sum(S.map(x=>x.min)),bys={};S.forEach(x=>bys[x.sid]=(bys[x.sid]||0)+x.min);
+ let les=0,ok=0,hw=0;days.forEach(dd=>lessonsOn(dd).forEach(l=>{const a=D.att[l.key]||{};if(a.st==='post'||!a.st&&dd===d)return;les++;if(a.st==='ok')ok++;if(a.hw)hw++}));
+ const Q=Object.values(D.qs).filter(q=>q.date>=from&&q.date<=d),qt=sum(Q.map(q=>q.total)),qc=sum(Q.map(q=>q.correct));
+ const T=Object.values(D.tasks).filter(x=>x.date>=from&&x.date<=d),G=Object.values(D.grades).filter(g=>g.date>=from&&g.date<=d),trees=S.filter(x=>x.tree==='ok').length;
+ let pr=0;days.forEach(dd=>PR.forEach(k=>{if(((D.days[dd]||{}).pr||{})[k]===1)pr++}));
+ return [`📊 ${t('rpTitle')}${D.cfg.name?' — '+D.cfg.name:''}`,`🗓️ ${fmtDate(from,{day:'numeric',month:'short'})} → ${fmtDate(d,{day:'numeric',month:'short'})}`,'',
+  `⏱️ ${t('rpStudy')}: ${dur(tot)} (${t('rpAvg')} ${dur(tot/7)})${trees?` — 🌳 ${trees} ${t('rpTrees')}`:''}`,
+  Object.keys(bys).length?`📚 ${t('rpBySubj')}: `+Object.entries(bys).sort((a,b)=>b[1]-a[1]).map(([k,v])=>sname(k)+' '+dur(v)).join(cm):null,
+  `📅 ${t('rpLessons')}: ${ok} ${t('rpOf')} ${les} — 📝 ${t('rpHw')} ${hw}`,
+  `✅ ${t('rpQs')}: ${qt}${qt?` — ${t('rpAcc')} ${Math.round(qc*100/qt)}%`:''}`,
+  T.length?`📋 ${t('rpTasks')}: ${T.filter(x=>x.done).length} ${t('rpOf')} ${T.length}`:null,
+  G.length?`🎯 ${t('rpGrades')}: `+G.map(g=>sname(g.sid)+' '+g.score+'/'+g.max).join(cm):null,
+  `🕌 ${t('rpPray')}: ${pr} ${t('rpOf')} 35`,
+  `🔥 ${t('rpStreak')}: ${streak(studyDay)} ${t('rpDays')} — ⭐ ${t('level')} ${level(xpAll()).l}`].filter(x=>x!==null).join('\n')}
+function copyText(txt){const done=()=>toast(t('copied'));try{navigator.clipboard.writeText(txt).then(done,fb)}catch(e){fb()}
+ function fb(){const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){}ta.remove()}}
+
+/* ========== TASKS + make-up (Knowlu) ========== */
+const tasksOn=d=>Object.entries(D.tasks).filter(([,x])=>x.date===d).sort((a,b)=>((a[1].done?1:0)-(b[1].done?1:0))||((a[1].ts||0)-(b[1].ts||0)));
+const overdueTasks=()=>Object.entries(D.tasks).filter(([,x])=>!x.done&&x.date<today()).sort((a,b)=>a[1].date.localeCompare(b[1].date));
+function taskRow([id,x]){const sb=x.sid?subj(x.sid):null;return `<div class="unit"><button class="ck ${x.done?'on':''}" data-act="tdone" data-id="${id}" aria-label="✓">${x.done?'✓':''}</button><span class="g1 ${x.done?'mut':''}" style="${x.done?'text-decoration:line-through':''}">${x.mk?'🔁 ':''}${esc(x.title)}${sb?` <span class="sm" style="color:${sb.color}">· ${esc(sname(sb))}</span>`:''}</span><button class="x" data-act="tdel" data-id="${id}" aria-label="${t('del')}">×</button></div>`}
+function tasksCard(d){const L=tasksOn(d),O=overdueTasks();
+ return `<section class="card"><div class="ch"><h2>📋 ${t('tasks')}</h2><span class="sub num">${L.filter(x=>x[1].done).length}/${L.length}</span><button class="btn ghost sm" data-act="taskForm" data-d="${d}">${t('addTask')}</button></div><div class="cb">
+  ${L.length?L.map(taskRow).join(''):`<div class="empty">${t('noTasks')}</div>`}
+  ${O.length?`<div style="background:var(--warnb);border-radius:12px;padding:8px 10px;margin-top:8px"><div class="sm" style="color:var(--warn);font-weight:800">⚠️ ${t('overdue')} (${O.length})</div>
+   ${O.slice(0,5).map(([id,x])=>`<div class="unit" style="border-color:transparent"><span class="g1 sm">${esc(x.title)} <span class="mut">· ${fmtDate(x.date,{day:'numeric',month:'short'})}</span></span><button class="btn sm line" data-act="tToday" data-id="${id}">${t('toToday')}</button></div>`).join('')}
+   <button class="btn sm full" style="margin-top:6px;background:var(--warn)" data-act="tAuto">🔁 ${t('autoPlan')}</button></div>`:''}</div></section>`}
+function weekStart(d){let x=d;while(parse(x).getDay()!==6)x=addD(x,-1);return x}
+function weekPlanCard(){const d=today(),ws=weekStart(d);let h=`<section class="card"><div class="ch"><h2>🗓️ ${t('weekPlan')}</h2></div><div class="cb">`;
+ for(let i=0;i<7;i++){const dd=addD(ws,i),L=tasksOn(dd);h+=`<div class="dh"><span class="g1">${t('week')[parse(dd).getDay()]} <span class="sm mut">${fmtDate(dd,{day:'numeric',month:'short'})}</span> ${dd===d?`<span class="tag">${t('today')}</span>`:''}</span><span class="sm mut num">${L.length?L.filter(x=>x[1].done).length+'/'+L.length:''}</span><button class="x" data-act="taskForm" data-d="${dd}" aria-label="${t('addTask')}">＋</button></div>${L.map(taskRow).join('')}`}
+ return h+`</div></section>`}
+function taskForm(d){openModal(`<h3>${t('addTask').replace('+ ','')}</h3>
+ <div class="f"><label>${t('taskT')}</label><input class="in" id="tk-t" placeholder="${esc(t('taskPh'))}"></div>
+ <div class="fg"><div class="f"><label>${t('subject')}</label><select class="in" id="tk-s"><option value="">—</option>${subjOptions('')}</select></div>
+ <div class="f"><label>${t('date')}</label><input class="in" type="date" id="tk-d" value="${d||today()}"></div></div>
+ <div class="row" style="justify-content:flex-end"><button class="btn line" data-act="close">${t('cancel')}</button><button class="btn" data-act="taskSave">${t('save')}</button></div>`);setTimeout(()=>{const e=$('#tk-t');e&&e.focus()},50)}
+function autoPlan(){const d=today(),days=[];let x=d;do{days.push(x);if(parse(x).getDay()===5)break;x=addD(x,1)}while(days.length<7);
+ const load={};days.forEach(dd=>load[dd]=tasksOn(dd).filter(e=>!e[1].done).length);
+ overdueTasks().forEach(([id,tk])=>{const best=days.reduce((a,b)=>load[b]<load[a]?b:a,days[0]);tk.date=best;tk.mk=1;load[best]++});save()}
+
+/* ========== CALENDAR (.ics) ========== */
+function icsEsc(x){return String(x||'').replace(/\\/g,'\\\\').replace(/;/g,'\;').replace(/,/g,'\\,').replace(/\n/g,'\\n')}
+function icsExport(){const now=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',dt=x=>x.replace(/-/g,''),tm=h=>h.replace(':','')+'00',BY=['SU','MO','TU','WE','TH','FR','SA'];
+ const endOf=(st,du)=>{let m=Math.min(toMin(st)+(+du||60),1439);return pad(Math.floor(m/60))+':'+pad(m%60)};
+ const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//MyStudy//Thanaweya//AR','CALSCALE:GREGORIAN','X-WR-CALNAME:'+icsEsc(t('lessons'))];
+ const ev=(id,date,l,rr)=>{L.push('BEGIN:VEVENT','UID:'+id+'@my-study','DTSTAMP:'+now,'DTSTART:'+dt(date)+'T'+tm(l.start),'DTEND:'+dt(date)+'T'+tm(endOf(l.start,l.dur)));if(rr)L.push(rr);
+  L.push('SUMMARY:'+icsEsc('📚 '+sname(l.sid)+(l.teacher?' — '+l.teacher:'')),'LOCATION:'+icsEsc(l.place),'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsEsc(sname(l.sid)),'TRIGGER:-PT30M','END:VALARM','END:VEVENT')};
+ let n=0;Object.entries(D.lessons).forEach(([id,l])=>{let d=today();while(parse(d).getDay()!==l.dow)d=addD(d,1);ev(id,d,l,'RRULE:FREQ=WEEKLY;BYDAY='+BY[l.dow]+';UNTIL=20270731T235959');n++});
+ Object.entries(D.extra).forEach(([id,l])=>{if(l.date>=today()){ev(id,l.date,l);n++}});
+ if(!n)return toast(t('calNone'));L.push('END:VCALENDAR');
+ const blob=new Blob([L.join('\r\n')],{type:'text/calendar'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='my-lessons.ics';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500);toast(t('calHint'))}
+
+/* ========== NOTES (Notion) ========== */
+function noteForm(kind,id){const o=kind==='u'?D.units[id]:subj(id),title=kind==='u'?o.name:t('subjNotes')+' — '+sname(o);
+ openModal(`<h3>📝 ${esc(title)}</h3><textarea class="in" id="nt" style="min-height:220px" placeholder="${esc(t('notePh'))}">${esc(o.note||'')}</textarea>
+ <div class="row" style="justify-content:flex-end;margin-top:10px"><button class="btn line" data-act="close">${t('cancel')}</button><button class="btn" data-act="noteSave" data-k="${kind}" data-id="${id}">${t('save')}</button></div>`)}
+
+/* ========== GRADES ========== */
+function spark(vals,color){if(vals.length<2)return'';const w=120,h=46,lo=Math.max(0,Math.min(...vals,65)-10),y=v=>(h-4-((Math.max(lo,Math.min(100,v))-lo)/(100-lo||1))*(h-8)).toFixed(1),pts=vals.map((v,i)=>`${(i*(w-8)/(vals.length-1)+4).toFixed(1)},${y(v)}`).join(' ');
+ return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" style="direction:ltr;flex:none" aria-hidden="true"><line x1="0" x2="${w}" y1="${y(65)}" y2="${y(65)}" stroke="var(--line)" stroke-dasharray="3 3"/><polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${vals.map((v,i)=>`<circle cx="${(i*(w-8)/(vals.length-1)+4).toFixed(1)}" cy="${y(v)}" r="2.8" fill="${color}"/>`).join('')}</svg>`}
+function vGrades(){const d=today(),all=Object.entries(D.grades).sort((a,b)=>(a[1].date+(a[1].ts||0)).localeCompare(b[1].date+(b[1].ts||0)));
+ let h=`<section class="card"><div class="ch"><h2>🎯 ${t('addGrade')}</h2></div><div class="cb">
+  <div class="fg"><div class="f"><label>${t('subject')}</label><select class="in" id="gr-s"><option value="">—</option>${subjOptions(V.grS||'')}</select></div>
+  <div class="f"><label>${t('gtype')}</label><input class="in" id="gr-t" list="gtl" value="${esc(V.grT||t('gtypes')[0])}"><datalist id="gtl">${t('gtypes').map(x=>`<option value="${esc(x)}">`).join('')}</datalist></div></div>
+  <div class="fg"><div class="f"><label>${t('scoreL')}</label><input class="in num" type="number" inputmode="decimal" min="0" step="0.5" id="gr-v"></div>
+  <div class="f"><label>${t('maxL')}</label><input class="in num" type="number" inputmode="decimal" min="1" id="gr-m" value="${V.grM||100}"></div></div>
+  <div class="f"><label>${t('date')}</label><input class="in" type="date" id="gr-d" value="${d}"></div>
+  <button class="btn full" data-act="grAdd">${t('save')}</button></div></section>`;
+ const rows=D.subjects.map(sb=>{const g=all.filter(([,x])=>x.sid===sb.id).map(([,x])=>Math.round(x.score*100/x.max));if(!g.length)return'';const av=Math.round(sum(g)/g.length),la=g[g.length-1];
+  return `<div class="unit"><span class="dot" style="background:${sb.color}"></span><span class="g1"><b>${esc(sname(sb))}</b><br><span class="sm mut">${t('avgL')} <b class="acc ${accCls(av)}">${av}%</b> · ${t('lastL')} <b class="acc ${accCls(la)}">${la}%</b></span></span>${spark(g,sb.color)}</div>`}).join('');
+ h+=`<section class="card"><div class="ch"><h2>📈 ${t('grades')}</h2></div><div class="cb">${rows||`<div class="empty">${t('noGrades')}</div>`}</div></section>`;
+ const rec=all.slice().reverse().slice(0,15);
+ if(rec.length)h+=`<section class="card"><div class="ch"><h2>🕘 ${t('recent')}</h2></div><div class="cb">${rec.map(([id,g])=>{const pc=Math.round(g.score*100/g.max);return `<div class="unit"><span class="dot" style="background:${subj(g.sid).color}"></span><span class="g1 sm"><b>${esc(sname(g.sid))}</b> · ${esc(g.type)}<br><span class="mut">${fmtDate(g.date,{day:'numeric',month:'short'})}</span></span><span class="num sm">${g.score}/${g.max}</span><b class="acc ${accCls(pc)} sm">${pc}%</b><button class="x" data-act="gdel" data-id="${id}" aria-label="${t('del')}">×</button></div>`}).join('')}</div></section>`;
+ return h}
+
+/* ========== QUESTIONS ========== */
+function vQuestions(){const d=today(),seg=`<div class="row" style="justify-content:center;margin-top:6px"><div class="seg"><button class="${V.qseg==='gr'?'':'on'}" data-act="qseg" data-v="qs">✅ ${t('segQs')}</button><button class="${V.qseg==='gr'?'on':''}" data-act="qseg" data-v="gr">🎯 ${t('segGr')}</button></div></div>`;
+ if(V.qseg==='gr')return seg+vGrades();
+ let h=seg+`<section class="card"><div class="ch"><h2>✍️ ${t('addQs')}</h2></div><div class="cb">
+  <div class="fg"><div class="f"><label>${t('subject')}</label><select class="in" id="qs-s" data-qsub="1"><option value="">—</option>${subjOptions(V.qsS||'')}</select></div>
+  <div class="f"><label>${t('unit')}</label><select class="in" id="qs-u">${unitOpts(V.qsS||'')}</select></div></div>
+  <div class="fg"><div class="f"><label>${t('total')}</label><input class="in num" type="number" inputmode="numeric" min="1" id="qs-t"></div>
+  <div class="f"><label>${t('correct')}</label><input class="in num" type="number" inputmode="numeric" min="0" id="qs-c"></div></div>
+  <div class="fg"><div class="f"><label>${t('source')}</label><input class="in" id="qs-src" list="srcs"><datalist id="srcs">${t('srcOpts').map(x=>`<option value="${esc(x)}">`).join('')}</datalist></div>
+  <div class="f"><label>${t('date')}</label><input class="in" type="date" id="qs-d" value="${d}"></div></div>
+  <button class="btn full" data-act="qsAdd">${t('save')}</button></div></section>`;
+ const all=Object.values(D.qs),from=addD(d,-6);
+ const rows=D.subjects.map(s=>{const q=all.filter(x=>x.sid===s.id),T=sum(q.map(x=>x.total));if(!T)return'';const ac=Math.round(sum(q.map(x=>x.correct))*100/T),w=sum(q.filter(x=>x.date>=from).map(x=>x.total));
+  return `<tr><td><span class="dot" style="display:inline-block;background:${s.color}"></span> ${esc(sname(s))}</td><td class="num">${T}</td><td class="num">${w}</td><td class="num acc ${accCls(ac)}">${ac}%</td></tr>`}).join('');
+ h+=`<section class="card"><div class="ch"><h2>📊 ${t('qsStats')}</h2></div><div class="cb">${rows?`<table class="t"><tr><th>${t('subject')}</th><th>${t('total')}</th><th>${t('last7')}</th><th>${t('accuracy')}</th></tr>${rows}</table>`:`<div class="empty">${t('noQs')}</div>`}</div></section>`;
+ const weak=Object.entries(D.units).map(([id,u])=>{const q=all.filter(x=>x.uid===id),T=sum(q.map(x=>x.total));return T>=10?{u,id,ac:Math.round(sum(q.map(x=>x.correct))*100/T),T}:null}).filter(x=>x&&x.ac<65).sort((a,b)=>a.ac-b.ac);
+ if(weak.length)h+=`<section class="card"><div class="ch"><h2>🎯 ${t('weak')}</h2></div><div class="cb">${weak.map(w=>`<div class="unit"><span class="dot" style="background:${subj(w.u.sid).color}"></span><span class="g1">${esc(w.u.name)} <span class="sm mut">${esc(sname(w.u.sid))}</span></span><b class="acc a1">${w.ac}%</b></div>`).join('')}</div></section>`;
+ const rec=Object.entries(D.qs).sort((a,b)=>(b[1].date+(b[1].ts||0)).localeCompare(a[1].date+(a[1].ts||0))).slice(0,15);
+ h+=`<section class="card"><div class="ch"><h2>🕘 ${t('recent')}</h2></div><div class="cb">${rec.length?rec.map(([id,q])=>{const ac=Math.round(q.correct*100/q.total);return `<div class="unit"><span class="dot" style="background:${subj(q.sid).color}"></span><span class="g1 sm"><b>${esc(sname(q.sid))}</b>${q.uid&&D.units[q.uid]?' · '+esc(D.units[q.uid].name):''}<br><span class="mut">${fmtDate(q.date,{day:'numeric',month:'short'})}${q.src?' · '+esc(q.src):''}</span></span><span class="num sm">${q.correct}/${q.total}</span><b class="acc ${accCls(ac)} sm">${ac}%</b><button class="x" data-act="qdel" data-id="${id}" aria-label="${t('del')}">×</button></div>`}).join(''):`<div class="empty">${t('noQs')}</div>`}</div></section>`;
+ return h}
+function unitOpts(sid){return `<option value="">${t('none')}</option>`+(sid?unitsOf(sid).map(([id,u])=>`<option value="${id}">${esc(u.name)}</option>`).join(''):'')}
+
+/* ========== WORDS ========== */
+const BOX=[0,1,3,7,14,30];
+function vWords(){const d=today();
+ if(V.rev){const R=V.rev;if(R.i>=R.ids.length){return `<section class="card"><div class="fc"><div style="font-size:40px">🎉</div><div class="m">${t('revDone')}</div><div class="sm mut" style="margin-top:6px">${R.ok}/${R.ids.length}</div><button class="btn" style="margin-top:14px" data-act="endRev">${t('close')}</button></div></section>`}
+  const w=D.words[R.ids[R.i]];if(!w){R.i++;return vWords()}
+  return `<section class="card"><div class="ch"><h2>🔤 ${t('review')}</h2><span class="sub num">${R.i+1}/${R.ids.length}</span></div><div class="fc">
+   <div class="w">${esc(w.en)}</div><button class="btn ghost sm" style="margin-top:10px" data-act="say" data-w="${esc(w.en)}">🔊</button>
+   ${R.show?`<div class="m">${esc(w.ar)}</div><div class="row" style="justify-content:center;margin-top:16px;gap:10px"><button class="btn danger" data-act="ans" data-v="0">${t('dontKnow')}</button><button class="btn" style="background:var(--ok)" data-act="ans" data-v="1">${t('know')}</button></div>`
+   :`<div style="margin-top:16px"><button class="btn" data-act="reveal">${t('show')}</button></div>`}
+   <div style="margin-top:14px"><button class="btn line sm" data-act="endRev">${t('close')}</button></div></div></section>`}
+ const due=wordsDue(d).length,all=Object.entries(D.words).sort((a,b)=>(b[1].added||'').localeCompare(a[1].added||'')),q=(V.wq||'').toLowerCase();
+ const list=q?all.filter(([,w])=>(w.en+' '+w.ar).toLowerCase().includes(q)):all;
+ return `<section class="card"><div class="ch"><h2>🔁 ${t('wordsDue')}</h2><span class="sub num">${due}</span></div><div class="cb">${due?`<button class="btn full" data-act="startRev">${t('review')}</button>`:`<div class="empty">${t('noDue')}</div>`}</div></section>
+ <section class="card"><div class="ch"><h2>➕ ${t('add')}</h2><div class="seg"><button class="${V.bulk?'':'on'}" data-act="bulk" data-v="0">1</button><button class="${V.bulk?'on':''}" data-act="bulk" data-v="1">${t('bulk')}</button></div></div><div class="cb">
+  ${V.bulk?`<div class="f"><textarea class="in ltr" id="wb" placeholder="${esc(t('bulkPh'))}" style="text-align:start"></textarea></div>`
+  :`<div class="fg"><div class="f"><label>${t('wordEn')}</label><input class="in" id="we" dir="ltr" autocapitalize="off" autocomplete="off"></div><div class="f"><label>${t('wordAr')}</label><input class="in" id="wa" dir="rtl"></div></div>`}
+  <button class="btn ghost full" data-act="wadd">${t('add')}</button></div></section>
+ <section class="card"><div class="ch"><h2>📒 ${t('allWords')}</h2><span class="sub num">${all.length}</span></div><div class="cb">
+  <input class="in" id="wq" placeholder="${t('search')}" value="${esc(V.wq)}" style="margin-bottom:6px">
+  <div id="wlist">${wordList(list)}</div></div></section>`}
+function wordList(list){return list.length?list.slice(0,200).map(([id,w])=>`<div class="unit"><button class="x" data-act="say" data-w="${esc(w.en)}" aria-label="speak">🔊</button><span class="g1"><b dir="ltr">${esc(w.en)}</b> <span class="mut">— ${esc(w.ar)}</span></span><span class="tag gr">${t('box')} ${w.box||1}</span><button class="x" data-act="wdel" data-id="${id}" aria-label="${t('del')}">×</button></div>`).join(''):`<div class="empty">—</div>`}
+function addWord(en,ar){en=(en||'').trim();ar=(ar||'').trim();if(!en)return 0;const k=en.toLowerCase();if(Object.values(D.words).some(w=>w.en.toLowerCase()===k))return -1;D.words[uid()]={en,ar,box:1,due:today(),added:new Date().toISOString()};return 1}
+
+/* ========== SETUP ========== */
+const catName=id=>esc(LANG==='en'?CAT[id][1]:CAT[id][0]);
+function cityOptions(sel){return Object.entries(CITIES).map(([k,v])=>`<option value="${k}" ${sel===k?'selected':''}>${LANG==='en'?v[3]:v[2]}${v[4]==='sa'?(LANG==='en'?' (KSA)':' (السعودية)'):''}</option>`).join('')}
+function vSetup(){const S=V.su||(V.su={g:0,s:'',name:D.cfg.name||'',city:D.cfg.city||'cairo'}),set=S.g&&S.s?SETS[S.g+'-'+S.s]:null;
+ return `<section class="hero" style="margin-top:calc(18px + env(safe-area-inset-top))"><div style="font-size:22px;font-weight:900">🎓 ${t('setupT')}</div><div class="lbl" style="margin-top:6px">${t('setupHi')}</div></section>
+ <section class="card"><div class="cb" style="padding-top:14px">
+  <div class="f"><label>${t('name')}</label><input class="in" id="su-name" value="${esc(S.name)}"></div>
+  <div class="f"><label>${t('grade')}</label><div class="row wr">${[6,1,2,3].map(g=>`<button class="pill ${S.g===g?'on':''}" data-act="suG" data-v="${g}">${t('g'+g)}</button>`).join('')}</div></div>
+  ${S.g&&STREAMS[S.g].length>1?`<div class="f"><label>${t('stream')}</label><div class="row wr">${STREAMS[S.g].map(x=>`<button class="pill ${S.s===x?'on':''}" data-act="suS" data-v="${x}">${t('s_'+x)}</button>`).join('')}</div></div>`:''}
+  ${set?`<div class="f"><label>${t('subjects')}</label><div class="sm"><b>${t('counted')}:</b> ${set[0].map(catName).join(' · ')}<br><span class="mut"><b>${t('notCounted')}:</b> ${set[1].map(catName).join(' · ')}</span></div></div>`:''}
+  <div class="f"><label>${t('city')} (${t('prayerSet')})</label><select class="in" id="su-city">${cityOptions(S.city)}</select></div>
+  <div class="row sp" style="margin-top:6px"><button class="btn line sm" data-act="lang">${LANG==='ar'?'English':'العربية'}</button><button class="btn" data-act="suGo" ${set?'':'disabled style="opacity:.45"'}>${t('startApp')}</button></div>
+  <div class="sm mut" style="margin-top:12px">${t('src')}</div></div></section>`}
+
+/* ========== SETTINGS ========== */
+function vSettings(){const c=D.cfg;
+ return `<section class="card"><div class="ch"><h2>👤 ${t('profile')}</h2></div><div class="cb">
+  <div class="f"><label>${t('name')}</label><input class="in" id="s-name" value="${esc(c.name)}"></div>
+  <div class="fg"><div class="f"><label>${t('grade')}</label><select class="in" id="s-grade">${[6,1,2,3].map(g=>`<option value="${g}" ${+c.grade===g?'selected':''}>${t('g'+g)}</option>`).join('')}</select></div>
+  <div class="f"><label>${t('stream')}</label><select class="in" id="s-stream">${streamOpts(c.grade,c.stream)}</select></div></div>
+  <div class="f"><label>${t('parentPhone')}</label><input class="in ltr" id="s-parent" inputmode="tel" placeholder="2010xxxxxxxx" value="${esc(c.parent)}"></div>
+  <div class="fg"><div class="f"><label>${t('examOverride')}</label><input class="in" type="date" id="s-exam" value="${esc(c.examCustom)}"></div>
+  <div class="f"><label>${t('goal')}</label><input class="in" type="number" inputmode="numeric" min="30" step="15" id="s-goal" value="${esc(c.goal)}"></div></div>
+  <div class="fg"><div class="f"><label>${t('lang')}</label><select class="in" id="s-lang"><option value="ar" ${LANG==='ar'?'selected':''}>العربية</option><option value="en" ${LANG==='en'?'selected':''}>English</option></select></div>
+  <div class="f"><label>${t('theme')}</label><select class="in" id="s-theme">${['auto','light','dark'].map(x=>`<option value="${x}" ${c.theme===x?'selected':''}>${t(x)}</option>`).join('')}</select></div></div>
+ </div></section>
+ <section class="card"><div class="ch"><h2>🕌 ${t('prayerSet')}</h2></div><div class="cb">
+  <div class="f"><label>${t('city')}</label><select class="in" id="s-city">${cityOptions(c.city)}<option value="custom" ${c.city==='custom'?'selected':''}>${t('custom')}</option></select></div>
+  <div class="fg"><div class="f"><label>${t('lat')}</label><input class="in" id="s-lat" inputmode="decimal" value="${esc(c.lat)}"></div><div class="f"><label>${t('lng')}</label><input class="in" id="s-lng" inputmode="decimal" value="${esc(c.lng)}"></div></div>
+  <div class="f"><label>${t('method')}</label><select class="in" id="s-method"><option value="egypt" ${c.method!=='uq'?'selected':''}>${t('mEgypt')}</option><option value="uq" ${c.method==='uq'?'selected':''}>${t('mUQ')}</option></select></div>
+  <div class="sm mut">${LANG==='en'?'Latitude, longitude and method apply to a custom location only.':'خط العرض والطول وطريقة الحساب للموقع المخصص بس — المدن المصرية بتستخدم طريقة الهيئة المصرية تلقائياً.'}</div>
+ </div></section>
+ <section class="card"><div class="ch"><h2>📚 ${t('subjEdit')}</h2></div><div class="cb" id="s-subj">
+  ${D.subjects.map((s,i)=>`<div class="unit" data-i="${i}" style="flex-wrap:wrap"><input type="color" value="${s.color}" class="s-col" aria-label="${t('color')}" style="width:38px;height:34px;border:0;background:none;padding:0"><input class="in g1 s-ar" value="${esc(s.ar)}" aria-label="${t('nameAr')}" style="min-width:120px"><input class="in g1 s-en" dir="ltr" value="${esc(s.en)}" aria-label="${t('nameEn')}" style="min-width:120px"><label class="sm row" style="gap:4px"><input type="checkbox" class="s-cnt" ${s.counted?'checked':''}>${t('counted')}</label><button class="x" data-act="sjdel" data-i="${i}" aria-label="${t('del')}">×</button></div>`).join('')}
+  <button class="btn line sm" data-act="sjadd" style="margin-top:8px">${t('addSubj')}</button></div></section>
+ <button class="btn full" data-act="setSave" style="margin:4px 0 8px">${t('save')}</button>
+ <section class="card"><div class="ch"><h2>💾 ${t('backup')}</h2></div><div class="cb">
+  <div class="sm mut" style="margin-bottom:10px">${t('about')}</div>
+  <div class="row wr"><button class="btn ghost" data-act="export">⬇️ ${t('exportB')}</button><label class="btn line" style="display:inline-block">⬆️ ${t('importB')}<input type="file" id="imp" accept=".json,application/json" hidden></label></div>
+  <hr class="s"><button class="btn danger" data-act="erase">${t('eraseAll')}</button>
+  <div class="sm mut" style="margin-top:12px">${t('src')}</div></div></section>`}
+function streamOpts(g,sel){return (STREAMS[g]||STREAMS[3]).map(x=>`<option value="${x}" ${x===sel?'selected':''}>${t('s_'+x)}</option>`).join('')}
+function readSubjects(){const rows=[...document.querySelectorAll('#s-subj .unit')];return rows.map(r=>{const s=D.subjects[+r.dataset.i];return{...s,color:r.querySelector('.s-col').value,ar:r.querySelector('.s-ar').value.trim()||s.ar,en:r.querySelector('.s-en').value.trim()||s.en,counted:r.querySelector('.s-cnt').checked}})}
+
+/* ========== actions ========== */
+const A={
+ tab:b=>{V.tab=b.dataset.t;V.subj=null;if(V.tab!=='words')V.rev=null;render();scrollTo(0,0)},
+ theme:()=>{const dark=document.documentElement.dataset.theme==='dark';D.cfg.theme=dark?'light':'dark';save();applyTheme();render()},
+ lang:()=>{LANG=LANG==='ar'?'en':'ar';D.cfg.lang=LANG;save();render()},
+ close:closeModal,
+ ovclose:(b,e)=>{if(e.target===b)closeModal()},
+ att:b=>{const k=b.dataset.k,a=D.att[k]||(D.att[k]={});a.st=a.st===b.dataset.v?'':b.dataset.v;
+  const ex=Object.entries(D.tasks).find(([,x])=>x.src===k);
+  if(a.st==='abs'&&!ex){const l=D.lessons[k.split('|')[1]]||D.extra[k.split('|')[1]];if(l)D.tasks[uid()]={title:t('makeupLesson')+': '+sname(l.sid)+(l.teacher?' — '+l.teacher:''),sid:l.sid,date:today(),mk:1,src:k,ts:Date.now()}}
+  if(a.st!=='abs'&&ex&&!ex[1].done)delete D.tasks[ex[0]];save();render()},
+ hw:b=>{const k=b.dataset.k,a=D.att[k]||(D.att[k]={});a.hw=!a.hw;save();render()},
+ pr:b=>{const d=day(today()),k=b.dataset.k;d.pr[k]=((d.pr[k]||0)+1)%3;save();render()},
+ wtog:b=>{const d=day(today()),k=b.dataset.k;d[k]=d[k]?0:1;save();render()},
+ qr:b=>{const d=day(today());d.qr=Math.max(0,(d.qr||0)+ +b.dataset.v);save();render()},
+ focus:b=>startFocus(b.dataset.s),
+ fopen:()=>openFocus(),
+ fmin:()=>closeFocus(),
+ fmode:b=>{F.target=+b.dataset.v;F.beeped=F.target>0&&fElapsed()>=F.target*60?1:0;F.lastIdx=isPomo()?pomoState(fElapsed()).idx:0;fSave();renderFocus()},
+ fpause:()=>{F.hiddenAt=0;if(F.paused){F.pausedTotal=(F.pausedTotal||0)+(Date.now()-F.paused);F.paused=0}else F.paused=Date.now();fSave();renderFocus()},
+ ffinish:()=>{checkWither();const m=Math.round(fWork()/60);if(m>=1){const st=new Date(F.start);D.sessions[uid()]={sid:F.sid,uid:F.uid||'',min:m,date:iso(st),ts:F.start,tree:m>=10?(F.dead?'dead':'ok'):''};save();toast((m>=10?(F.dead?'🥀 ':'🌳 '):'')+t('sessSaved')+' · '+dur(m))}else toast(t('tooShort'));F=null;fSave();closeFocus()},
+ fdiscard:async()=>{if(await ask(t('delQ'))){F=null;fSave();closeFocus()}},
+ lessonForm:b=>lessonForm(b.dataset.id),
+ extraForm:b=>extraForm(b.dataset.id),
+ lessonSave:b=>{const id=b.dataset.id,sid=$('#fs').value,ds=[...document.querySelectorAll('input[name=fd]:checked')].map(x=>+x.value),st=$('#fst').value;
+  if(!sid)return toast(t('needSubj'));if(!ds.length)return toast(t('needDay'));if(!st)return toast(t('needTime'));
+  const base={sid,teacher:$('#ft').value.trim(),place:$('#fp').value.trim(),start:st,dur:Math.max(15,+$('#fdu').value||120)};
+  if(id)Object.assign(D.lessons[id],base,{dow:ds[0]});else ds.forEach(dw=>{D.lessons[uid()]={...base,dow:dw,from:today()}});
+  save();closeModal();toast(t('saved'));render()},
+ lessonDel:async b=>{const id=b.dataset.id;if(await ask(t('delQ'))){delete D.lessons[id];save();render()}},
+ extraSave:b=>{const id=b.dataset.id,sid=$('#fs').value,st=$('#fst').value,dt=$('#fdt').value;
+  if(!sid)return toast(t('needSubj'));if(!st||!dt)return toast(t('needTime'));
+  const o={sid,teacher:$('#ft').value.trim(),place:$('#fp').value.trim(),date:dt,start:st,dur:Math.max(15,+$('#fdu').value||120)};
+  if(id)Object.assign(D.extra[id],o);else D.extra[uid()]=o;save();closeModal();toast(t('saved'));render()},
+ extraDel:async b=>{const id=b.dataset.id;if(await ask(t('delQ'))){delete D.extra[id];save();render()}},
+ subj:b=>{V.subj=b.dataset.s||null;render();scrollTo(0,0)},
+ ust:b=>{const u=D.units[b.dataset.id];u.st=((u.st||0)+1)%5;save();render()},
+ udel:async b=>{if(await ask(t('delQ'))){delete D.units[b.dataset.id];save();render()}},
+ uadd:b=>{const sid=b.dataset.s,lines=$('#uadd').value.split('\n').map(x=>x.trim()).filter(Boolean);if(!lines.length)return;let o=unitsOf(sid).length;
+  lines.forEach(n=>{D.units[uid()]={sid,name:n,st:0,o:++o}});save();toast(t('added')+' '+lines.length);render()},
+ sdel:async b=>{if(await ask(t('delQ'))){delete D.sessions[b.dataset.id];save();render()}},
+ qsAdd:()=>{const sid=$('#qs-s').value,T=+$('#qs-t').value,C=+$('#qs-c').value;
+  if(!sid)return toast(t('needSubj'));if(!(T>0)||!(C>=0)||C>T||$('#qs-c').value==='')return toast(t('qErr'));
+  D.qs[uid()]={sid,uid:$('#qs-u').value,total:T,correct:C,src:$('#qs-src').value.trim(),date:$('#qs-d').value||today(),ts:Date.now()};V.qsS=sid;save();toast(t('saved')+' · '+Math.round(C*100/T)+'%');render()},
+ qdel:async b=>{if(await ask(t('delQ'))){delete D.qs[b.dataset.id];save();render()}},
+ bulk:b=>{V.bulk=b.dataset.v==='1';render()},
+ wadd:()=>{let n=0,dup=0;
+  if(V.bulk){$('#wb').value.split('\n').forEach(l=>{const m=l.split(/\s*(?:=|:|\t| - | – )\s*/);if(m[0]){const r=addWord(m[0],m.slice(1).join(' '));if(r>0)n++;else if(r<0)dup++}})}
+  else{const r=addWord($('#we').value,$('#wa').value);if(r>0)n++;else if(r<0)dup++}
+  if(n){save();toast(t('added')+' '+n+(dup?' · '+t('dup')+' ('+dup+')':''));render()}else if(dup)toast(t('dup'))},
+ wdel:async b=>{if(await ask(t('delQ'))){delete D.words[b.dataset.id];save();render()}},
+ say:b=>speak(b.dataset.w),
+ startRev:()=>{const ids=wordsDue(today()).map(([id])=>id).sort(()=>Math.random()-.5);V.rev={ids,i:0,show:false,ok:0};V.tab='words';render();scrollTo(0,0)},
+ reveal:()=>{V.rev.show=true;render()},
+ ans:b=>{const R=V.rev,w=D.words[R.ids[R.i]],ok=b.dataset.v==='1';if(w){w.box=ok?Math.min(5,(w.box||1)+1):1;w.due=addD(today(),BOX[w.box]);if(ok){R.ok++;D.revlog[today()]=(D.revlog[today()]||0)+1}save()}R.i++;R.show=false;render()},
+ endRev:()=>{V.rev=null;render()},
+ sjadd:()=>{D.subjects=readSubjects();D.subjects.push({id:'s'+uid(),ar:LANG==='en'?'New subject':'مادة جديدة',en:'New subject',color:'#0891b2',counted:false});render()},
+ sjdel:async b=>{const i=+b.dataset.i;if(await ask(t('delQ'))){D.subjects=readSubjects();D.subjects.splice(i,1);save();render()}},
+ setSave:async()=>{const c=D.cfg,subs=readSubjects(),g=+$('#s-grade').value,st=$('#s-stream').value;
+  const vals={name:$('#s-name').value.trim(),examCustom:$('#s-exam').value,goal:Math.max(30,+$('#s-goal').value||300),theme:$('#s-theme').value,city:$('#s-city').value,lat:$('#s-lat').value.trim(),lng:$('#s-lng').value.trim(),method:$('#s-method').value,parent:$('#s-parent').value.replace(/[^0-9]/g,''),lang:$('#s-lang').value};
+  let newSubs=subs;if(g!==+c.grade||st!==c.stream){if(!(await ask(t('gradeChangeQ'))))return;newSubs=buildSubjects(g,st,subs);c.grade=g;c.stream=st}
+  Object.assign(c,vals);D.subjects=newSubs;LANG=c.lang;save();applyTheme();toast(t('saved'));render()},
+ suG:b=>{const g=+b.dataset.v;V.su.g=g;V.su.s=STREAMS[g].length===1?STREAMS[g][0]:'';render()},
+ suS:b=>{V.su.s=b.dataset.v;render()},
+ suGo:()=>{const S=V.su,c=D.cfg;if(!(S.g&&S.s))return;c.name=S.name.trim();c.city=S.city;c.grade=S.g;c.stream=S.s;D.subjects=buildSubjects(S.g,S.s,[]);if(S.g===6&&c.goal===300)c.goal=120;c.setup=true;save();V.tab='today';render();scrollTo(0,0)},
+ taskForm:b=>taskForm(b.dataset.d),
+ taskSave:()=>{const ti=$('#tk-t').value.trim();if(!ti)return toast(t('needTitle'));D.tasks[uid()]={title:ti,sid:$('#tk-s').value,date:$('#tk-d').value||today(),ts:Date.now()};save();closeModal();render()},
+ tdone:b=>{const x=D.tasks[b.dataset.id];if(!x)return;x.done=x.done?0:1;x.doneAt=x.done?Date.now():0;save();render()},
+ tdel:async b=>{if(await ask(t('delQ'))){delete D.tasks[b.dataset.id];save();render()}},
+ tToday:b=>{const x=D.tasks[b.dataset.id];x.date=today();x.mk=1;save();render()},
+ tAuto:()=>{autoPlan();toast(t('planned'));render()},
+ ics:()=>icsExport(),
+ note:b=>noteForm(b.dataset.k,b.dataset.id),
+ noteSave:b=>{const v=$('#nt').value,id=b.dataset.id;if(b.dataset.k==='u'){if(D.units[id])D.units[id].note=v}else{const sb=D.subjects.find(x=>x.id===id);if(sb)sb.note=v}save();closeModal();toast(t('saved'));render()},
+ qseg:b=>{V.qseg=b.dataset.v;render()},
+ grAdd:()=>{const sid=$('#gr-s').value,v=parseFloat($('#gr-v').value),m=parseFloat($('#gr-m').value);if(!sid)return toast(t('needSubj'));if(!(m>0)||isNaN(v)||v<0||v>m)return toast(t('gradeErr'));
+  const ty=$('#gr-t').value.trim()||t('gtypes')[0];D.grades[uid()]={sid,type:ty,score:v,max:m,date:$('#gr-d').value||today(),ts:Date.now()};V.grS=sid;V.grT=ty;V.grM=m;save();toast(t('saved')+' · '+Math.round(v*100/m)+'%');render()},
+ gdel:async b=>{if(await ask(t('delQ'))){delete D.grades[b.dataset.id];save();render()}},
+ rpWhats:()=>{window.open('https://wa.me/'+(D.cfg.parent||'')+'?text='+encodeURIComponent(weekReport()),'_blank')},
+ rpShare:async()=>{const txt=weekReport();if(navigator.share){try{await navigator.share({text:txt});return}catch(e){if(e&&e.name==='AbortError')return}}copyText(txt)},
+ rpCopy:()=>copyText(weekReport()),
+ export:()=>{const blob=new Blob([JSON.stringify(D,null,1)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='my-study-backup-'+today()+'.json';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500)},
+ erase:async()=>{if(await ask(t('eraseQ'))){D=defaults();D.cfg.lang=LANG;V.su=null;save();F=null;fSave();toast(t('saved'));render()}}
+};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;const f=A[b.dataset.act];if(f)f(b,e)});
+document.addEventListener('change',async e=>{
+ if(e.target.id==='su-city')V.su.city=e.target.value;
+ if(e.target.id==='s-grade'){$('#s-stream').innerHTML=streamOpts(+e.target.value,'')}
+ if(e.target.id==='qs-s'){$('#qs-u').innerHTML=unitOpts(e.target.value)}
+ if(e.target.id==='imp'){const f=e.target.files[0];if(!f)return;try{const x=JSON.parse(await f.text());if(!x||!Array.isArray(x.subjects)||!x.cfg)throw 0;
+  if(await ask(t('importQ'))){D=normalize(x);LANG=D.cfg.lang==='en'?'en':'ar';save();applyTheme();toast(t('imported'));render()}}catch(err){toast(t('badFile'))}e.target.value=''}});
+document.addEventListener('input',e=>{if(e.target.id==='su-name')V.su.name=e.target.value;if(e.target.id==='wq'){V.wq=e.target.value;const q=V.wq.toLowerCase(),all=Object.entries(D.words).sort((a,b)=>(b[1].added||'').localeCompare(a[1].added||''));$('#wlist').innerHTML=wordList(q?all.filter(([,w])=>(w.en+' '+w.ar).toLowerCase().includes(q)):all)}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#modal').innerHTML)closeModal();else if(fOpen)closeFocus()}});
+// refresh every minute (next prayer, day change) unless the user is typing
+let lastDay=today();
+setInterval(()=>{if(busy()||fOpen)return;if(V.tab==='today'||today()!==lastDay){lastDay=today();render()}},60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!busy()&&!fOpen)render()});
+
+/* ========== start ========== */
+applyTheme();if(F)checkWither();render();if(F&&D.cfg.setup)openFocus();
+if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
