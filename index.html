@@ -106,11 +106,11 @@ table.t th{font-size:12px;color:var(--mut);font-weight:700;border-top:0}
 .nav button.on{color:var(--pri);font-weight:800;background:var(--pri2)}
 .toast{position:fixed;bottom:calc(90px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:#1c2333;color:#fff;padding:9px 16px;border-radius:12px;font-size:13.5px;z-index:50;opacity:0;pointer-events:none;transition:.25s;max-width:92vw;text-align:center}
 .toast.show{opacity:1}
-.ov{position:fixed;inset:0;background:rgba(10,14,25,.5);z-index:30;display:flex;align-items:flex-end;justify-content:center}
+.ov{position:fixed;inset:0;background:rgba(10,14,25,.5);z-index:60;display:flex;align-items:flex-end;justify-content:center}
 .sheet{background:var(--card);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
 .sheet h3{margin:0 0 12px;font-size:17px}
 @media(min-width:700px){.ov{align-items:center}.sheet{border-radius:20px}}
-.fx{position:fixed;inset:0;z-index:40;background:linear-gradient(160deg,#1d2a5c,#3b2a6e 55%,#5a2a6a);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+.fx{position:fixed;inset:0;z-index:40;background:linear-gradient(160deg,#1d2a5c,#3b2a6e 55%,#5a2a6a);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:safe center;overflow-y:auto;padding:24px;text-align:center}
 .fx .clk{font-size:min(23vw,150px);font-weight:900;letter-spacing:-2px;line-height:1;font-variant-numeric:tabular-nums;direction:ltr}
 .fx .sub{opacity:.85;margin:8px 0 18px}
 .fx .modes{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;justify-content:center}
@@ -137,6 +137,40 @@ table.t th{font-size:12px;color:var(--mut);font-weight:700;border-top:0}
 .x{border:0;background:transparent;color:var(--mut);font-size:16px;padding:2px 6px}
 hr.s{border:0;border-top:1px solid var(--line);margin:12px 0}
 .ltr{direction:ltr;unicode-bidi:isolate}
+.dp{position:relative;margin:6px 0 4px}
+.dp-hr{position:absolute;inset-inline:0;border-top:1px solid var(--line);height:0}
+.dp-hr span{position:absolute;inset-inline-start:0;top:-9px;font-size:11px;color:var(--mut);background:var(--card);padding:0 4px}
+.dp-slot{position:absolute;inset-inline-start:50px;inset-inline-end:24px;background:transparent;border:0;border-radius:8px}
+.dp-slot:hover{background:var(--pri2)}
+.dp-bg{position:absolute;inset-inline-start:50px;inset-inline-end:24px;border-radius:10px;padding:5px 10px;font-size:12px;font-weight:700;pointer-events:none}
+.dp-bg.sleep{background:repeating-linear-gradient(45deg,color-mix(in srgb,#6366f1 12%,transparent) 0 8px,transparent 8px 16px);color:#6366f1}
+.dp-bg.school{background:color-mix(in srgb,#64748b 16%,transparent);color:var(--mut)}
+.dp-ls{position:absolute;inset-inline-start:56px;inset-inline-end:30px;border-radius:10px;padding:4px 10px;font-size:12.5px;font-weight:700;border:2px dashed var(--c);background:color-mix(in srgb,var(--c) 10%,transparent);color:var(--ink);z-index:1;overflow:hidden}
+.dp-blk{position:absolute;inset-inline-start:58px;inset-inline-end:32px;border:0;border-inline-start:5px solid var(--c);background:color-mix(in srgb,var(--c) 15%,var(--card));border-radius:10px;padding:3px 10px;text-align:start;overflow:hidden;font-size:13px;line-height:1.35;color:var(--ink);z-index:1;box-shadow:var(--sh)}
+.dp-blk small{display:block;color:var(--mut);font-size:11.5px}
+.dp-blk.drag{opacity:.85;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:5}
+.dp-grip,.dp-rs{position:absolute;touch-action:none;z-index:2}
+.dp-grip{top:2px;inset-inline-end:4px;width:30px;height:30px;display:grid;place-items:center;border-radius:8px;color:var(--mut);font-size:16px;background:color-mix(in srgb,var(--card) 70%,transparent)}
+.dp-rs{inset-inline:0;bottom:0;height:12px;cursor:ns-resize}
+.dp-rs:after{content:"";position:absolute;left:50%;bottom:3px;width:34px;height:4px;margin-left:-17px;border-radius:3px;background:var(--c);opacity:.6}
+.dp-pr{position:absolute;inset-inline-start:50px;inset-inline-end:24px;min-height:18px;border:0;background:color-mix(in srgb,#f59e0b 24%,var(--card));color:var(--ink);border-radius:8px;font-size:11.5px;font-weight:700;padding:0 8px;text-align:start;z-index:2;display:flex;align-items:center;gap:6px}
+.dp-pr.ok{background:color-mix(in srgb,#16a34a 24%,var(--card))}
+.dp-act{position:absolute;inset-inline-end:5px;width:13px;border-radius:7px;background:var(--ok);z-index:3;min-height:4px}
+.dp-now{position:absolute;inset-inline-start:42px;inset-inline-end:0;border-top:2px solid #ef4444;z-index:4;pointer-events:none}
+.qp{position:fixed;inset-inline:0;bottom:0;z-index:35;background:var(--card);border-radius:20px 20px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.25);max-height:72vh;overflow:auto;padding:14px 16px calc(16px + env(safe-area-inset-bottom));max-width:760px;margin:0 auto}
+.qp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-top:10px}
+.qp-chip{border:1px solid var(--line);border-inline-start:5px solid var(--c);background:color-mix(in srgb,var(--c) 10%,var(--card));border-radius:12px;padding:10px;text-align:start;font-size:13.5px;font-weight:700;min-height:48px}
+.qp-chip small{display:block;font-weight:500;color:var(--mut);font-size:11.5px}
+.qp-chip.hot{box-shadow:0 0 0 2px var(--pri)}
+.qjz{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:6px}
+.qjz div{border:1px solid var(--line);border-radius:10px;padding:5px 4px;text-align:center;font-size:11.5px;position:relative;overflow:hidden}
+.qjz div i{position:absolute;inset-inline-start:0;bottom:0;height:4px;background:var(--ok)}
+.qsr{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:6px}
+.qsr button{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:6px 8px;text-align:start;font-size:12.5px;position:relative;overflow:hidden}
+.qsr button i{position:absolute;inset-inline-start:0;bottom:0;height:4px;background:var(--ok)}
+.qsr button.m{background:var(--okb);border-color:var(--ok)}
+.qsr button small{display:block;color:var(--mut);font-size:11px}
+.grd0{background:var(--okb);color:var(--ok)}.grd1{background:#e0f2fe;color:#0369a1}.grd2{background:var(--pri2);color:var(--pri)}.grd3{background:var(--warnb);color:var(--warn)}.grd4{background:var(--badb);color:var(--bad)}
 .ck{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);background:var(--card);flex:none;font-weight:900;color:#fff;padding:0;line-height:1}
 .ck.on{background:var(--ok);border-color:var(--ok)}
 .nav button{min-width:0}.nav button span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
@@ -165,7 +199,14 @@ const sum=a=>a.reduce((x,y)=>x+(+y||0),0);
 
 /* ========== strings (AR / EN) ========== */
 const STR={ar:{
-app:'مذاكرتي',appSub:'ثانوية عامة',
+app:'مذاكرتي',appSub:'ثانوية عامة',tmFlex:'🌿 مرن (بذاكر على نفس الجهاز)',tmStrict:'🔒 صارم',awayQ:'غبت {m} دقيقة عن التطبيق — كنت بتذاكر؟',awayStudy:'📖 كنت بذاكر (PDF / تطبيق تاني)',awayDistr:'😅 اتشتت',awayStudyOk:'تمام 👍 الشجرة مكملة',awayDistrOk:'اتسجل التشتت ({m} د) — الشجرة اتأثرت {n}/3',treeFlexHint:'الوضع المرن: لو خرجت من التطبيق هنسألك لما ترجع. جاوب بصدق — 3 مرات تشتت = الشجرة تدبل، ودقايق التشتت مش هتتحسب.',treeHurtT:'الشجرة اتأثرت {n}/3 — ركّز 💪',fruitT:'🍎 شجرة مثمرة! 90 دقيقة تركيز',onTimeT:'⏰ في الميعاد! +20 نقطة',focusAvg:'متوسط التركيز (7 أيام)',distrPeak:'أكتر وقت بتتشتت فيه',recentSess:'آخر الجلسات المسجلة',delSessQ:'حذف الجلسة دي؟ هتتشال دقايقها من الإحصائيات.',sessDeleted:'اتحذفت الجلسة',
+
+dpTitle:'يومي بالساعات',dpSleep:'نوم',dpSchool:'مدرسة',dpPlanned:'مخطط',dpActual:'فعلي',dpGoal:'الهدف',dpFree:'وقت متاح',dpAuto:'✨ وزّع مذاكرة اليوم على الأوقات المتاحة',dpAdd:'＋ فترة مذاكرة',dpHint:'اضغط على أي وقت فارغ واختر المادة والمدة بضغطة. اسحب ⠿ لنقل الفترة، واسحب الحافة السفلية لتغيير مدتها. الشريط الأخضر = مذاكرتك الفعلية. اضغط على الصلاة لتسجيلها.',
+dpFilled:'تم توزيع {n} فترة',dpNoFree:'مفيش وقت متاح كفاية النهارده',dpRoutine:'روتيني (النوم والمدرسة)',dpSleepFrom:'النوم الساعة',dpWake:'الصحيان',dpSchoolFrom:'المدرسة من',dpTo:'إلى',dpSchoolDays:'أيام المدرسة',dpEdit:'تعديل الفترة',dpFrom:'من',dpMoved:'اتنقلت إلى {x}',dpSoon:'بعد 10 دقايق: {x}',qpPick:'اختار المدة وبعدين المادة',qpTomorrow:'عندك درس فيها بكرة',qpMore:'خيارات أكتر (فصل / ملاحظة)',qpAdded:'اتضافت: {x}',jumuah:'الجمعة',lessonBand:'درس',
+quranTab:'القرآن',qTitle:'متابعة حفظ القرآن',qTeacher:'المحفّظ / المعلم',qMem:'محفوظ',qAyah:'آية',qSurahs:'سورة',qJuz:'جزء',qJuzDone:'أجزاء كاملة',qLog:'تسجيل تسميع',qSet:'إعدادات الحفظ',qNext:'الواجب القادم',qNoNext:'لسه مفيش واجب — سجّل أول تسميع',qDue:'التسميع',qReviewToday:'مراجعة النهارده',qReviewed:'راجعتها ✓',qNoReview:'لما تحفظ سور هتظهر هنا مراجعتها',qMap:'خريطة الحفظ',qJuzMap:'الأجزاء',qLogs:'سجل التسميع',qNoLogs:'مفيش تسميع مسجل',
+qType:'النوع',qTypes:{new:'حفظ جديد',near:'مراجعة قريبة',far:'مراجعة بعيدة'},qSurah:'السورة',qFromA:'من آية',qToA:'إلى آية',qGrade:'التقدير',qGrades:['ممتاز','جيد جدًا','جيد','مقبول','يُعاد'],qMistakes:'عدد الأخطاء',qNotes:'ملاحظات المعلم',qNextSec:'الواجب الجاي (اختياري)',qDueDate:'موعد التسميع',
+qDir:'ترتيب الحفظ',qDirs:{back:'من الناس إلى الفاتحة',fwd:'من الفاتحة إلى الناس'},qRevPages:'صفحات المراجعة اليومية',qAddHalaqa:'＋ أضف موعد الحلقة لجدول الدروس',qSurahSet:'كام آية حافظ من السورة؟',qAll:'كلها',qNone:'ولا آية',qSaved:'اتسجل ✓',qBadRange:'راجع أرقام الآيات',qPages:'صفحة',qLastGrade:'آخر تقدير',
+rpQuran:'القرآن',rpQNew:'حفظ جديد',rpQRev:'مراجعات',
 setupT:'تجهيز التطبيق',setupHi:'اختار صفك وشعبتك علشان نجهزلك المواد ومواعيد الامتحانات. تقدر تغيرهم بعدين من الإعدادات.',grade:'الصف',stream:'الشعبة',
 g6:'الصف السادس الابتدائي',appSubP:'المرحلة الابتدائية',g1:'الصف الأول الثانوي',g2:'الصف الثاني الثانوي',g3:'الصف الثالث الثانوي',s_gen:'عام (مواد مشتركة)',s_sci:'علمي',s_lit:'أدبي',s_bio:'علمي علوم',s_math:'علمي رياضة',
 startApp:'يلا نبدأ 🚀',gradeChangeQ:'تغيير الصف أو الشعبة هيغير قائمة المواد (بياناتك القديمة هتفضل محفوظة). تكمل؟',
@@ -183,7 +224,7 @@ calExport:'📆 إضافة الدروس لتقويم الموبايل',calHint:'
 notes:'ملاحظات',notePh:'قوانين، أخطاء متكررة، نقط مهمة...',subjNotes:'ملاحظات المادة',
 grades:'الدرجات',addGrade:'تسجيل درجة',gtype:'نوع الامتحان',gtypes:['امتحان شهري','امتحان سنتر','امتحان آخر الترم','اختبار قصير'],scoreL:'الدرجة',maxL:'الدرجة النهائية',noGrades:'مفيش درجات لسه',gradeErr:'راجع الدرجة: لازم تكون من 0 للدرجة النهائية',avgL:'المتوسط',lastL:'آخر درجة',
 segQs:'الأسئلة',segGr:'الدرجات',
-bd:{first:'أول جلسة',h10:'10 ساعات مذاكرة',h50:'50 ساعة مذاكرة',h100:'100 ساعة مذاكرة',s7:'أسبوع مذاكرة متواصل',s30:'شهر مذاكرة متواصل',p7:'أسبوع صلوات كامل',q100:'100 سؤال صح',q1000:'1000 سؤال صح',t10:'10 شجرات',t50:'غابة 50 شجرة',w50:'50 كلمة متقنة',hw20:'20 واجب',tk50:'50 مهمة'},today:'اليوم',lessons:'الدروس',study:'المذاكرة',questions:'الأسئلة',words:'الكلمات',settings:'الإعدادات',
+bd:{first:'أول جلسة',h10:'10 ساعات مذاكرة',h50:'50 ساعة مذاكرة',h100:'100 ساعة مذاكرة',s7:'أسبوع مذاكرة متواصل',s30:'شهر مذاكرة متواصل',p7:'أسبوع صلوات كامل',q100:'100 سؤال صح',q1000:'1000 سؤال صح',t10:'10 شجرات',t50:'غابة 50 شجرة',w50:'50 كلمة متقنة',hw20:'20 واجب',tk50:'50 مهمة',qs5:'5 سور محفوظة',ot10:'10 جلسات في الميعاد',fr5:'5 شجرات مثمرة',qj1:'جزء كامل محفوظ'},today:'اليوم',lessons:'الدروس',study:'المذاكرة',questions:'الأسئلة',words:'الكلمات',settings:'الإعدادات',
 hi:'أهلاً',daysLeft:'يوم على امتحانات الثانوية العامة',examPassed:'انتهى موعد الامتحانات المحدد — حدّثه من الإعدادات',
 studyMin:'مذاكرة اليوم',ofGoal:'من',min:'د',h:'س',prayersT:'الصلوات',qsToday:'أسئلة اليوم',
 todayLessons:'دروس اليوم',noLessonsToday:'مفيش دروس النهارده',tomorrow:'بكرة',noneTomorrow:'مفيش دروس بكرة',
@@ -216,7 +257,14 @@ src:'المصادر: المواد حسب خطط وزارة التربية وال
 needSubj:'اختار مادة',needDay:'اختار يوم واحد على الأقل',needTime:'حدد الساعة',saveErr:'مش قادر أحفظ — مساحة الجهاز ممتلئة؟',
 lessonMin:'دروس',mins:'دقيقة',week:['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],am:'ص',pm:'م'
 },en:{
-app:'My Study',appSub:'Thanaweya Amma',
+app:'My Study',appSub:'Thanaweya Amma',tmFlex:'🌿 Flexible (I study on this device)',tmStrict:'🔒 Strict',awayQ:'You were away {m} min — were you studying?',awayStudy:'📖 I was studying (PDF / another app)',awayDistr:'😅 I got distracted',awayStudyOk:'Great 👍 your tree keeps growing',awayDistrOk:'Distraction logged ({m} min) — tree hurt {n}/3',treeFlexHint:'Flexible mode: if you leave the app we ask when you return. Be honest — 3 distractions = the tree withers, and distracted minutes are not counted.',treeHurtT:'Tree hurt {n}/3 — focus 💪',fruitT:'🍎 Fruit tree! 90 minutes of focus',onTimeT:'⏰ On time! +20 XP',focusAvg:'Focus average (7 days)',distrPeak:'You get distracted most at',recentSess:'Recent sessions',delSessQ:'Delete this session? Its minutes will be removed from your stats.',sessDeleted:'Session deleted',
+
+dpTitle:'Day by the hour',dpSleep:'Sleep',dpSchool:'School',dpPlanned:'Planned',dpActual:'Actual',dpGoal:'Goal',dpFree:'Free time',dpAuto:"✨ Fit today's study into free time",dpAdd:'＋ Study block',dpHint:'Tap any empty time and pick a subject and duration in one tap. Drag ⠿ to move a block, drag its bottom edge to resize. Green bar = actual study. Tap a prayer to log it.',
+dpFilled:'{n} blocks placed',dpNoFree:'Not enough free time today',dpRoutine:'My routine (sleep & school)',dpSleepFrom:'Sleep at',dpWake:'Wake at',dpSchoolFrom:'School from',dpTo:'To',dpSchoolDays:'School days',dpEdit:'Edit block',dpFrom:'From',dpMoved:'Moved to {x}',dpSoon:'In 10 minutes: {x}',qpPick:'Pick a duration, then a subject',qpTomorrow:'lesson tomorrow',qpMore:'More options (chapter / note)',qpAdded:'Added: {x}',jumuah:'Jumuah',lessonBand:'Lesson',
+quranTab:'Quran',qTitle:'Quran memorization',qTeacher:'Teacher',qMem:'Memorized',qAyah:'ayahs',qSurahs:'surahs',qJuz:'juz',qJuzDone:'full juz',qLog:'Log recitation',qSet:'Memorization settings',qNext:'Next assignment',qNoNext:'No assignment yet — log the first recitation',qDue:'Recitation',qReviewToday:"Today's review",qReviewed:'Reviewed ✓',qNoReview:'Surahs you memorize will appear here for review',qMap:'Memorization map',qJuzMap:'Juz',qLogs:'Recitation log',qNoLogs:'No recitations logged',
+qType:'Type',qTypes:{new:'New memorization',near:'Recent review',far:'Old review'},qSurah:'Surah',qFromA:'From ayah',qToA:'To ayah',qGrade:'Grade',qGrades:['Excellent','Very good','Good','Fair','Repeat'],qMistakes:'Mistakes',qNotes:"Teacher's notes",qNextSec:'Next assignment (optional)',qDueDate:'Due',
+qDir:'Memorization order',qDirs:{back:'From An-Nas to Al-Fatiha',fwd:'From Al-Fatiha to An-Nas'},qRevPages:'Daily review pages',qAddHalaqa:'＋ Add the halaqa to the lessons timetable',qSurahSet:'How many ayahs memorized?',qAll:'All',qNone:'None',qSaved:'Saved ✓',qBadRange:'Check the ayah numbers',qPages:'pages',qLastGrade:'Last grade',
+rpQuran:'Quran',rpQNew:'new',rpQRev:'reviews',
 setupT:'Set up the app',setupHi:'Pick your grade and stream so we can set up your subjects and exam dates. You can change them later in Settings.',grade:'Grade',stream:'Stream',
 g6:'6th primary',appSubP:'Primary stage',g1:'1st secondary',g2:'2nd secondary',g3:'3rd secondary',s_gen:'General (common)',s_sci:'Science',s_lit:'Literary',s_bio:'Science (Biology)',s_math:'Science (Math)',
 startApp:"Let's start 🚀",gradeChangeQ:'Changing grade or stream changes the subject list (old data stays saved). Continue?',
@@ -234,7 +282,7 @@ calExport:'📆 Add lessons to phone calendar',calHint:'Downloads a calendar fil
 notes:'Notes',notePh:'Rules, repeated mistakes, key points...',subjNotes:'Subject notes',
 grades:'Grades',addGrade:'Log a grade',gtype:'Exam type',gtypes:['Monthly exam','Center exam','End of term','Short quiz'],scoreL:'Score',maxL:'Out of',noGrades:'No grades yet',gradeErr:'Check the score: 0 to the maximum',avgL:'Average',lastL:'Last',
 segQs:'Questions',segGr:'Grades',
-bd:{first:'First session',h10:'10 study hours',h50:'50 study hours',h100:'100 study hours',s7:'7-day study streak',s30:'30-day study streak',p7:'Full-prayer week',q100:'100 correct answers',q1000:'1000 correct answers',t10:'10 trees',t50:'Forest of 50',w50:'50 words mastered',hw20:'20 homeworks',tk50:'50 tasks'},today:'Today',lessons:'Lessons',study:'Study',questions:'Questions',words:'Words',settings:'Settings',
+bd:{first:'First session',h10:'10 study hours',h50:'50 study hours',h100:'100 study hours',s7:'7-day study streak',s30:'30-day study streak',p7:'Full-prayer week',q100:'100 correct answers',q1000:'1000 correct answers',t10:'10 trees',t50:'Forest of 50',w50:'50 words mastered',hw20:'20 homeworks',tk50:'50 tasks',qs5:'5 surahs memorized',ot10:'10 sessions on time',fr5:'5 fruit trees',qj1:'A full juz memorized'},today:'Today',lessons:'Lessons',study:'Study',questions:'Questions',words:'Words',settings:'Settings',
 hi:'Hi',daysLeft:'days to Thanaweya Amma exams',examPassed:'Exam date has passed — update it in Settings',
 studyMin:'Study today',ofGoal:'of',min:'m',h:'h',prayersT:'Prayers',qsToday:'Questions today',
 todayLessons:"Today's lessons",noLessonsToday:'No lessons today',tomorrow:'Tomorrow',noneTomorrow:'No lessons tomorrow',
@@ -284,7 +332,7 @@ const DEFSUBJ=[
 const CAT={ar:['اللغة العربية','Arabic','#0d9488'],en:['اللغة الإنجليزية','English','#2563eb'],hist:['التاريخ','History','#b45309'],math:['الرياضيات','Mathematics','#0891b2'],
  isci:['العلوم المتكاملة','Integrated Science','#16a34a'],phil:['الفلسفة والمنطق','Philosophy & Logic','#9333ea'],ph:['الفيزياء','Physics','#7c3aed'],ch:['الكيمياء','Chemistry','#ea580c'],
  bio:['الأحياء','Biology','#16a34a'],geo:['الجغرافيا','Geography','#65a30d'],psy:['علم النفس','Psychology','#c026d3'],stat:['الإحصاء','Statistics','#0284c7'],
- rel:['التربية الدينية','Religious Education','#a16207'],l2:['اللغة الأجنبية الثانية','Second Foreign Language','#db2777'],nat:['التربية الوطنية','National Education','#64748b'],prog:['البرمجة وعلوم الحاسب','Programming & CS','#475569'],
+ rel:['التربية الدينية','Religious Education','#a16207'],l2:['اللغة الأجنبية الثانية','Second Foreign Language','#db2777'],nat:['التربية الوطنية','National Education','#64748b'],prog:['البرمجة وعلوم الحاسب','Programming & CS','#475569'],qrn:['القرآن الكريم','Holy Quran','#0f766e'],
  sci:['العلوم','Science','#16a34a'],soc:['الدراسات الاجتماعية','Social Studies','#b45309'],ict:['تكنولوجيا المعلومات والاتصالات','ICT','#475569']};
 /* subjects per grade/stream (counted, not counted) — from published Ministry plans as reported by Youm7 (Jan 2026), Ahram, Shbabbek (Aug 2026) */
 const SETS={'6-gen':[['ar','en','math','sci','soc'],['rel','ict']],'1-gen':[['ar','en','hist','math','isci','phil'],['rel','l2','prog']],'2-sci':[['ar','en','math','hist','ch','ph'],['rel','l2','nat']],'2-lit':[['ar','en','math','hist','geo','psy'],['rel','l2','nat']],
@@ -298,7 +346,7 @@ function buildSubjects(g,st,old){const set=SETS[g+'-'+st]||SETS['3-bio'],keep={}
 const EXAMS={g12:[['2027-01-09','ex_t1'],['2027-05-22','ex_t2']],g3:[['2027-06-26','ex_ta']]};
 function nextExam(d){const c=D.cfg;if(c.examCustom&&c.examCustom>=d)return{date:c.examCustom,name:t('exCustom')};const e=(+c.grade===3?EXAMS.g3:EXAMS.g12).find(x=>x[0]>=d);return e?{date:e[0],name:t(e[1])}:null}
 const defaults=()=>({v:2,cfg:{name:'',lang:'ar',theme:'auto',grade:0,stream:'',setup:false,examCustom:'',goal:300,city:'cairo',lat:'',lng:'',method:'egypt',parent:''},
- subjects:DEFSUBJ.map(s=>({...s})),units:{},lessons:{},extra:{},att:{},days:{},sessions:{},qs:{},words:{},tasks:{},grades:{},revlog:{}});
+ subjects:DEFSUBJ.map(s=>({...s})),units:{},lessons:{},extra:{},att:{},days:{},sessions:{},qs:{},words:{},tasks:{},grades:{},revlog:{},blocks:{},quran:{cfg:{teacher:'',dir:'back',rev:2},mem:{},logs:{},next:null}});
 let D=null;
 try{D=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){}
 function normalize(x){const d0=defaults();if(!x||!Array.isArray(x.subjects))return d0;
@@ -380,7 +428,7 @@ function ask(msg){return new Promise(res=>{openModal(`<h3>${esc(msg)}</h3><div c
  $('#cn').onclick=()=>{closeModal();res(false)};$('#cy').onclick=()=>{closeModal();res(true)}})}
 
 const V={tab:'today',subj:null,rev:null,wq:'',bulk:false};
-const NAV=[['today','🏠'],['lessons','📅'],['study','📚'],['questions','✅'],['words','🔤'],['progressT','🏆']];
+const NAV=[['today','🏠'],['lessons','📅'],['study','📚'],['quranTab','📖'],['questions','✅'],['words','🔤'],['progressT','🏆']];
 function render(){
  document.documentElement.lang=LANG;document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
  if(!D.cfg.setup){$('#top').innerHTML='';$('#nav').innerHTML='';$('#app').innerHTML=vSetup();return}
@@ -389,7 +437,7 @@ function render(){
   <button class="ib" data-act="lang" aria-label="${t('lang')}" style="font-size:13px;font-weight:800">${LANG==='ar'?'EN':'ع'}</button>
   <button class="ib" data-act="tab" data-t="settings" aria-label="${t('settings')}">⚙️</button>`;
  $('#nav').innerHTML=`<div>${NAV.map(([k,i])=>`<button class="${V.tab===k?'on':''}" data-act="tab" data-t="${k}"><i>${i}</i><span>${t(k)}</span></button>`).join('')}</div>`;
- const fn={today:vToday,lessons:vLessons,study:vStudy,questions:vQuestions,words:vWords,settings:vSettings,progressT:vProgress}[V.tab]||vToday;
+ const fn={today:vToday,lessons:vLessons,study:vStudy,questions:vQuestions,words:vWords,settings:vSettings,progressT:vProgress,quranTab:vQuran,day:vDay}[V.tab]||vToday;
  $('#app').innerHTML=runBar()+fn();
  try{checkBadges()}catch(e){}
 }
@@ -425,7 +473,7 @@ function vToday(){const d=today(),c=D.cfg,ex=nextExam(d),left=ex?Math.ceil((pars
   <div class="tile"><span>${t('prayersT')}</span><b class="num">${prDone(d)}/5</b><div class="bar"><i style="width:${prDone(d)*20}%;background:var(--ok)"></i></div></div>
   <div class="tile"><span>${t('qsToday')}</span><b class="num">${qt}</b><span>${qt?`<span class="acc ${accCls(Math.round(qc*100/qt))}">${Math.round(qc*100/qt)}%</span>`:'—'}</span></div>
  </div>`;
- h+=tasksCard(d);
+ h+=`<button class="btn ghost full" data-act="openDay" style="margin-top:10px">🕒 ${t('dpTitle')}</button>`+tasksCard(d)+qCard();
  const L=lessonsOn(d),L2=lessonsOn(addD(d,1));
  h+=`<section class="card"><div class="ch"><h2>📅 ${t('todayLessons')}</h2><span class="sub">${L.length||''}</span></div><div class="cb">
   ${L.length?L.map(lessonRow).join(''):`<div class="empty">${t('noLessonsToday')}</div>`}
@@ -461,8 +509,8 @@ function lessonRow(l){const s=subj(l.sid),a=D.att[l.key]||{};
   </div></div></div>`}
 
 /* ========== LESSONS ========== */
-function vLessons(){const d=today(),td=parse(d).getDay();
- let h=`<div class="row" style="gap:8px;margin-top:6px"><button class="btn g1" data-act="lessonForm">${t('addWeekly')}</button><button class="btn ghost g1" data-act="extraForm">${t('addExtra')}</button></div>
+function vLessons(){const d=today(),td=parse(d).getDay();const _dp=`<button class="btn ghost full" data-act="openDay" style="margin-top:8px">🕒 ${t('dpTitle')}</button>`;
+ let h=_dp+`<div class="row" style="gap:8px;margin-top:6px"><button class="btn g1" data-act="lessonForm">${t('addWeekly')}</button><button class="btn ghost g1" data-act="extraForm">${t('addExtra')}</button></div>
  <button class="btn line full" style="margin-top:8px" data-act="ics">${t('calExport')}</button><div class="sm mut" style="margin:4px 2px 0">${t('calHint')}</div>`;
  // unmarked past 7 days
  const um=[];for(let i=7;i>=0;i--){const dd=addD(d,-i);lessonsOn(dd).forEach(l=>{if(!(D.att[l.key]||{}).st&&(i>0||toMin(l.start)+(+l.dur||0)<=new Date().getHours()*60+new Date().getMinutes()))um.push([dd,l])})}
@@ -510,6 +558,7 @@ function vStudy(){if(V.subj)return vSubject(V.subj);
  let h=weekPlanCard()+`<section class="card"><div class="ch"><h2>📈 ${t('weekMin')}</h2></div><div class="cb">
   <div class="bars">${days.map((dd,i)=>`<div><em class="num">${mins[i]?Math.round(mins[i]):''}</em><i class="${dd===d?'td':''}" style="height:${mins[i]*100/mx}%"></i><small>${t('week')[parse(dd).getDay()].slice(0,LANG==='ar'?6:3)}</small></div>`).join('')}</div>
   <div class="row sp sm" style="margin-top:8px"><span>${t('weekTotal')}: <b>${dur(tot)}</b></span><span>${t('avgDay')}: <b>${dur(tot/7)}</b></span></div></div></section>
+  ${recentSessCard()}
   <h3 style="margin:16px 2px 6px;font-size:15px">📚 ${t('subjects')}</h3><div class="grid2">`;
  D.subjects.forEach(s=>{const p=subjProg(s.id),a=subjAcc(s.id),wm=subjWeekMin(s.id,d);
   h+=`<button class="sc" style="--c:${s.color}" data-act="subj" data-s="${s.id}"><b>${esc(sname(s))}</b>
@@ -517,6 +566,8 @@ function vStudy(){if(V.subj)return vSubject(V.subj);
    <div class="sm mut" style="margin-top:6px">${t('thisWeek')}: ${dur(wm)}${a.acc!=null?` · <span class="acc ${accCls(a.acc)}">${a.acc}%</span>`:''}</div>
    <div class="bar"><i style="width:${p||0}%;background:${s.color}"></i></div><div class="sm mut">${t('progress')}: ${p==null?'—':p+'%'}</div></button>`});
  return h+`</div>`}
+function recentSessCard(){const L=Object.entries(D.sessions).sort((a,b)=>(b[1].ts||0)-(a[1].ts||0)).slice(0,15);if(!L.length)return'';
+ return `<section class="card"><div class="ch"><h2>🕘 ${t('recentSess')}</h2></div><div class="cb">${L.map(([id,x])=>{const sb=subj(x.sid),st=x.ts?new Date(x.ts):null;return `<div class="unit"><span class="dot" style="background:${sb.color}"></span><span class="g1 sm"><b>${esc(sname(sb))}</b>${x.uid&&D.units[x.uid]?' · '+esc(D.units[x.uid].name):''}<br><span class="mut num">${fmtDate(x.date,{weekday:'short',day:'numeric',month:'short'})}${st?' · '+fmtT(pad(st.getHours())+':'+pad(st.getMinutes())):''}</span></span>${x.tree?`<span>${x.tree==='ok'?'🌳':'🥀'}</span>`:''}<b class="sm num">${dur(x.min)}</b><button class="btn sm danger" data-act="sdel" data-id="${id}" aria-label="${t('del')}">🗑️</button></div>`}).join('')}</div></section>`}
 function vSubject(sid){const s=subj(sid),u=unitsOf(sid),a=subjAcc(sid),p=subjProg(sid),d=today();
  const ss=Object.entries(D.sessions).filter(([,x])=>x.sid===sid).sort((x,y)=>(y[1].ts||0)-(x[1].ts||0));
  let h=`<div class="row" style="margin-top:6px"><button class="btn line sm" data-act="subj" data-s="">← ${t('back')}</button></div>
@@ -526,7 +577,7 @@ function vSubject(sid){const s=subj(sid),u=unitsOf(sid),a=subjAcc(sid),p=subjPro
  h+=u.length?u.map(([id,x])=>{const st=x.st||0;const q=Object.values(D.qs).filter(z=>z.uid===id),T=sum(q.map(z=>z.total)),ac=T?Math.round(sum(q.map(z=>z.correct))*100/T):null;
   return `<div class="unit"><span class="g1">${esc(x.name)}${ac!=null?` <span class="sm acc ${accCls(ac)}">${ac}%</span>`:''}</span><button class="x" data-act="note" data-k="u" data-id="${id}" aria-label="${t('notes')}" style="${x.note?'':'opacity:.45'}">📝</button><button class="stb st${st}" data-act="ust" data-id="${id}">${t('st')[st]}</button><button class="x" data-act="udel" data-id="${id}" aria-label="${t('del')}">×</button></div>`}).join(''):`<div class="empty">${t('noUnits')}</div>`;
  h+=`<hr class="s"><div class="f"><label>${t('addUnits')}</label><textarea class="in" id="uadd" placeholder="${esc(t('unitsPh'))}"></textarea></div><button class="btn ghost full" data-act="uadd" data-s="${sid}">${t('add')}</button></div></section>
- <section class="card"><div class="ch"><h2>${t('sessions')}</h2></div><div class="cb">${ss.length?ss.slice(0,15).map(([id,x])=>`<div class="unit"><span class="g1 sm">${fmtDate(x.date,{weekday:'short',day:'numeric',month:'short'})}${x.uid&&D.units[x.uid]?' · '+esc(D.units[x.uid].name):''}</span><b class="sm">${dur(x.min)}</b><button class="x" data-act="sdel" data-id="${id}" aria-label="${t('del')}">×</button></div>`).join(''):`<div class="empty">${t('noSessions')}</div>`}</div></section>`;
+ <section class="card"><div class="ch"><h2>${t('sessions')}</h2></div><div class="cb">${ss.length?ss.slice(0,15).map(([id,x])=>`<div class="unit"><span class="g1 sm">${fmtDate(x.date,{weekday:'short',day:'numeric',month:'short'})}${x.uid&&D.units[x.uid]?' · '+esc(D.units[x.uid].name):''}</span><b class="sm">${dur(x.min)}</b><button class="btn sm danger" data-act="sdel" data-id="${id}" aria-label="${t('del')}">🗑️</button></div>`).join(''):`<div class="empty">${t('noSessions')}</div>`}</div></section>`;
  return h}
 
 /* ========== FOCUS CLOCK + tree (Forest) + pomodoro (FLIP) ========== */
@@ -543,15 +594,17 @@ function pomoState(e){const k=Math.floor(e/7200);let r=e-k*7200,work=k*6000,roun
 const isPomo=()=>F&&F.target===-1;
 const fWork=()=>isPomo()?pomoState(fElapsed()).work:fElapsed();
 const inBreak=()=>isPomo()&&pomoState(fElapsed()).type==='b';
-const treeP=()=>!F?0:F.target>0?Math.min(1,fElapsed()/(F.target*60)):Math.min(1,fWork()/1500);
-function treeSVG(p,dead,px,onDark){p=Math.max(0,Math.min(1,p));const lf=dead?'#bca79c':'#4ade80',lf2=dead?'#a1887f':'#16a34a',tr=dead?'#6d4c41':'#92400e',th=14+62*p,ty=164-th,r=10+34*p;
+const treeMode=()=>localStorage.getItem('thn-treeMode')||'flex';
+const treeP=()=>!F?0:(F.target>0?Math.min(1,fElapsed()/(F.target*60)):Math.min(1,fWork()/1500))*(1-.25*(F.hits||0));
+const isFruit=()=>F&&!F.dead&&fWork()/60-(F.distr||0)>=90;
+function treeSVG(p,dead,px,onDark,fruit){p=Math.max(0,Math.min(1,p));const lf=dead?'#bca79c':'#4ade80',lf2=dead?'#a1887f':'#16a34a',tr=dead?'#6d4c41':'#92400e',th=14+62*p,ty=164-th,r=10+34*p;
  const crown=p<.12?`<path d="M100 ${ty+2} C90 ${ty-16} 74 ${ty-8} 76 ${ty+2} C84 ${ty+7} 94 ${ty+5} 100 ${ty+2} C110 ${ty-16} 126 ${ty-8} 124 ${ty+2} C116 ${ty+7} 106 ${ty+5} 100 ${ty+2}Z" fill="${lf}"/>`
   :`<circle cx="${100-r*.62}" cy="${ty+r*.25}" r="${r*.68}" fill="${lf2}"/><circle cx="${100+r*.62}" cy="${ty+r*.25}" r="${r*.68}" fill="${lf2}"/><circle cx="100" cy="${ty-r*.35}" r="${r}" fill="${lf}"/>`;
- return `<svg viewBox="0 0 200 190" width="${px}" height="${Math.round(px*.95)}" aria-hidden="true" style="overflow:visible${dead?';transform:rotate(-9deg)':''}"><ellipse cx="100" cy="168" rx="62" ry="10" fill="${onDark?'rgba(255,255,255,.16)':'rgba(0,0,0,.08)'}"/><path d="M62 168 Q100 150 138 168Z" fill="#8b5a2b"/><rect x="${(100-2.5-3*p).toFixed(1)}" y="${ty.toFixed(1)}" width="${(5+6*p).toFixed(1)}" height="${th.toFixed(1)}" rx="3" fill="${tr}"/>${crown}</svg>`}
-function startFocus(sid){if(F&&F.sid!==sid){openFocus();return}if(!F){F={sid,uid:'',start:Date.now(),pausedTotal:0,paused:0,target:0,beeped:0,lastIdx:0,dead:0,hiddenAt:0};fSave()}openFocus()}
+ return `<svg viewBox="0 0 200 190" width="${px}" height="${Math.round(px*.95)}" aria-hidden="true" style="overflow:visible${dead?';transform:rotate(-9deg)':''}"><ellipse cx="100" cy="168" rx="62" ry="10" fill="${onDark?'rgba(255,255,255,.16)':'rgba(0,0,0,.08)'}"/><path d="M62 168 Q100 150 138 168Z" fill="#8b5a2b"/><rect x="${(100-2.5-3*p).toFixed(1)}" y="${ty.toFixed(1)}" width="${(5+6*p).toFixed(1)}" height="${th.toFixed(1)}" rx="3" fill="${tr}"/>${crown}${fruit&&!dead&&p>=.12?[[-.5,-.6],[.35,-.75],[-.15,-.05],[.55,.15],[-.7,.2]].map(([dx,dy])=>`<circle cx="${(100+dx*r).toFixed(1)}" cy="${(ty-r*.35+dy*r).toFixed(1)}" r="${(4+3*p).toFixed(1)}" fill="#ef4444" stroke="#fff" stroke-width="1.5"/>`).join(''):''}</svg>`}
+function startFocus(sid){if(F&&F.sid!==sid){openFocus();return}if(!F){const nm=new Date().getHours()*60+new Date().getMinutes(),bk=dayBlocksS(today()).find(b=>Math.abs(toMin(b.start)-nm)<=10&&(b.sid===sid||!b.sid));F={sid,uid:bk&&bk.uid||'',start:Date.now(),pausedTotal:0,paused:0,target:0,beeped:0,lastIdx:0,dead:0,hiddenAt:0,distr:0,hits:0,onTime:bk?1:0};fSave();if(bk)setTimeout(()=>toast(t('onTimeT')),300)}askNotif();openFocus()}
 async function openFocus(){fOpen=true;renderFocus();try{if(navigator.wakeLock&&!wake){wake=await navigator.wakeLock.request('screen');wake.addEventListener&&wake.addEventListener('release',()=>{wake=null})}}catch(e){}}
 function closeFocus(){fOpen=false;$('#focus').innerHTML='';try{wake&&wake.release()}catch(e){}wake=null;render()}
-function fPhase(){if(!isPomo())return F.dead?t('treeDead'):F.paused?'⏸':t('treeGrow');const st=pomoState(fElapsed());return (st.type==='w'?'🍅 '+t('work'):'☕ '+(st.long?t('longBrk'):t('brk')))+' · '+t('round')+' '+st.round+(F.dead?' · 🥀':'')}
+function fPhase(){if(!isPomo())return F.dead?t('treeDead'):F.paused?'⏸':F.hits?t('treeHurtT').replace('{n}',F.hits):isFruit()?t('fruitT'):treeMode()==='strict'?t('treeGrow'):t('treeFlexHint');const st=pomoState(fElapsed());return (st.type==='w'?'🍅 '+t('work'):'☕ '+(st.long?t('longBrk'):t('brk')))+' · '+t('round')+' '+st.round+(F.dead?' · 🥀':'')}
 function fClockText(){const el=fElapsed();if(isPomo())return clock(pomoState(el).left);if(F.target>0){const rem=F.target*60-el;return rem>=0?clock(rem):'+'+clock(-rem)}return clock(el)}
 function fRing(){const el=fElapsed();if(isPomo()){const st=pomoState(el);return (st.len-st.left)*100/st.len}return F.target>0?Math.min(100,el*100/(F.target*60)):0}
 function renderFocus(){if(!fOpen||!F)return;const s=subj(F.sid),u=unitsOf(F.sid);
@@ -559,32 +612,34 @@ function renderFocus(){if(!fOpen||!F)return;const s=subj(F.sid),u=unitsOf(F.sid)
   <div style="font-size:21px;font-weight:900">${esc(sname(s))}</div>
   ${u.length?`<select id="fu" aria-label="${t('unit')}" style="margin-top:8px"><option value="">${t('unit')}: ${t('none')}</option>${u.map(([id,x])=>`<option value="${id}" ${F.uid===id?'selected':''}>${esc(x.name)}</option>`).join('')}</select>`:''}
   <div class="modes" style="margin-top:6px">${[[0,t('focusOpen')],[25,'25 '+t('mins')],[50,'50 '+t('mins')],[-1,'🍅 '+t('pomo')]].map(([m,l])=>`<button class="${(F.target||0)===m?'on':''}" data-act="fmode" data-v="${m}">${l}</button>`).join('')}</div>
-  <div id="ftree">${treeSVG(treeP(),F.dead,130,true)}</div>
+  <div id="ftree">${treeSVG(treeP(),F.dead,130,true,isFruit())}</div>
   <div class="clk" id="fclk">${fClockText()}</div>
   <div class="ring" ${F.target?'':'style="visibility:hidden"'}><i id="fring" style="width:${fRing()}%"></i></div>
   <div class="sub" id="fsub">${fPhase()}</div>
   <div class="ctl"><button data-act="fpause">${F.paused?'▶ '+t('resume'):'⏸ '+t('pause')}</button><button class="main" data-act="ffinish">✓ ${t('finish')}</button></div>
-  <div class="ctl" style="margin-top:12px"><button data-act="fmin">${t('minimize')}</button><button data-act="fdiscard">${t('discard')}</button></div></div>`;
+  <div class="ctl" style="margin-top:12px"><button data-act="fmin">${t('minimize')}</button><button data-act="fdiscard">${t('discard')}</button></div>
+  <div class="modes" style="margin-top:14px"><button class="${treeMode()==='flex'?'on':''}" data-act="tmode" data-v="flex">${t('tmFlex')}</button><button class="${treeMode()==='strict'?'on':''}" data-act="tmode" data-v="strict">${t('tmStrict')}</button></div></div>`;
  const fu=$('#fu');if(fu)fu.onchange=()=>{F.uid=fu.value;fSave()}}
 function runBar(){if(!F)return'';const s=subj(F.sid);return `<button class="run" data-act="fopen">${F.dead?'🥀':'🌱'} ${esc(sname(s))} ${F.paused?'⏸':''}<span class="num" id="rclk">${clock(fWork())}</span></button>`}
 function beep(){try{const A=new (window.AudioContext||window.webkitAudioContext)(),o=A.createOscillator(),g=A.createGain();o.frequency.value=880;o.connect(g);g.connect(A.destination);g.gain.setValueAtTime(.2,A.currentTime);g.gain.exponentialRampToValueAtTime(.001,A.currentTime+1.2);o.start();o.stop(A.currentTime+1.2)}catch(e){}try{navigator.vibrate&&navigator.vibrate([300,150,300])}catch(e){}}
 let tk=0;
 setInterval(()=>{if(!F)return;tk++;const el=fElapsed();const c=$('#fclk');
- if(c){c.textContent=fClockText();const r=$('#fring');if(r)r.style.width=fRing()+'%';const fs=$('#fsub');if(fs)fs.textContent=fPhase();if(tk%5===0){const tr=$('#ftree');if(tr)tr.innerHTML=treeSVG(treeP(),F.dead,130,true)}}
+ if(c){c.textContent=fClockText();const r=$('#fring');if(r)r.style.width=fRing()+'%';const fs=$('#fsub');if(fs)fs.textContent=fPhase();if(tk%5===0){const tr=$('#ftree');if(tr)tr.innerHTML=treeSVG(treeP(),F.dead,130,true,isFruit())}}
  const rc=$('#rclk');if(rc)rc.textContent=clock(fWork());
  if(F.paused)return;
  if(isPomo()){const st=pomoState(el);if(st.idx!==(F.lastIdx||0)){F.lastIdx=st.idx;fSave();beep();toast(st.type==='b'?t('breakStart'):t('workStart'))}}
  else if(F.target>0&&!F.beeped&&el>=F.target*60){F.beeped=1;fSave();beep();toast(t('timeUp'))}},1000);
-function checkWither(){if(F&&F.hiddenAt){if(!F.dead&&Date.now()-F.hiddenAt>15000){F.dead=1;toast(t('treeDead'))}F.hiddenAt=0;fSave();if(fOpen)renderFocus()}}
+function checkWither(){if(F&&F.hiddenAt){const away=Date.now()-F.hiddenAt;F.hiddenAt=0;if(treeMode()==='strict'){if(!F.dead&&away>15000){F.dead=1;toast(t('treeDead'))}}else if(!F.dead&&away>120000)awayPrompt(Math.round(away/60000));fSave();if(fOpen)renderFocus()}}
+function awayPrompt(m){openModal(`<h3 style="text-align:center">${t('awayQ').replace('{m}',m)}</h3><div class="row wr" style="justify-content:center;gap:10px"><button class="btn" data-act="away" data-v="study" data-m="${m}">${t('awayStudy')}</button><button class="btn line" data-act="away" data-v="distr" data-m="${m}">${t('awayDistr')}</button></div>`)}
 function onHide(){if(F&&!F.paused&&!F.dead&&!inBreak()&&!F.hiddenAt){F.hiddenAt=Date.now();fSave()}}
 document.addEventListener('visibilitychange',()=>{if(document.hidden)onHide();else checkWither()});
 window.addEventListener('pagehide',onHide);
 
 /* ========== XP, streaks, badges (SkillTree) ========== */
-function xpAll(){let x=0;Object.values(D.sessions).forEach(s=>x+=s.min||0);
+function xpAll(){let x=0;Object.values(D.sessions).forEach(s=>{x+=s.min||0;if(s.onTime)x+=20;if(s.fruit)x+=30});
  Object.values(D.days).forEach(d=>{PR.forEach(k=>{const v=(d.pr||{})[k];x+=v===1?10:v===2?5:0});x+=(d.am?5:0)+(d.pm?5:0)+(d.witr?5:0)+(d.qr||0)*2});
  Object.values(D.att).forEach(a=>{if(a.st==='ok')x+=15;if(a.hw)x+=10});Object.values(D.qs).forEach(q=>x+=+q.correct||0);
- Object.values(D.tasks).forEach(k=>{if(k.done)x+=10});Object.values(D.revlog).forEach(n=>x+=2*n);return x}
+ Object.values(D.tasks).forEach(k=>{if(k.done)x+=10});Object.values(D.revlog).forEach(n=>x+=2*n);Object.values(QZ().logs).forEach(l=>{x+=l.type==='new'&&l.g<4?(l.b-l.a+1)*2:10});return x}
 function level(x){let l=1,need=100,acc=0;while(x>=acc+need){acc+=need;l++;need=100+(l-1)*50}return{l,cur:Math.round(x-acc),need,x}}
 const studyDay=d=>studyMin(d)>=30;
 const prayDay=d=>prDone(d)===5;
@@ -594,7 +649,7 @@ function bestRun(test){let d=firstDate(),e=today(),best=0,cur=0,g=0;while(d<=e&&
 function badges(){const S=Object.values(D.sessions),mins=sum(S.map(x=>x.min)),qc=sum(Object.values(D.qs).map(q=>q.correct)),trees=S.filter(x=>x.tree==='ok').length,
  wm=Object.values(D.words).filter(w=>(w.box||1)>=5).length,hw=Object.values(D.att).filter(a=>a.hw).length,tkd=Object.values(D.tasks).filter(x=>x.done).length,bs=bestRun(studyDay),bp=bestRun(prayDay);
  return [['first','🌱',S.length>=1],['h10','⏳',mins>=600],['h50','📘',mins>=3000],['h100','🏆',mins>=6000],['s7','🔥',bs>=7],['s30','🌋',bs>=30],['p7','🕌',bp>=7],
-  ['q100','✍️',qc>=100],['q1000','🧠',qc>=1000],['t10','🌳',trees>=10],['t50','🌲',trees>=50],['w50','🔤',wm>=50],['hw20','📝',hw>=20],['tk50','✅',tk50(tkd)]]}
+  ['q100','✍️',qc>=100],['q1000','🧠',qc>=1000],['t10','🌳',trees>=10],['t50','🌲',trees>=50],['w50','🔤',wm>=50],['hw20','📝',hw>=20],['tk50','✅',tk50(tkd)],['ot10','⏰',Object.values(D.sessions).filter(x=>x.onTime).length>=10],['fr5','🍎',Object.values(D.sessions).filter(x=>x.fruit).length>=5],['qs5','📖',Object.keys(QZ().mem).filter(s=>qMemN(+s)>=QURAN.c[s-1]).length>=5],['qj1','🌟',qTotals().jd>=1]]}
 const tk50=n=>n>=50;
 function checkBadges(){const got=badges().filter(b=>b[2]).map(b=>b[0]),seen=D.bseen||(D.bseen=[]),nw=got.filter(x=>!seen.includes(x));
  if(nw.length){D.bseen=got;save();if(seen.length||nw.length<3)setTimeout(()=>toast('🎉 '+t('bd')[nw[0]]),400)}}
@@ -605,14 +660,18 @@ function vProgress(){const lv=level(xpAll()),d=today(),B=badges(),S=Object.value
  return `<section class="hero"><div class="row sp"><div><div class="lbl">${t('level')}</div><div class="big num">${lv.l}</div></div><div style="text-align:end"><div class="lbl">${t('xp')}</div><div style="font-size:22px;font-weight:900" class="num">${lv.x}</div></div></div>
   <div class="bar" style="background:rgba(255,255,255,.25);margin-top:10px"><i style="width:${lv.cur*100/lv.need}%;background:#fff"></i></div><div class="lbl num" style="margin-top:4px">${lv.cur} / ${lv.need}</div></section>
  <div class="tiles" style="grid-template-columns:1fr 1fr"><div class="tile"><span>🔥 ${t('streakStudy')}</span><b class="num">${streak(studyDay)}</b><span>${t('streakNote')}</span></div><div class="tile"><span>🕌 ${t('streakPray')}</span><b class="num">${streak(prayDay)}</b></div></div>
+ ${focusIns()}
  <section class="card"><div class="ch"><h2>🌳 ${t('garden')}</h2><span class="sub">🌳 ${okAll} · 🥀 ${deadAll}</span></div><div class="cb">
-  ${wk.length?`<div class="row wr" style="gap:2px">${wk.map(x=>`<span title="${esc(sname(x.sid))} · ${dur(x.min)}">${treeSVG(Math.min(1,x.min/50),x.tree==='dead',44)}</span>`).join('')}</div><div class="sm mut">${t('last7')}</div>`:`<div class="empty">${t('gardenEmpty')}</div>`}</div></section>
+  ${wk.length?`<div class="row wr" style="gap:2px">${wk.map(x=>`<span title="${esc(sname(x.sid))} · ${dur(x.min)}">${treeSVG(Math.min(1,x.min/50),x.tree==='dead',44,false,x.fruit)}</span>`).join('')}</div><div class="sm mut">${t('last7')}</div>`:`<div class="empty">${t('gardenEmpty')}</div>`}</div></section>
  <section class="card"><div class="ch"><h2>🏅 ${t('badges')}</h2><span class="sub num">${B.filter(b=>b[2]).length}/${B.length}</span></div><div class="cb"><div class="grid2" style="grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px">
   ${B.map(([k,ic,ok])=>`<div class="tile" style="text-align:center;${ok?'':'opacity:.38;filter:grayscale(1)'}"><div style="font-size:26px">${ic}</div><span>${t('bd')[k]}</span></div>`).join('')}</div></div></section>
  <section class="card"><div class="ch"><h2>📨 ${t('report')}</h2></div><div class="cb">
   <pre class="sm" style="white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;margin:0 0 10px;font:inherit;font-size:13px">${esc(weekReport())}</pre>
   <div class="row wr"><button class="btn" data-act="rpWhats" style="background:#16a34a">🟢 ${t('whats')}</button><button class="btn ghost" data-act="rpShare">📤 ${t('share')}</button><button class="btn line" data-act="rpCopy">📋 ${t('copy')}</button></div></div></section>
  <section class="card"><div class="ch"><h2>⭐ ${t('xpHow')}</h2></div><div class="cb sm">${t('xpRules').map(x=>`<div>• ${x}</div>`).join('')}</div></section>`}
+function focusIns(){const d=today(),from=addD(d,-6),L=Object.values(D.sessions).filter(x=>x.date>=from&&x.date<=d);if(!L.length)return'';let tot=0,dis=0;const hr={};
+ L.forEach(x=>{tot+=(+x.min||0)+(+x.distr||0);dis+=+x.distr||0;if(x.distr&&x.ts){const h=new Date(x.ts).getHours();hr[h]=(hr[h]||0)+(+x.distr)}});const pk=Object.entries(hr).sort((a,b)=>b[1]-a[1])[0],fs=tot?Math.round((tot-dis)*100/tot):100;
+ return `<div class="tiles" style="grid-template-columns:1fr 1fr;margin-top:10px"><div class="tile"><span>🎯 ${t('focusAvg')}</span><b class="num">${fs}%</b></div>${pk?`<div class="tile"><span>⚠️ ${t('distrPeak')}</span><b class="num" style="font-size:16px">${fmtT(pad(+pk[0])+':00')}</b></div>`:''}</div>`}
 function weekReport(){const d=today(),from=addD(d,-6),days=[],cm=LANG==='ar'?'، ':', ';for(let i=6;i>=0;i--)days.push(addD(d,-i));
  const S=Object.values(D.sessions).filter(x=>x.date>=from&&x.date<=d),tot=sum(S.map(x=>x.min)),bys={};S.forEach(x=>bys[x.sid]=(bys[x.sid]||0)+x.min);
  let les=0,ok=0,hw=0;days.forEach(dd=>lessonsOn(dd).forEach(l=>{const a=D.att[l.key]||{};if(a.st==='post'||!a.st&&dd===d)return;les++;if(a.st==='ok')ok++;if(a.hw)hw++}));
@@ -627,6 +686,7 @@ function weekReport(){const d=today(),from=addD(d,-6),days=[],cm=LANG==='ar'?'،
   T.length?`📋 ${t('rpTasks')}: ${T.filter(x=>x.done).length} ${t('rpOf')} ${T.length}`:null,
   G.length?`🎯 ${t('rpGrades')}: `+G.map(g=>sname(g.sid)+' '+g.score+'/'+g.max).join(cm):null,
   `🕌 ${t('rpPray')}: ${pr} ${t('rpOf')} 35`,
+  (()=>{const QL=Object.values(QZ().logs).filter(l=>l.date>=from&&l.date<=d);if(!QL.length)return null;const nw=QL.filter(l=>l.type==='new'&&l.g<4).reduce((a,l)=>a+l.b-l.a+1,0),lg=QL.filter(l=>!l.self).sort((a,b)=>(a.ts||0)-(b.ts||0)).pop();return `📖 ${t('rpQuran')}: ${t('rpQNew')} ${nw} ${t('qAyah')} · ${t('rpQRev')} ${QL.filter(l=>l.type!=='new').length}${lg?' · '+t('qGrades')[lg.g]:''} — ${t('qMem')} ${qTotals().a}/6236`})(),
   `🔥 ${t('rpStreak')}: ${streak(studyDay)} ${t('rpDays')} — ⭐ ${t('level')} ${level(xpAll()).l}`].filter(x=>x!==null).join('\n')}
 function copyText(txt){const done=()=>toast(t('copied'));try{navigator.clipboard.writeText(txt).then(done,fb)}catch(e){fb()}
  function fb(){const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){}ta.remove()}}
@@ -688,6 +748,127 @@ function vGrades(){const d=today(),all=Object.entries(D.grades).sort((a,b)=>(a[1
  const rec=all.slice().reverse().slice(0,15);
  if(rec.length)h+=`<section class="card"><div class="ch"><h2>🕘 ${t('recent')}</h2></div><div class="cb">${rec.map(([id,g])=>{const pc=Math.round(g.score*100/g.max);return `<div class="unit"><span class="dot" style="background:${subj(g.sid).color}"></span><span class="g1 sm"><b>${esc(sname(g.sid))}</b> · ${esc(g.type)}<br><span class="mut">${fmtDate(g.date,{day:'numeric',month:'short'})}</span></span><span class="num sm">${g.score}/${g.max}</span><b class="acc ${accCls(pc)} sm">${pc}%</b><button class="x" data-act="gdel" data-id="${id}" aria-label="${t('del')}">×</button></div>`}).join('')}</div></section>`;
  return h}
+
+
+/* ========== QURAN memorization with a teacher (data: quran-meta, Hafs: 114 surahs, 6236 ayahs, 604 pages) ========== */
+const QURAN={"c":[7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6],"p":[[1,1],[2,49],[50,76],[77,106],[106,127],[128,150],[151,176],[177,186],[187,207],[208,221],[221,235],[235,248],[249,255],[255,261],[262,267],[267,281],[282,293],[293,304],[305,312],[312,321],[322,331],[332,341],[342,349],[350,359],[359,366],[367,376],[377,385],[385,396],[396,404],[404,410],[411,414],[415,417],[418,427],[428,434],[434,440],[440,445],[446,452],[453,458],[458,467],[467,476],[477,482],[483,489],[489,495],[496,498],[499,502],[502,506],[507,510],[511,515],[515,517],[518,520],[520,523],[523,525],[526,528],[528,531],[531,534],[534,537],[537,541],[542,545],[545,548],[549,551],[551,552],[553,554],[554,555],[556,557],[558,559],[560,561],[562,564],[564,566],[566,568],[568,570],[570,571],[572,573],[574,575],[575,577],[577,578],[578,580],[580,581],[582,583],[583,584],[585,585],[586,586],[587,587],[587,589],[589,589],[590,590],[591,591],[591,592],[592,592],[593,594],[594,594],[595,595],[595,596],[596,596],[596,596],[597,597],[597,597],[598,598],[598,599],[599,599],[599,600],[600,600],[600,600],[601,601],[601,601],[601,601],[602,602],[602,602],[602,602],[603,603],[603,603],[603,603],[604,604],[604,604],[604,604]],"n":[["الفاتحة","Al-Faatiha"],["البقرة","Al-Baqara"],["آل عمران","Aal-i-Imraan"],["النساء","An-Nisaa"],["المائدة","Al-Maaida"],["الأنعام","Al-An'aam"],["الأعراف","Al-A'raaf"],["الأنفال","Al-Anfaal"],["التوبة","At-Tawba"],["يونس","Yunus"],["هود","Hud"],["يوسف","Yusuf"],["الرعد","Ar-Ra'd"],["إبراهيم","Ibrahim"],["الحجر","Al-Hijr"],["النحل","An-Nahl"],["الإسراء","Al-Israa"],["الكهف","Al-Kahf"],["مريم","Maryam"],["طه","Taa-Haa"],["الأنبياء","Al-Anbiyaa"],["الحج","Al-Hajj"],["المؤمنون","Al-Muminoon"],["النور","An-Noor"],["الفرقان","Al-Furqaan"],["الشعراء","Ash-Shu'araa"],["النمل","An-Naml"],["القصص","Al-Qasas"],["العنكبوت","Al-Ankaboot"],["الروم","Ar-Room"],["لقمان","Luqman"],["السجدة","As-Sajda"],["الأحزاب","Al-Ahzaab"],["سبإ","Saba"],["فاطر","Faatir"],["يسٓ","Yaseen"],["الصافات","As-Saaffaat"],["صٓ","Saad"],["الزمر","Az-Zumar"],["غافر","Al-Ghaafir"],["فصلت","Fussilat"],["الشورى","Ash-Shura"],["الزخرف","Az-Zukhruf"],["الدخان","Ad-Dukhaan"],["الجاثية","Al-Jaathiya"],["الأحقاف","Al-Ahqaf"],["محمد","Muhammad"],["الفتح","Al-Fath"],["الحجرات","Al-Hujuraat"],["قٓ","Qaaf"],["الذاريات","Adh-Dhaariyat"],["الطور","At-Tur"],["النجم","An-Najm"],["القمر","Al-Qamar"],["الرحمن","Ar-Rahmaan"],["الواقعة","Al-Waaqia"],["الحديد","Al-Hadid"],["المجادلة","Al-Mujaadila"],["الحشر","Al-Hashr"],["الممتحنة","Al-Mumtahana"],["الصف","As-Saff"],["الجمعة","Al-Jumu'a"],["المنافقون","Al-Munaafiqoon"],["التغابن","At-Taghaabun"],["الطلاق","At-Talaaq"],["التحريم","At-Tahrim"],["الملك","Al-Mulk"],["القلم","Al-Qalam"],["الحاقة","Al-Haaqqa"],["المعارج","Al-Ma'aarij"],["نوح","Nooh"],["الجن","Al-Jinn"],["المزمل","Al-Muzzammil"],["المدثر","Al-Muddaththir"],["القيامة","Al-Qiyaama"],["الإنسان","Al-Insaan"],["المرسلات","Al-Mursalaat"],["النبإ","An-Naba"],["النازعات","An-Naazi'aat"],["عبس","Abasa"],["التكوير","At-Takwir"],["الانفطار","Al-Infitaar"],["المطففين","Al-Mutaffifin"],["الانشقاق","Al-Inshiqaaq"],["البروج","Al-Burooj"],["الطارق","At-Taariq"],["الأعلى","Al-A'laa"],["الغاشية","Al-Ghaashiya"],["الفجر","Al-Fajr"],["البلد","Al-Balad"],["الشمس","Ash-Shams"],["الليل","Al-Lail"],["الضحى","Ad-Dhuhaa"],["الشرح","Ash-Sharh"],["التين","At-Tin"],["العلق","Al-Alaq"],["القدر","Al-Qadr"],["البينة","Al-Bayyina"],["الزلزلة","Az-Zalzala"],["العاديات","Al-Aadiyaat"],["القارعة","Al-Qaari'a"],["التكاثر","At-Takaathur"],["العصر","Al-Asr"],["الهمزة","Al-Humaza"],["الفيل","Al-Fil"],["قريش","Quraish"],["الماعون","Al-Maa'un"],["الكوثر","Al-Kawthar"],["الكافرون","Al-Kaafiroon"],["النصر","An-Nasr"],["المسد","Al-Masad"],["الإخلاص","Al-Ikhlaas"],["الفلق","Al-Falaq"],["الناس","An-Naas"]],"j":[[1,1,2,141],[2,142,2,252],[2,253,3,92],[3,93,4,23],[4,24,4,147],[4,148,5,81],[5,82,6,110],[6,111,7,87],[7,88,8,40],[8,41,9,92],[9,93,11,5],[11,6,12,52],[12,53,14,52],[15,1,16,128],[17,1,18,74],[18,75,20,135],[21,1,22,78],[23,1,25,20],[25,21,27,55],[27,56,29,45],[29,46,33,30],[33,31,36,27],[36,28,39,31],[39,32,41,46],[41,47,45,37],[46,1,51,30],[51,31,57,29],[58,1,66,12],[67,1,77,50],[78,1,114,6]]};
+const QN=i=>LANG==='en'?QURAN.n[i-1][1]:QURAN.n[i-1][0];
+const QZ=()=>D.quran||(D.quran={cfg:{teacher:'',dir:'back',rev:2},mem:{},logs:{},next:null});
+const qMemN=s=>Math.min(QURAN.c[s-1],((QZ().mem[s]||{}).n)||0);
+function qTotals(){let a=0,sd=0;for(let s=1;s<=114;s++){const n=qMemN(s);a+=n;if(n>=QURAN.c[s-1])sd++}
+ let jd=0;const jp=QURAN.j.map(([s1,a1,s2,a2])=>{let tot=0,got=0;for(let s=s1;s<=s2;s++){const lo=s===s1?a1:1,hi=s===s2?a2:QURAN.c[s-1];tot+=hi-lo+1;got+=Math.max(0,Math.min(hi,qMemN(s))-lo+1)}const p=got/tot;if(p>=.999)jd++;return p});
+ return{a,sd,jd,jp}}
+const qOrder=()=>{const L=[];for(let s=1;s<=114;s++)L.push(s);return QZ().cfg.dir==='fwd'?L:L.reverse()};
+function qReviewList(){const Q=QZ(),mem=Object.keys(Q.mem).map(Number).filter(s=>qMemN(s)>0),pp=s=>Math.max(.3,(QURAN.p[s-1][1]-QURAN.p[s-1][0]+1)*qMemN(s)/QURAN.c[s-1]);
+ mem.sort((a,b)=>((Q.mem[a].last||'')).localeCompare(Q.mem[b].last||'')||a-b);const out=[];let pages=0;const lim=+Q.cfg.rev||2;
+ for(const s of mem){if((Q.mem[s].last||'')===today())continue;if(pages>=lim)break;out.push(s);pages+=pp(s)}return out}
+function surahOpts(sel){return qOrder().map(s=>`<option value="${s}" ${+sel===s?'selected':''}>${s}. ${esc(QN(s))} (${QURAN.c[s-1]})</option>`).join('')}
+function nextHalaqa(){const d=today();for(let i=1;i<=14;i++){const dd=addD(d,i);if(lessonsOn(dd).some(l=>l.sid==='qrn'))return dd}return addD(d,7)}
+function vQuran(){const Q=QZ(),T=qTotals(),pc=(T.a*100/6236),nx=Q.next,rv=qReviewList(),logs=Object.entries(Q.logs).sort((a,b)=>(b[1].date+(b[1].ts||0)).localeCompare(a[1].date+(a[1].ts||0)));
+ const last=logs[0]&&logs[0][1];
+ let h=`<section class="hero" style="background:linear-gradient(135deg,#0f766e,#0e7490 60%,#4f46e5)"><div class="row sp"><div><div class="lbl">📖 ${t('qTitle')}${Q.cfg.teacher?' · '+esc(Q.cfg.teacher):''}</div><div class="big num" style="margin-top:6px">${pc<10?pc.toFixed(1):Math.round(pc)}%</div></div>
+  <div style="text-align:end" class="lbl num">${T.a} / 6236 ${t('qAyah')}<br>${T.sd} ${t('qSurahs')} · ${T.jd} ${t('qJuzDone')}</div></div>
+  <div class="bar" style="background:rgba(255,255,255,.25);margin-top:10px"><i style="width:${Math.max(1,pc)}%;background:#fff"></i></div>
+  ${last?`<div class="chips"><span class="chip">${t('qLastGrade')}: ${esc(t('qGrades')[last.g]||'')}</span></div>`:''}</section>
+ <div class="row" style="gap:8px"><button class="btn g1" data-act="qLog">🎙️ ${t('qLog')}</button><button class="btn ghost" data-act="qSet">⚙️</button></div>
+ <section class="card"><div class="ch"><h2>🎯 ${t('qNext')}</h2></div><div class="cb">${nx?`<div style="font-size:16px;font-weight:800">${esc(QN(nx.s))} <span class="num">(${nx.a}–${nx.b})</span></div><div class="sm mut">${t('qDue')}: ${fmtDate(nx.due,{weekday:'long',day:'numeric',month:'short'})}</div>`:`<div class="empty">${t('qNoNext')}</div>`}</div></section>
+ <section class="card"><div class="ch"><h2>🔁 ${t('qReviewToday')}</h2><span class="sub">${Q.cfg.rev||2} ${t('qPages')}</span></div><div class="cb">${rv.length?rv.map(s=>`<div class="unit"><span class="g1"><b>${esc(QN(s))}</b> <span class="sm mut num">${qMemN(s)<QURAN.c[s-1]?'1–'+qMemN(s):t('qAll')}</span></span><button class="btn sm ghost" data-act="qRev" data-s="${s}">${t('qReviewed')}</button></div>`).join(''):`<div class="empty">${t('qNoReview')}</div>`}</div></section>
+ <section class="card"><div class="ch"><h2>🗺️ ${t('qJuzMap')}</h2></div><div class="cb"><div class="qjz">${T.jp.map((p,i)=>`<div class="num" title="${Math.round(p*100)}%"><b>${i+1}</b><br>${Math.round(p*100)}%<i style="width:${p*100}%"></i></div>`).join('')}</div></div></section>
+ <details class="card"><summary class="ch" style="cursor:pointer"><h2>📜 ${t('qMap')}</h2><span class="sub num">${T.sd}/114</span></summary><div class="cb"><div class="qsr">${qOrder().map(s=>{const n=qMemN(s),c=QURAN.c[s-1];return `<button class="${n>=c?'m':''}" data-act="qSur" data-s="${s}"><b>${esc(QN(s))}</b><small class="num">${n?(n>=c?'✓ ':'')+n+'/':''}${c}</small><i style="width:${n*100/c}%"></i></button>`}).join('')}</div></div></details>
+ <section class="card"><div class="ch"><h2>🗒️ ${t('qLogs')}</h2></div><div class="cb">${logs.length?logs.slice(0,25).map(([id,l])=>`<div class="unit"><span class="g1 sm"><b>${esc(t('qTypes')[l.type]||'')}</b> · ${esc(QN(l.s))} <span class="num">${l.a}–${l.b}</span><br><span class="mut">${fmtDate(l.date,{day:'numeric',month:'short'})}${l.mis?' · '+t('qMistakes')+': '+l.mis:''}${l.notes?' · '+esc(l.notes):''}</span></span><span class="tag grd${l.g}">${esc(t('qGrades')[l.g])}</span><button class="x" data-act="qDel" data-id="${id}" aria-label="${t('del')}">×</button></div>`).join(''):`<div class="empty">${t('qNoLogs')}</div>`}</div></section>`;
+ return h}
+function qLogForm(){const Q=QZ(),nx=Q.next,s0=nx?nx.s:qOrder().find(s=>qMemN(s)<QURAN.c[s-1])||114,a0=nx?nx.a:qMemN(s0)+1,b0=nx?nx.b:Math.min(QURAN.c[s0-1],a0+4);
+ openModal(`<h3>🎙️ ${t('qLog')}</h3>
+ <div class="fg"><div class="f"><label>${t('date')}</label><input class="in" type="date" id="ql-d" value="${today()}"></div><div class="f"><label>${t('qType')}</label><select class="in" id="ql-t">${Object.entries(t('qTypes')).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></div></div>
+ <div class="f"><label>${t('qSurah')}</label><select class="in" id="ql-s">${surahOpts(s0)}</select></div>
+ <div class="fg"><div class="f"><label>${t('qFromA')}</label><input class="in num" type="number" inputmode="numeric" min="1" id="ql-a" value="${a0}"></div><div class="f"><label>${t('qToA')}</label><input class="in num" type="number" inputmode="numeric" min="1" id="ql-b" value="${b0}"></div></div>
+ <div class="f"><label>${t('qGrade')}</label><div class="row wr">${t('qGrades').map((g,i)=>`<label class="pill"><input type="radio" name="ql-g" value="${i}" ${i===0?'checked':''}> ${g}</label>`).join('')}</div></div>
+ <div class="fg"><div class="f"><label>${t('qMistakes')}</label><input class="in num" type="number" inputmode="numeric" min="0" id="ql-m" value="0"></div><div class="f"><label>${t('qTeacher')}</label><input class="in" id="ql-tc" value="${esc(Q.cfg.teacher)}"></div></div>
+ <div class="f"><label>${t('qNotes')}</label><textarea class="in" id="ql-n" style="min-height:60px"></textarea></div>
+ <hr class="s"><div class="sm" style="font-weight:800;margin-bottom:6px">🎯 ${t('qNextSec')}</div>
+ <div class="f"><select class="in" id="qn-s"><option value="">—</option>${surahOpts('')}</select></div>
+ <div class="fg"><div class="f"><label>${t('qFromA')}</label><input class="in num" type="number" inputmode="numeric" min="1" id="qn-a"></div><div class="f"><label>${t('qToA')}</label><input class="in num" type="number" inputmode="numeric" min="1" id="qn-b"></div></div>
+ <div class="f"><label>${t('qDueDate')}</label><input class="in" type="date" id="qn-d" value="${nextHalaqa()}"></div>
+ <div class="row" style="justify-content:flex-end"><button class="btn line" data-act="close">${t('cancel')}</button><button class="btn" data-act="qLogSave">${t('save')}</button></div>`)}
+function qSetForm(){const Q=QZ();openModal(`<h3>⚙️ ${t('qSet')}</h3>
+ <div class="f"><label>${t('qTeacher')}</label><input class="in" id="qs-t" value="${esc(Q.cfg.teacher)}"></div>
+ <div class="f"><label>${t('qDir')}</label><select class="in" id="qs-d">${Object.entries(t('qDirs')).map(([k,v])=>`<option value="${k}" ${Q.cfg.dir===k?'selected':''}>${v}</option>`).join('')}</select></div>
+ <div class="f"><label>${t('qRevPages')}</label><input class="in num" type="number" inputmode="decimal" min="0.5" step="0.5" id="qs-r" value="${Q.cfg.rev||2}"></div>
+ <button class="btn line full" data-act="qHalaqa" style="margin-bottom:10px">${t('qAddHalaqa')}</button>
+ <div class="row" style="justify-content:flex-end"><button class="btn line" data-act="close">${t('cancel')}</button><button class="btn" data-act="qSetSave">${t('save')}</button></div>`)}
+function qSurForm(s){const c=QURAN.c[s-1];openModal(`<h3>📖 ${esc(QN(s))} <span class="sm mut num">(${c} ${t('qAyah')} · ${t('qPages')} ${QURAN.p[s-1][0]}–${QURAN.p[s-1][1]})</span></h3>
+ <div class="f"><label>${t('qSurahSet')}</label><input class="in num" type="number" inputmode="numeric" min="0" max="${c}" id="qm-n" value="${qMemN(s)}"></div>
+ <div class="row wr" style="margin-bottom:12px"><button class="btn sm ghost" data-act="qMemSet" data-s="${s}" data-v="${c}">✓ ${t('qAll')}</button><button class="btn sm line" data-act="qMemSet" data-s="${s}" data-v="0">${t('qNone')}</button></div>
+ <div class="row" style="justify-content:flex-end"><button class="btn line" data-act="close">${t('cancel')}</button><button class="btn" data-act="qMemSave" data-s="${s}">${t('save')}</button></div>`)}
+function qCard(){const Q=QZ(),nx=Q.next,rv=qReviewList();if(!nx&&!Object.keys(Q.mem).length&&!Q.cfg.teacher)return'';
+ return `<section class="card"><div class="ch"><h2>📖 ${t('quranTab')}</h2><button class="btn sm ghost" data-act="tab" data-t="quranTab">↗</button></div><div class="cb">
+  ${nx?`<div><b>🎯 ${esc(QN(nx.s))} <span class="num">(${nx.a}–${nx.b})</span></b> <span class="sm mut">· ${t('qDue')} ${fmtDate(nx.due,{weekday:'short',day:'numeric',month:'short'})}</span></div>`:''}
+  ${rv.length?`<div class="sm" style="margin-top:6px">🔁 ${t('qReviewToday')}: ${rv.map(s=>esc(QN(s))).join(LANG==='ar'?'، ':', ')}</div>`:''}</div></section>`}
+
+/* ========== DAY BY THE HOUR ========== */
+const DPH=56;let QPK=null,DRAG=null,DRAGGED=false;
+const hmS=m=>pad(Math.floor(m/60)%24)+':'+pad(m%60);
+const routineS=()=>Object.assign({sleep:['23:00','06:00'],school:['08:00','14:00'],schoolDays:[0,1,2,3,4]},D.cfg.routine||{});
+const dayBlocksS=d=>Object.entries(D.blocks||{}).filter(([,b])=>b.date===d).map(([id,b])=>Object.assign({id},b)).sort((a,b)=>toMin(a.start)-toMin(b.start));
+function prBandsS(d){const T=prayerTimes(d),fri=parse(d).getDay()===5,L={fajr:20,dhuhr:20,asr:20,maghrib:15,isha:20};return PR.map(k=>{const a=toMin(T[k]);return{k,a,e:a+(k==='dhuhr'&&fri?45:L[k]),tm:T[k],name:k==='dhuhr'&&fri?t('jumuah'):t(k)}})}
+function wakeBedS(){const R=routineS();let w=toMin(R.sleep[1]),b=toMin(R.sleep[0]);if(b<=w)b=1435;return[w,b]}
+function busyS(d){const R=routineS(),o=[];if(R.schoolDays.includes(parse(d).getDay()))o.push([toMin(R.school[0]),toMin(R.school[1])]);prBandsS(d).forEach(p=>o.push([p.a-5,p.e+5]));
+ lessonsOn(d).forEach(l=>{const a=toMin(l.start);o.push([a-15,a+(+l.dur||60)+15])});dayBlocksS(d).forEach(b=>o.push([toMin(b.start),toMin(b.end)]));return o.sort((x,y)=>x[0]-y[0])}
+function freeS(d,from){const[w,bed]=wakeBedS();let a=Math.max(w,from||0);const out=[];for(const[s,e]of busyS(d)){if(e<=a)continue;if(s>a)out.push([Math.ceil(a/5)*5,Math.min(s,bed)]);a=Math.max(a,e);if(a>=bed)break}if(a<bed)out.push([Math.ceil(a/5)*5,bed]);return out.filter(x=>x[1]-x[0]>=20)}
+function sessStartMin(x){const d=new Date(x.ts||0);return d.getHours()*60+d.getMinutes()}
+function autoFillS(d){const n0=new Date(),from=d===today()?Math.ceil((n0.getHours()*60+n0.getMinutes()+5)/15)*15:0,goal=+D.cfg.goal||300;
+ dayBlocksS(d).filter(b=>b.auto).forEach(b=>delete D.blocks[b.id]);
+ let need=goal-dayBlocksS(d).reduce((a,b)=>a+toMin(b.end)-toMin(b.start),0)-(d===today()?studyMin(d):0);
+ const tom=new Set(lessonsOn(addD(d,1)).map(l=>l.sid)),subs=D.subjects.filter(s=>s.counted||tom.has(s.id)).sort((a,b)=>(tom.has(b.id)-tom.has(a.id))||(subjWeekMin(a.id,d)-subjWeekMin(b.id,d)));
+ let slots=freeS(d,from),n=0,i=0;while(need>=20&&slots.length&&subs.length){const sl=slots[0],len=Math.min(50,need,sl[1]-sl[0]);if(len<20){slots.shift();continue}
+  const sb=subs[i%subs.length];i++;D.blocks[uid()]={date:d,start:hmS(sl[0]),end:hmS(sl[0]+len),sid:sb.id,note:'',auto:1};n++;need-=len;sl[0]+=len+10;if(sl[1]-sl[0]<20)slots.shift()}
+ save();toast(n?t('dpFilled').replace('{n}',n):t('dpNoFree'));render()}
+function vDay(){const d=V.dd||today(),td=today(),R=routineS(),[w,bed]=wakeBedS(),isSch=R.schoolDays.includes(parse(d).getDay()),B=dayBlocksS(d),PB=prBandsS(d),LS=lessonsOn(d);
+ const st=Math.max(0,Math.floor((w-60)/60)*60),en=Math.min(1440,Math.ceil((Math.min(bed,1435)+60)/60)*60),Y=m=>((Math.max(st,Math.min(en,m))-st)/60*DPH).toFixed(1);
+ const blkMin=B.reduce((a,b)=>a+toMin(b.end)-toMin(b.start),0),free=freeS(d,0).reduce((a,x)=>a+x[1]-x[0],0);
+ let g='';for(let m=st;m<en;m+=60)g+=`<div class="dp-hr" style="top:${Y(m)}px"><span class="num">${hmS(m)}</span></div><button class="dp-slot" data-dpslot="${hmS(m)}" style="top:${Y(m)}px;height:${DPH}px" aria-label="${t('dpAdd')} ${hmS(m)}"></button>`;
+ if(w>st)g+=`<div class="dp-bg sleep" style="top:0;height:${Y(w)}px">🌙 ${t('dpSleep')}</div>`;
+ if(bed<en)g+=`<div class="dp-bg sleep" style="top:${Y(bed)}px;height:${(Y(en)-Y(bed)).toFixed(1)}px">🌙 ${t('dpSleep')} ${R.sleep[0]}</div>`;
+ if(isSch){const a=toMin(R.school[0]),b=toMin(R.school[1]);g+=`<div class="dp-bg school" style="top:${Y(a)}px;height:${(Y(b)-Y(a)).toFixed(1)}px">🏫 ${t('dpSchool')} ${R.school[0]}–${R.school[1]}</div>`}
+ LS.forEach(l=>{const a=toMin(l.start),e=a+(+l.dur||60),sb=subj(l.sid);g+=`<div class="dp-ls" style="top:${Y(a)}px;height:${Math.max(22,Y(e)-Y(a)).toFixed(1)}px;--c:${sb.color}">📅 ${t('lessonBand')}: ${esc(sname(sb))}${l.teacher?' · '+esc(l.teacher):''} <span class="num mut">${fmtT(l.start)}</span></div>`});
+ B.forEach(b=>{const sb=subj(b.sid),a=toMin(b.start),e=toMin(b.end),u=b.uid&&D.units[b.uid];g+=`<button class="dp-blk" data-dpb="${b.id}" style="top:${Y(a)}px;height:${Math.max(20,Y(e)-Y(a)).toFixed(1)}px;--c:${sb.color}"><b>${esc(sname(sb))}${u?' · '+esc(u.name):''}</b><small class="num" data-blt>${b.start}–${b.end} · ${dur(e-a)}${b.note?' · '+esc(b.note):''}</small><span class="dp-grip" data-drag="move" data-id="${b.id}" aria-hidden="true">⠿</span><span class="dp-rs" data-drag="size" data-id="${b.id}" aria-hidden="true"></span></button>`});
+ const dy=D.days[d]||{pr:{}};PB.forEach(p=>{const ok=(dy.pr||{})[p.k];g+=`<button class="dp-pr ${ok?'ok':''}" data-act="pr" data-k="${p.k}" data-d="${d}" style="top:${Y(p.a)}px;height:${Math.max(18,Y(p.e)-Y(p.a)).toFixed(1)}px">🕌 ${p.name} <span class="num">${p.tm}</span>${ok?' ✓':''}</button>`});
+ sessOn(d).forEach(x=>{const a=sessStartMin(x);g+=`<div class="dp-act" style="top:${Y(a)}px;height:${Math.max(4,Y(a+(+x.min||0))-Y(a)).toFixed(1)}px"></div>`});
+ if(d===td){const nm=new Date().getHours()*60+new Date().getMinutes();if(nm>=st&&nm<=en)g+=`<div class="dp-now" style="top:${Y(nm)}px"></div>`}
+ const tom=new Set(lessonsOn(addD(d,1)).map(l=>l.sid)),qd=+localStorage.getItem('thn-qpdur')||50;
+ const qp=QPK?`<div class="qp" role="dialog"><div class="row sp"><b class="num" style="font-size:18px">🕒 ${QPK}</b><span class="sm mut g1">${t('qpPick')}</span><button class="x" data-act="qpClose" aria-label="${t('cancel')}">✕</button></div>
+  <div class="row wr" style="margin-top:8px">${[25,45,50,60,90].map(m=>`<button class="pill ${qd===m?'on':''}" data-act="qpDur" data-v="${m}">${dur(m)}</button>`).join('')}</div>
+  <div class="qp-grid">${D.subjects.slice().sort((a,b)=>tom.has(b.id)-tom.has(a.id)).map(sb=>`<button class="qp-chip ${tom.has(sb.id)?'hot':''}" data-act="qpPick" data-s="${sb.id}" style="--c:${sb.color}">${esc(sname(sb))}${tom.has(sb.id)?`<small>⭐ ${t('qpTomorrow')}</small>`:''}</button>`).join('')}</div>
+  <button class="btn line sm" style="margin-top:12px" data-act="qpMore">${t('qpMore')}</button></div>`:'';
+ const wd=t('week');
+ return `<div class="row sp" style="margin-top:6px"><button class="btn line sm" data-act="dd" data-v="-1">‹</button><div style="text-align:center"><b>🕒 ${t('dpTitle')}</b><div class="sm mut">${fmtDate(d)}</div></div><button class="btn line sm" data-act="dd" data-v="1">›</button></div>
+ <section class="card"><div class="cb" style="padding-top:12px"><div class="row wr"><span class="pill on num">${t('dpPlanned')}: ${dur(blkMin)}</span><span class="pill num">${t('dpActual')}: ${dur(studyMin(d))}</span><span class="pill num">${t('dpGoal')}: ${dur(+D.cfg.goal||300)}</span><span class="pill num">${t('dpFree')}: ${dur(free)}</span></div>
+  <div class="row wr" style="margin-top:10px">${d>=td?`<button class="btn sm" data-act="dpAuto">${t('dpAuto')}</button>`:''}<button class="btn sm ghost" data-act="dpAdd">${t('dpAdd')}</button></div><div class="sm mut" style="margin-top:8px">${t('dpHint')}</div></div></section>
+ <section class="card"><div class="cb" style="padding-top:16px"><div class="dp" style="height:${((en-st)/60*DPH).toFixed(0)}px">${g}</div></div></section>
+ <details class="card"><summary class="cb" style="cursor:pointer;font-weight:800;padding-top:12px">⚙️ ${t('dpRoutine')}</summary><div class="cb">
+  <div class="fg"><div class="f"><label>${t('dpSleepFrom')}</label><input class="in" type="time" id="rt-sl" value="${R.sleep[0]}"></div><div class="f"><label>${t('dpWake')}</label><input class="in" type="time" id="rt-wk" value="${R.sleep[1]}"></div></div>
+  <div class="fg"><div class="f"><label>${t('dpSchoolFrom')}</label><input class="in" type="time" id="rt-s1" value="${R.school[0]}"></div><div class="f"><label>${t('dpTo')}</label><input class="in" type="time" id="rt-s2" value="${R.school[1]}"></div></div>
+  <div class="f"><label>${t('dpSchoolDays')}</label><div class="days">${WEEK.map(i=>`<label><input type="checkbox" class="rt-sd" value="${i}" ${R.schoolDays.includes(i)?'checked':''}><span>${wd[i]}</span></label>`).join('')}</div></div>
+  <button class="btn sm" data-act="rtSave">${t('save')}</button></div></details>`+qp}
+function blkForm(id){const b=D.blocks[id];openModal(`<h3>${t('dpEdit')}</h3>
+ <div class="fg"><div class="f"><label>${t('dpFrom')}</label><input class="in" type="time" id="bk-s" value="${b.start}"></div><div class="f"><label>${t('dpTo')}</label><input class="in" type="time" id="bk-e" value="${b.end}"></div></div>
+ <div class="fg"><div class="f"><label>${t('subject')}</label><select class="in" id="bk-sb">${subjOptions(b.sid)}</select></div><div class="f"><label>${t('unit')}</label><select class="in" id="bk-u">${unitOpts(b.sid).replace(`value="${b.uid||'@'}"`,`value="${b.uid}" selected`)}</select></div></div>
+ <div class="f"><label>${t('notes')}</label><input class="in" id="bk-n" value="${esc(b.note||'')}"></div>
+ <div class="row sp"><button class="btn danger" data-act="bkDel" data-id="${id}">${t('del')}</button><div class="row">${b.date===today()?`<button class="btn ghost" data-act="focus" data-s="${b.sid}">⏱️</button>`:''}<button class="btn line" data-act="close">${t('cancel')}</button><button class="btn" data-act="bkSave" data-id="${id}">${t('save')}</button></div></div>`)}
+document.addEventListener('pointerdown',e=>{const h=e.target.closest('[data-drag]');if(!h)return;const el=h.closest('.dp-blk'),b=D.blocks[h.dataset.id];if(!el||!b)return;e.preventDefault();
+ DRAG={id:h.dataset.id,mode:h.dataset.drag,y0:e.clientY,el,top0:parseFloat(el.style.top),h0:parseFloat(el.style.height),a:toMin(b.start),e:toMin(b.end),moved:false};try{h.setPointerCapture(e.pointerId)}catch(x){}});
+document.addEventListener('pointermove',e=>{if(!DRAG)return;const dy=e.clientY-DRAG.y0;if(Math.abs(dy)>5&&!DRAG.moved){DRAG.moved=true;DRAG.el.classList.add('drag')}if(!DRAG.moved)return;
+ const dm=Math.round(dy/DPH*60/15)*15;let a=DRAG.a,en=DRAG.e;if(DRAG.mode==='move'){a=Math.max(0,Math.min(1435-(en-a),a+dm));en=a+(DRAG.e-DRAG.a);DRAG.el.style.top=(DRAG.top0+(a-DRAG.a)/60*DPH)+'px'}else{en=Math.max(a+15,Math.min(1435,DRAG.e+dm));DRAG.el.style.height=Math.max(20,DRAG.h0+(en-DRAG.e)/60*DPH)+'px'}
+ DRAG.na=a;DRAG.ne=en;const lb=DRAG.el.querySelector('[data-blt]');if(lb)lb.textContent=hmS(a)+'–'+hmS(en)+' · '+dur(en-a)});
+function endDragS(){if(!DRAG)return;const D0=DRAG;DRAG=null;if(!D0.moved)return;DRAGGED=true;setTimeout(()=>{DRAGGED=false},400);const b=D.blocks[D0.id];if(!b||D0.na==null)return render();
+ Object.assign(b,{start:hmS(D0.na),end:hmS(D0.ne),auto:0});save();toast(t('dpMoved').replace('{x}',b.start+'–'+b.end));render()}
+document.addEventListener('pointerup',endDragS);document.addEventListener('pointercancel',endDragS);
+function askNotif(){try{if('Notification' in window&&Notification.permission==='default')Notification.requestPermission().catch(()=>{})}catch(e){}}
+function soonAlerts(){try{const d=today(),nm=new Date().getHours()*60+new Date().getMinutes();let seen=localStorage.getItem('thn-soon')||'';
+ const items=dayBlocksS(d).map(b=>[b.id,toMin(b.start),sname(b.sid),b.start]).concat(lessonsOn(d).map(l=>[l.key,toMin(l.start),t('lessonBand')+': '+sname(l.sid),l.start]));
+ items.forEach(([id,m,name,tm])=>{const left=m-nm;if(left<=10&&left>=8&&!seen.includes(id)){seen=(seen+','+id).slice(-600);localStorage.setItem('thn-soon',seen);const msg=t('dpSoon').replace('{x}',name);beep();toast(msg);
+  try{if('Notification' in window&&Notification.permission==='granted'&&navigator.serviceWorker)navigator.serviceWorker.getRegistration().then(r=>r&&r.showNotification(msg,{body:tm,icon:'icon-192.png',tag:'soon'}))}catch(e){}}})}catch(e){}}
+setInterval(soonAlerts,30000);
 
 /* ========== QUESTIONS ========== */
 function vQuestions(){const d=today(),seg=`<div class="row" style="justify-content:center;margin-top:6px"><div class="seg"><button class="${V.qseg==='gr'?'':'on'}" data-act="qseg" data-v="qs">✅ ${t('segQs')}</button><button class="${V.qseg==='gr'?'on':''}" data-act="qseg" data-v="gr">🎯 ${t('segGr')}</button></div></div>`;
@@ -790,7 +971,7 @@ const A={
   if(a.st==='abs'&&!ex){const l=D.lessons[k.split('|')[1]]||D.extra[k.split('|')[1]];if(l)D.tasks[uid()]={title:t('makeupLesson')+': '+sname(l.sid)+(l.teacher?' — '+l.teacher:''),sid:l.sid,date:today(),mk:1,src:k,ts:Date.now()}}
   if(a.st!=='abs'&&ex&&!ex[1].done)delete D.tasks[ex[0]];save();render()},
  hw:b=>{const k=b.dataset.k,a=D.att[k]||(D.att[k]={});a.hw=!a.hw;save();render()},
- pr:b=>{const d=day(today()),k=b.dataset.k;d.pr[k]=((d.pr[k]||0)+1)%3;save();render()},
+ pr:b=>{const d=day(b.dataset.d||today()),k=b.dataset.k;d.pr[k]=((d.pr[k]||0)+1)%3;save();render()},
  wtog:b=>{const d=day(today()),k=b.dataset.k;d[k]=d[k]?0:1;save();render()},
  qr:b=>{const d=day(today());d.qr=Math.max(0,(d.qr||0)+ +b.dataset.v);save();render()},
  focus:b=>startFocus(b.dataset.s),
@@ -798,7 +979,7 @@ const A={
  fmin:()=>closeFocus(),
  fmode:b=>{F.target=+b.dataset.v;F.beeped=F.target>0&&fElapsed()>=F.target*60?1:0;F.lastIdx=isPomo()?pomoState(fElapsed()).idx:0;fSave();renderFocus()},
  fpause:()=>{F.hiddenAt=0;if(F.paused){F.pausedTotal=(F.pausedTotal||0)+(Date.now()-F.paused);F.paused=0}else F.paused=Date.now();fSave();renderFocus()},
- ffinish:()=>{checkWither();const m=Math.round(fWork()/60);if(m>=1){const st=new Date(F.start);D.sessions[uid()]={sid:F.sid,uid:F.uid||'',min:m,date:iso(st),ts:F.start,tree:m>=10?(F.dead?'dead':'ok'):''};save();toast((m>=10?(F.dead?'🥀 ':'🌳 '):'')+t('sessSaved')+' · '+dur(m))}else toast(t('tooShort'));F=null;fSave();closeFocus()},
+ ffinish:()=>{checkWither();const fr=isFruit(),m=Math.max(0,Math.round(fWork()/60-(F.distr||0)));if(m>=1){const st=new Date(F.start);D.sessions[uid()]={sid:F.sid,uid:F.uid||'',min:m,date:iso(st),ts:F.start,tree:m>=10?(F.dead?'dead':'ok'):'',distr:F.distr||0,onTime:F.onTime||0,fruit:fr&&!F.dead?1:0};save();toast((fr&&!F.dead?'🍎 ':m>=10?(F.dead?'🥀 ':'🌳 '):'')+t('sessSaved')+' · '+dur(m))}else toast(t('tooShort'));F=null;fSave();closeFocus()},
  fdiscard:async()=>{if(await ask(t('delQ'))){F=null;fSave();closeFocus()}},
  lessonForm:b=>lessonForm(b.dataset.id),
  extraForm:b=>extraForm(b.dataset.id),
@@ -818,7 +999,7 @@ const A={
  udel:async b=>{if(await ask(t('delQ'))){delete D.units[b.dataset.id];save();render()}},
  uadd:b=>{const sid=b.dataset.s,lines=$('#uadd').value.split('\n').map(x=>x.trim()).filter(Boolean);if(!lines.length)return;let o=unitsOf(sid).length;
   lines.forEach(n=>{D.units[uid()]={sid,name:n,st:0,o:++o}});save();toast(t('added')+' '+lines.length);render()},
- sdel:async b=>{if(await ask(t('delQ'))){delete D.sessions[b.dataset.id];save();render()}},
+ sdel:async b=>{if(await ask(t('delSessQ'))){delete D.sessions[b.dataset.id];save();toast(t('sessDeleted'));render()}},
  qsAdd:()=>{const sid=$('#qs-s').value,T=+$('#qs-t').value,C=+$('#qs-c').value;
   if(!sid)return toast(t('needSubj'));if(!(T>0)||!(C>=0)||C>T||$('#qs-c').value==='')return toast(t('qErr'));
   D.qs[uid()]={sid,uid:$('#qs-u').value,total:T,correct:C,src:$('#qs-src').value.trim(),date:$('#qs-d').value||today(),ts:Date.now()};V.qsS=sid;save();toast(t('saved')+' · '+Math.round(C*100/T)+'%');render()},
@@ -859,11 +1040,44 @@ const A={
  rpWhats:()=>{window.open('https://wa.me/'+(D.cfg.parent||'')+'?text='+encodeURIComponent(weekReport()),'_blank')},
  rpShare:async()=>{const txt=weekReport();if(navigator.share){try{await navigator.share({text:txt});return}catch(e){if(e&&e.name==='AbortError')return}}copyText(txt)},
  rpCopy:()=>copyText(weekReport()),
+ tmode:b=>{localStorage.setItem('thn-treeMode',b.dataset.v);renderFocus()},
+ away:b=>{const m=+b.dataset.m;if(F){if(b.dataset.v==='study')toast(t('awayStudyOk'));else{F.distr=(F.distr||0)+m;F.hits=(F.hits||0)+1;if(F.hits>=3){F.dead=1;toast(t('treeDead'))}else toast(t('awayDistrOk').replace('{m}',m).replace('{n}',F.hits))}fSave()}closeModal();if(fOpen)renderFocus();else render()},
+ openDay:()=>{V.tab='day';V.dd=today();askNotif();render();scrollTo(0,0)},
+ dd:b=>{V.dd=addD(V.dd||today(),+b.dataset.v);QPK=null;render()},
+ dpAuto:()=>{askNotif();autoFillS(V.dd||today())},
+ dpAdd:()=>{const n=new Date();QPK=hmS(Math.min(1380,Math.ceil((n.getHours()*60+n.getMinutes())/15)*15));render()},
+ qpClose:()=>{QPK=null;render()},
+ qpDur:b=>{localStorage.setItem('thn-qpdur',b.dataset.v);render()},
+ qpPick:b=>{const a=toMin(QPK),m=+localStorage.getItem('thn-qpdur')||50;D.blocks[uid()]={date:V.dd||today(),start:QPK,end:hmS(Math.min(a+m,1435)),sid:b.dataset.s,note:''};QPK=null;save();toast(t('qpAdded').replace('{x}',sname(b.dataset.s)));render()},
+ qpMore:()=>{const a=toMin(QPK),m=+localStorage.getItem('thn-qpdur')||50,id=uid();D.blocks[id]={date:V.dd||today(),start:QPK,end:hmS(Math.min(a+m,1435)),sid:D.subjects[0].id,note:''};QPK=null;save();render();blkForm(id)},
+ rtSave:()=>{const v=id=>$('#'+id).value;D.cfg.routine={sleep:[v('rt-sl')||'23:00',v('rt-wk')||'06:00'],school:[v('rt-s1')||'08:00',v('rt-s2')||'14:00'],schoolDays:[...document.querySelectorAll('.rt-sd:checked')].map(x=>+x.value)};save();toast(t('saved'));render()},
+ bkSave:b=>{const x=D.blocks[b.dataset.id],s0=$('#bk-s').value,e0=$('#bk-e').value;if(!s0||!e0||toMin(e0)<=toMin(s0))return toast(t('needTime'));Object.assign(x,{start:s0,end:e0,sid:$('#bk-sb').value,uid:$('#bk-u').value,note:$('#bk-n').value.trim(),auto:0});save();closeModal();render()},
+ bkDel:b=>{delete D.blocks[b.dataset.id];save();closeModal();render()},
+ qLog:()=>qLogForm(),
+ qSet:()=>qSetForm(),
+ qSur:b=>qSurForm(+b.dataset.s),
+ qMemSet:b=>{$('#qm-n').value=b.dataset.v},
+ qMemSave:b=>{const sn=+b.dataset.s,c=QURAN.c[sn-1],n=Math.max(0,Math.min(c,parseInt($('#qm-n').value)||0)),Q=QZ();if(n)Q.mem[sn]=Object.assign(Q.mem[sn]||{},{n,last:(Q.mem[sn]||{}).last||today()});else delete Q.mem[sn];save();closeModal();toast(t('qSaved'));render()},
+ qRev:b=>{const Q=QZ(),sn=+b.dataset.s;if(Q.mem[sn])Q.mem[sn].last=today();Q.logs[uid()]={date:today(),type:'near',s:sn,a:1,b:qMemN(sn),g:0,mis:0,notes:'',self:1,ts:Date.now()};save();render()},
+ qDel:async b=>{if(await ask(t('delQ'))){delete QZ().logs[b.dataset.id];save();render()}},
+ qSetSave:()=>{const Q=QZ();Q.cfg.teacher=$('#qs-t').value.trim();Q.cfg.dir=$('#qs-d').value;Q.cfg.rev=Math.max(.5,parseFloat($('#qs-r').value)||2);ensureQrn();save();closeModal();toast(t('qSaved'));render()},
+ qHalaqa:()=>{const Q=QZ();Q.cfg.teacher=$('#qs-t').value.trim();ensureQrn();save();closeModal();lessonForm();setTimeout(()=>{const f=$('#fs');if(f)f.value='qrn';const tt=$('#ft');if(tt&&!tt.value)tt.value=Q.cfg.teacher;const pl=$('#fp');if(pl&&!pl.value)pl.value=LANG==='ar'?'الحلقة':'Halaqa'},30)},
+ qLogSave:()=>{const Q=QZ(),sn=+$('#ql-s').value,a=parseInt($('#ql-a').value),bb=parseInt($('#ql-b').value),c=QURAN.c[sn-1],g=+(document.querySelector('input[name=ql-g]:checked')||{value:0}).value,ty=$('#ql-t').value,d=$('#ql-d').value||today();
+  if(!(a>=1&&bb>=a&&bb<=c))return toast(t('qBadRange'));
+  Q.logs[uid()]={date:d,type:ty,s:sn,a,b:bb,g,mis:Math.max(0,parseInt($('#ql-m').value)||0),notes:$('#ql-n').value.trim(),ts:Date.now()};
+  const tc=$('#ql-tc').value.trim();if(tc)Q.cfg.teacher=tc;
+  const m=Q.mem[sn]||(Q.mem[sn]={n:0});if(ty==='new'&&g<4&&a<=m.n+1)m.n=Math.max(m.n||0,bb);m.last=d;if(!m.n)delete Q.mem[sn];
+  const ns=+$('#qn-s').value,na=parseInt($('#qn-a').value),nb=parseInt($('#qn-b').value);if(ns&&na>=1&&nb>=na&&nb<=QURAN.c[ns-1])Q.next={s:ns,a:na,b:nb,due:$('#qn-d').value||nextHalaqa()};else if(Q.next&&Q.next.s===sn&&ty==='new'&&g<4&&bb>=Q.next.b)Q.next=null;
+  ensureQrn();save();closeModal();toast(t('qSaved'));render()},
  export:()=>{const blob=new Blob([JSON.stringify(D,null,1)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='my-study-backup-'+today()+'.json';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500)},
  erase:async()=>{if(await ask(t('eraseQ'))){D=defaults();D.cfg.lang=LANG;V.su=null;save();F=null;fSave();toast(t('saved'));render()}}
 };
+function ensureQrn(){if(!D.subjects.some(x=>x.id==='qrn'))D.subjects.push({id:'qrn',ar:CAT.qrn[0],en:CAT.qrn[1],color:CAT.qrn[2],counted:false})}
+document.addEventListener('click',e=>{const sl=e.target.closest('[data-dpslot]');if(sl){const rc=sl.getBoundingClientRect(),off=Math.max(0,Math.min(45,Math.floor((e.clientY-rc.top)/DPH*60/15)*15));QPK=hmS(toMin(sl.dataset.dpslot)+off);render();return}
+ const bk=e.target.closest('[data-dpb]');if(bk&&!e.target.closest('[data-drag]')){if(DRAGGED)return;blkForm(bk.dataset.dpb);return}});
 document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;const f=A[b.dataset.act];if(f)f(b,e)});
 document.addEventListener('change',async e=>{
+ if(e.target.id==='bk-sb'){$('#bk-u').innerHTML=unitOpts(e.target.value)}
  if(e.target.id==='su-city')V.su.city=e.target.value;
  if(e.target.id==='s-grade'){$('#s-stream').innerHTML=streamOpts(+e.target.value,'')}
  if(e.target.id==='qs-s'){$('#qs-u').innerHTML=unitOpts(e.target.value)}
@@ -878,7 +1092,8 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!busy()&&
 
 /* ========== start ========== */
 applyTheme();if(F)checkWither();render();if(F&&D.cfg.setup)openFocus();
-if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
+if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('sw.js').catch(()=>{});
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
 </script>
 </body>
 </html>
